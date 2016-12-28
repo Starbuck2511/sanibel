@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {Group} from '../../models/group';
 import {GroupDetailPage} from '../group-detail/group-detail';
 import {TeammatesGroups} from '../../providers/teammates-groups';
+
 
 /*
  Generated class for the Groups page.
@@ -17,12 +19,11 @@ import {TeammatesGroups} from '../../providers/teammates-groups';
 })
 export class GroupsPage {
 
-    groups: Group[];
+    groups: FirebaseListObservable<any>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private teammatesGroups: TeammatesGroups) {
-        teammatesGroups.load().subscribe(groups => {
-            this.groups = groups;
-        })
+    constructor(public navCtrl: NavController, public navParams: NavParams, private af:AngularFire) {
+        this.groups = af.database.list('/groups');
+        this.groups.push({'name': 'value', 'description': 'value'});
     }
 
     goToDetail(name: string) {

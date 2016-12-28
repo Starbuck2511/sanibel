@@ -1,7 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-
 import {Platform, MenuController, Nav} from 'ionic-angular';
-
 import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {LoginPage} from '../pages/login/login';
@@ -18,8 +16,7 @@ export class MyApp {
     rootPage: any = LoginPage;
     pages: Array<{title: string, component: any}>;
 
-    constructor(public platform: Platform,
-                public menu: MenuController) {
+    constructor(public platform: Platform, public menu: MenuController) {
         this.initializeApp();
 
         // set our app's pages
@@ -46,3 +43,4 @@ export class MyApp {
         this.nav.setRoot(page.component);
     }
 }
+
