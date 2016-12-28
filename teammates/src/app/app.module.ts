@@ -5,6 +5,7 @@ import {MyApp} from './app.component';
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {GroupsPage} from '../pages/groups/groups';
+import {GroupDetailPage} from '../pages/group-detail/group-detail';
 import {TeammatesGroups} from "../providers/teammates-groups";
 
 @NgModule({
@@ -12,7 +13,8 @@ import {TeammatesGroups} from "../providers/teammates-groups";
         MyApp,
         LoginPage,
         SignupPage,
-        GroupsPage
+        GroupsPage,
+        GroupDetailPage
     ],
     imports: [
         IonicModule.forRoot(MyApp)
@@ -22,7 +24,8 @@ import {TeammatesGroups} from "../providers/teammates-groups";
         MyApp,
         LoginPage,
         SignupPage,
-        GroupsPage
+        GroupsPage,
+        GroupDetailPage
     ],
     providers: [
         {

@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {Group} from '../../models/group';
 
+import {Group} from '../../models/group';
+import {GroupDetailPage} from '../group-detail/group-detail';
 import {TeammatesGroups} from '../../providers/teammates-groups';
 
 /*
@@ -22,6 +23,10 @@ export class GroupsPage {
         teammatesGroups.load().subscribe(groups => {
             this.groups = groups;
         })
+    }
+
+    goToDetail(name: string) {
+        this.navCtrl.push(GroupDetailPage, {name: name});
     }
 
     ionViewDidLoad() {

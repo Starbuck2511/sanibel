@@ -17,7 +17,7 @@
 <ion-content padding>
     <h3>groups</h3>
     <ion-list>
-        <button ion-item *ngFor="let group of groups">
+        <button ion-item *ngFor="let group of groups" (click)="goToDetail(group.name)">
             <p>{{group.id}}</p>
             <p>{{group.name}}</p>
             <p>{{group.description}}</p>
