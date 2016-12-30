@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {AlertService} from '../../components/alert/alert.service';
-import {AuthService} from '../../components/auth/auth.service';
 import {AngularFire} from "angularfire2";
 
 /*
