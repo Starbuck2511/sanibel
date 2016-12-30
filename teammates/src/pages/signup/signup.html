@@ -9,11 +9,25 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>signup</ion-title>
+        <ion-title>Sign up</ion-title>
     </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-    <h3>signup</h3>
+    <h3>Register a new account</h3>
+    <form>
+        <ion-item>
+            <ion-label floating>E-Mail</ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+
+        <div padding>
+            <button ion-button (click)="signUp()">Sign up</button>
+        </div>
+    </form>
 </ion-content>

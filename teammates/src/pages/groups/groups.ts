@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {NavController, NavParams} from 'ionic-angular';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
-import {AuthPage} from '../../components/auth/auth-page';
 import {AuthService} from '../../components/auth/auth.service';
 import {GroupDetailPage} from '../group-detail/group-detail';
+import {LoginPage} from '../login/login';
 
 
 /*
@@ -17,20 +17,22 @@ import {GroupDetailPage} from '../group-detail/group-detail';
     selector: 'page-groups',
     templateUrl: 'groups.html'
 })
-export class GroupsPage extends AuthPage {
+export class GroupsPage {
 
     groups: FirebaseListObservable<any>;
 
-    constructor(private af:AngularFire, public navCtrl: NavController, public navParams: NavParams, private auth: AuthService) {
-        super(navCtrl, navParams, auth);
+    constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, private af:AngularFire) {
+
     }
 
     goToDetail(name: string) {
         this.navCtrl.push(GroupDetailPage, {name: name});
     }
 
-    ionViewDidLoad() {
-        this.pageAuth();
+    ionViewWillEnter() {
+        if (true !== this.auth.isAuthenticated()) {
+            this.navCtrl.setRoot(LoginPage);
+        }
     }
 
 }

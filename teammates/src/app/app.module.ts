@@ -4,6 +4,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AppConfig} from './app.config';
 import {MyApp} from './app.component';
 
+import {AlertService} from '../components/alert/alert.service';
 import {AuthService} from '../components/auth/auth.service';
 
 import {LoginPage} from '../pages/login/login';
@@ -37,7 +38,9 @@ import {GroupDetailPage} from '../pages/group-detail/group-detail';
             provide: ErrorHandler,
             useClass: IonicErrorHandler
         },
+        AlertService,
         AuthService
+
     ]
 })
 export class AppModule {
