@@ -15,4 +15,20 @@
 
 <ion-content padding>
     <h3>login</h3>
+    <form>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+
+        <div padding>
+            <button (click)="login()">Login</button>
+            <button (click)="registerUser()">Create New Account</button>
+        </div>
+    </form>
 </ion-content>

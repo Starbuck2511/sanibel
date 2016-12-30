@@ -1,13 +1,16 @@
 import {NgModule, ErrorHandler} from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
-import {FIREBASE_PROVIDERS, defaultFirebase} from 'angularfire2';
+import {AngularFireModule} from 'angularfire2';
+import {AppConfig} from './app.config';
 import {MyApp} from './app.component';
+
+import {AuthService} from '../components/auth/auth.service';
 
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {GroupsPage} from '../pages/groups/groups';
 import {GroupDetailPage} from '../pages/group-detail/group-detail';
-import {TeammatesGroups} from "../providers/teammates-groups";
+
 
 @NgModule({
     declarations: [
@@ -18,7 +21,8 @@ import {TeammatesGroups} from "../providers/teammates-groups";
         GroupDetailPage
     ],
     imports: [
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(MyApp),
+        AngularFireModule.initializeApp(AppConfig.FIREBASE_CONFIG)
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -33,15 +37,7 @@ import {TeammatesGroups} from "../providers/teammates-groups";
             provide: ErrorHandler,
             useClass: IonicErrorHandler
         },
-        TeammatesGroups,
-        FIREBASE_PROVIDERS,
-        defaultFirebase({
-            apiKey: "AIzaSyBOGOQUrI3iLu8yKzcOCqQGPhk0St5GnY0",
-            authDomain: "teammates-73d62.firebaseapp.com",
-            databaseURL: "https://teammates-73d62.firebaseio.com",
-            storageBucket: "teammates-73d62.appspot.com",
-            //messagingSenderId: "739745043793"
-        })
+        AuthService
     ]
 })
 export class AppModule {

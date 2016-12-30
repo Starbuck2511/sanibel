@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {NavController, NavParams} from 'ionic-angular';
 
-import {Group} from '../../models/group';
+import {AuthPage} from '../../components/auth/auth-page';
+import {AuthService} from '../../components/auth/auth.service';
 import {GroupDetailPage} from '../group-detail/group-detail';
-import {TeammatesGroups} from '../../providers/teammates-groups';
 
 
 /*
@@ -17,13 +17,12 @@ import {TeammatesGroups} from '../../providers/teammates-groups';
     selector: 'page-groups',
     templateUrl: 'groups.html'
 })
-export class GroupsPage {
+export class GroupsPage extends AuthPage {
 
     groups: FirebaseListObservable<any>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private af:AngularFire) {
-        this.groups = af.database.list('/groups');
-        this.groups.push({'name': 'value', 'description': 'value'});
+    constructor(private af:AngularFire, public navCtrl: NavController, public navParams: NavParams, private auth: AuthService) {
+        super(navCtrl, navParams, auth);
     }
 
     goToDetail(name: string) {
@@ -31,7 +30,7 @@ export class GroupsPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad GroupsPage');
+        this.pageAuth();
     }
 
 }
