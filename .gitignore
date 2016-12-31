@@ -47,3 +47,6 @@ crashlytics-build.properties
 fabric.properties
 
 .DS_Store
+
+# App
+teammates/src/app/app.config.ts
