@@ -3,7 +3,7 @@ import {NavController} from 'ionic-angular';
 
 import {AlertService} from '../../components/alert/alert.service';
 import {AuthService} from '../../components/auth/auth.service';
-import {GroupsPage} from '../groups/groups';
+import {TabsPage} from '../tabs/tabs';
 import {SignupPage} from '../signup/signup';
 
 @Component({
@@ -28,7 +28,7 @@ export class LoginPage {
         this.alert.showLoading('');
 
         this.auth.login(this.user).then(authData => {
-            this.navCtrl.setRoot(GroupsPage);
+            this.navCtrl.setRoot(TabsPage);
             this.alert.loader.dismiss();
         }).catch(error => {
 

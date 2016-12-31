@@ -11,6 +11,8 @@ import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {GroupsPage} from '../pages/groups/groups';
 import {GroupDetailPage} from '../pages/group-detail/group-detail';
+import {AboutPage} from "../pages/about/about";
+import {TabsPage} from "../pages/tabs/tabs";
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {GroupDetailPage} from '../pages/group-detail/group-detail';
         LoginPage,
         SignupPage,
         GroupsPage,
-        GroupDetailPage
+        GroupDetailPage,
+        AboutPage,
+        TabsPage
     ],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -31,7 +35,9 @@ import {GroupDetailPage} from '../pages/group-detail/group-detail';
         LoginPage,
         SignupPage,
         GroupsPage,
-        GroupDetailPage
+        GroupDetailPage,
+        AboutPage,
+        TabsPage
     ],
     providers: [
         {

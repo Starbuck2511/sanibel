@@ -4,7 +4,13 @@ import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
-import {GroupsPage} from '../pages/groups/groups';
+import {TabsPage} from '../pages/tabs/tabs';
+
+export interface PageInterface {
+    title: string;
+    component: any;
+    index?: number;
+}
 
 
 @Component({
@@ -13,17 +19,19 @@ import {GroupsPage} from '../pages/groups/groups';
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = LoginPage;
-    pages: Array<{title: string, component: any}>;
+    rootPage: any;
+    pages: PageInterface[];
 
     constructor(public platform: Platform, public menu: MenuController) {
         this.initializeApp();
-
+        this.rootPage = TabsPage;
         // set our app's pages
         this.pages = [
+            {title: 'Groups', component: TabsPage, index: 0},
             {title: 'Login', component: LoginPage},
             {title: 'Sign up', component: SignupPage},
-            {title: 'Groups', component: GroupsPage}
+            {title: 'About', component: TabsPage, index: 1},
+
         ];
     }
 
@@ -36,11 +44,20 @@ export class MyApp {
         });
     }
 
-    openPage(page) {
+    openPage(page: PageInterface) {
+        // the nav component was found using @ViewChild(Nav)
+        // reset the nav to remove previous pages and only have this page
+        // we wouldn't want the back button to show in this scenario
+        if (page.index) {
+            this.nav.setRoot(page.component, { tabIndex: page.index });
+
+        } else {
+            this.nav.setRoot(page.component).catch(() => {
+                console.log("Didn't set nav root");
+            });
+        }
         // close the menu when clicking a link from the menu
         this.menu.close();
-        // navigate to the new page if it is not the current page
-        this.nav.setRoot(page.component);
     }
 }
 
