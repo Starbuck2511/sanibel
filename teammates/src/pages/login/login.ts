@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Events} from 'ionic-angular';
+
 
 import {AlertService} from '../../components/alert/alert.service';
 import {AuthService} from '../../components/auth/auth.service';
@@ -19,7 +20,8 @@ export class LoginPage {
 
     constructor(public navCtrl: NavController,
                 private alert: AlertService,
-                private auth: AuthService
+                private auth: AuthService,
+                private events: Events
                 ) {
         // construct
     }
@@ -28,6 +30,8 @@ export class LoginPage {
         this.alert.showLoading('');
 
         this.auth.login(this.user).then(authData => {
+            let authStatus = this.auth.isAuthenticated();
+            this.events.publish('auth:statusChanged', authStatus);
             this.navCtrl.setRoot(TabsPage);
             this.alert.loader.dismiss();
         }).catch(error => {
