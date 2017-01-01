@@ -35,7 +35,6 @@ export class LoginPage {
             this.navCtrl.setRoot(TabsPage);
             this.alert.loader.dismiss();
         }).catch(error => {
-
             this.alert.showError(error.message);
         });
     }
