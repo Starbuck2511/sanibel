@@ -3,8 +3,10 @@ import {Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {LoginPage} from '../pages/login/login';
+import {LogoutPage} from '../pages/logout/logout';
 import {SignupPage} from '../pages/signup/signup';
 import {TabsPage} from '../pages/tabs/tabs';
+
 
 export interface PageInterface {
     title: string;
@@ -31,6 +33,7 @@ export class MyApp {
             {title: 'Login', component: LoginPage},
             {title: 'Sign up', component: SignupPage},
             {title: 'About', component: TabsPage, index: 1},
+            {title: 'Logout', component: LogoutPage},
 
         ];
     }

@@ -24,7 +24,7 @@ export class LoginPage {
         // construct
     }
 
-    public login() {
+    public login(): void {
         this.alert.showLoading('');
 
         this.auth.login(this.user).then(authData => {
@@ -36,7 +36,7 @@ export class LoginPage {
         });
     }
 
-    public registerUser(){
+    public registerUser(): void {
         this.navCtrl.setRoot(SignupPage);
     }
 

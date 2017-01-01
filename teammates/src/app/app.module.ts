@@ -8,6 +8,7 @@ import {AlertService} from '../components/alert/alert.service';
 import {AuthService} from '../components/auth/auth.service';
 
 import {LoginPage} from '../pages/login/login';
+import {LogoutPage} from '../pages/logout/logout';
 import {SignupPage} from '../pages/signup/signup';
 import {GroupsPage} from '../pages/groups/groups';
 import {GroupDetailPage} from '../pages/group-detail/group-detail';
@@ -19,6 +20,7 @@ import {TabsPage} from "../pages/tabs/tabs";
     declarations: [
         MyApp,
         LoginPage,
+        LogoutPage,
         SignupPage,
         GroupsPage,
         GroupDetailPage,
@@ -33,6 +35,7 @@ import {TabsPage} from "../pages/tabs/tabs";
     entryComponents: [
         MyApp,
         LoginPage,
+        LogoutPage,
         SignupPage,
         GroupsPage,
         GroupDetailPage,

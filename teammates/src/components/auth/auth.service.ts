@@ -25,6 +25,11 @@ export class AuthService {
         });
     }
 
+    public logout(): void {
+        this.af.auth.logout();
+        this.auth = false;
+    }
+
     public isAuthenticated(): boolean {
         return this.auth;
     }
