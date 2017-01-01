@@ -1,2 +1,4 @@
 # sanibel
-An Ionic v2 project using Angular 2 and TypeScript
+## Seed branch for new project using firebase auth
+
+Use this branch as starting point for a new app project with a firebase auth.
