@@ -6,28 +6,35 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>New group</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>New group</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h3>Add a new group</h3>
-  <form>
-    <ion-item>
-      <ion-label floating>Name</ion-label>
-      <ion-input type="text" name="name" [(ngModel)]="group.name"></ion-input>
-    </ion-item>
+    <h3>Add a new group</h3>
+    <form [formGroup]="groupForm" (ngSubmit)="addGroup(groupForm.value)" novalidate>
+        <ion-item [class.error]="!name.valid && name.touched">
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <p *ngIf="name.hasError('required') && name.touched"
+           class="form-error">* A group name is required.
+        </p>
+        <p *ngIf="name.hasError('minlength') && name.touched"
+           class="form-error">* A group name should have a least 5 characters.
+        </p>
 
-    <ion-item>
-      <ion-label floating>Description</ion-label>
-      <ion-input type="text" name="description" [(ngModel)]="group.description"></ion-input>
-    </ion-item>
 
-    <div padding>
-      <button ion-button (click)="addGroup(group)">Save</button>
-    </div>
-  </form>
+        <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-input type="text" formControlName="description"></ion-input>
+        </ion-item>
+
+        <div padding>
+            <button ion-button type="submit" [disabled]="!groupForm.valid">Save</button>
+        </div>
+    </form>
 </ion-content>

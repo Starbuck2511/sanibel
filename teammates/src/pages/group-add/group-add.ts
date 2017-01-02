@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
+import {NavController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 /*
@@ -14,6 +15,11 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 })
 export class GroupAddPage {
 
+    groupForm: FormGroup;
+
+    name: AbstractControl;
+    description: AbstractControl;
+
     groups: FirebaseListObservable<any>;
 
     group = {
@@ -22,18 +28,31 @@ export class GroupAddPage {
     };
 
     constructor(public navCtrl: NavController,
-                public navParams: NavParams,
                 private af: AngularFire,
-                private toastCtrl: ToastController
+                private toastCtrl: ToastController,
+                private formBuilder: FormBuilder
     ) {
+
+        this.groupForm = this.formBuilder.group({
+            name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+            description: ['']
+        });
+
+        this.name = this.groupForm.controls['name'];
+        this.description = this.groupForm.controls['description'];
+
         this.groups = this.af.database.list('/groups');
     }
 
-    addGroup(group){
-        this.groups.push(group).then(() => {
+    addGroup(formData){
+
+        this.group.name = this.name.value;
+        this.group.description = this.description.value;
+
+        this.groups.push(this.group).then(() => {
             let toast = this.toastCtrl.create({
                 message: 'Group was added successfully',
-                duration: 3000
+                duration: 2000
             });
             toast.present().then(() => {
                 this.navCtrl.pop();
@@ -42,5 +61,7 @@ export class GroupAddPage {
             );
         });
     }
+
+
 
 }
