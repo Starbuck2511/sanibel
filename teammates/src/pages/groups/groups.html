@@ -9,19 +9,23 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>groups</ion-title>
+        <ion-title>Groups</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToAdd()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-    <h3>groups</h3>
+    <h3>Groups</h3>
     <ion-list>
-<!--        <button ion-item *ngFor="let group of groups" (click)="goToDetail(group.name)">
-            <p>{{group.id}}</p>
+        <button ion-item *ngFor="let group of groups | async" (click)="goToDetail(group.name)">
             <p>{{group.name}}</p>
             <p>{{group.description}}</p>
             <ion-icon name="arrow-forward" item-right></ion-icon>
-        </button>-->
+        </button>
     </ion-list>
 </ion-content>

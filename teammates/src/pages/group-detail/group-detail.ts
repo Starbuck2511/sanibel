@@ -18,9 +18,4 @@ export class GroupDetailPage {
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.name = navParams.get('name');
     }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad GroupDetailPage');
-    }
-
 }

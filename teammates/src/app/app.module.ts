@@ -10,6 +10,7 @@ import {AuthService} from '../components/auth/auth.service';
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {GroupsPage} from '../pages/groups/groups';
+import {GroupAddPage} from '../pages/group-add/group-add';
 import {GroupDetailPage} from '../pages/group-detail/group-detail';
 import {AboutPage} from "../pages/about/about";
 import {TabsPage} from "../pages/tabs/tabs";
@@ -22,6 +23,7 @@ import {TabsPage} from "../pages/tabs/tabs";
         SignupPage,
         GroupsPage,
         GroupDetailPage,
+        GroupAddPage,
         AboutPage,
         TabsPage
     ],
@@ -36,6 +38,7 @@ import {TabsPage} from "../pages/tabs/tabs";
         SignupPage,
         GroupsPage,
         GroupDetailPage,
+        GroupAddPage,
         AboutPage,
         TabsPage
     ],

@@ -4,7 +4,7 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 
 import {GroupDetailPage} from '../group-detail/group-detail';
-
+import {GroupAddPage} from "../group-add/group-add";
 
 
 /*
@@ -21,12 +21,16 @@ export class GroupsPage {
 
     groups: FirebaseListObservable<any>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private af:AngularFire) {
-
+    constructor(public navCtrl: NavController, public navParams: NavParams, private af: AngularFire) {
+        this.groups = this.af.database.list('/groups');
     }
 
     goToDetail(name: string) {
         this.navCtrl.push(GroupDetailPage, {name: name});
+    }
+
+    goToAdd() {
+        this.navCtrl.push(GroupAddPage);
     }
 
 }
