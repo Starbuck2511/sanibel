@@ -5,6 +5,7 @@ import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
 export class AuthService {
 
     private auth: boolean = false;
+    private uid: string = null;
 
     constructor(private af: AngularFire) {
 
@@ -17,6 +18,7 @@ export class AuthService {
                 method: AuthMethods.Password
             }).then((authData) => {
                 this.auth = true;
+                this.uid = authData.uid;
                 resolve(authData);
 
             }).catch((error) => {
@@ -28,9 +30,14 @@ export class AuthService {
     public logout(): void {
         this.af.auth.logout();
         this.auth = false;
+        this.uid = null;
     }
 
     public isAuthenticated(): boolean {
         return this.auth;
+    }
+
+    public getUid(): string {
+        return this.uid;
     }
 }
