@@ -32,8 +32,7 @@ export class MyApp {
     constructor(public platform: Platform,
                 public menu: MenuController,
                 private auth: AuthService,
-                private events: Events
-    ) {
+                private events: Events) {
         this.initializeApp();
 
         this.pagesPublic = [
@@ -52,7 +51,7 @@ export class MyApp {
 
         this.events.subscribe('auth:statusChanged', (authStatus) => {
             if (true === authStatus) {
-               this.pages = this.pagesAuth;
+                this.pages = this.pagesAuth;
             } else {
                 this.pages = this.pagesPublic;
             }
@@ -72,11 +71,22 @@ export class MyApp {
 
     openPage(page: PageInterface) {
 
-        if(true === page.logout){
-            this.auth.logout();
-            let authStatus = this.auth.isAuthenticated();
-            this.events.publish('auth:statusChanged', authStatus);
+        if (true === page.logout) {
+            // first redirect to the login page (because it's a public page)
+            this.nav.setRoot(page.component).then(() => {
+                this.menu.close();
+                // give the menu a little bit time to close
+                setTimeout(() => {
+                    this.auth.logout();
+                    let authStatus = this.auth.isAuthenticated();
+                    this.events.publish('auth:statusChanged', authStatus);
+                }, 1000);
+
+            });
+            return;
         }
+
+
 
         // the nav component was found using @ViewChild(Nav)
         // reset the nav to remove previous pages and only have this page

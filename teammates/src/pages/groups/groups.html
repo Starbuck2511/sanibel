@@ -20,11 +20,19 @@
 
 
 <ion-content padding>
-    <h3>Groups</h3>
     <ion-list>
-        <button ion-item *ngFor="let group of groups | async" (click)="goToDetail(group.name)">
-            <p>{{group.name}}</p>
-            <ion-icon name="arrow-forward" item-right></ion-icon>
-        </button>
+        <ion-item-sliding *ngFor="let group of groups | async" #slidingItem>
+            <button ion-item (click)="goToDetail(group.name)">
+                <h3>{{group.name}}</h3>
+            </button>
+            <ion-item-options>
+                <button ion-button icon-right color="secondary" (click)="goToEdit(slidingItem,group)">
+                    <ion-icon name="create"></ion-icon>
+                </button>
+                <button ion-button icon-right color="danger" (click)="delete(slidingItem,group)">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 </ion-content>

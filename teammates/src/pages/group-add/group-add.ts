@@ -58,16 +58,18 @@ export class GroupAddPage {
         this.group.users[this.userId] = true;
 
         let newRef = this.groups.push(this.group);
-        let newGroupId = newRef.key;
-        // store the new group also under user node
-        this.userGroups.$ref.ref.child(newGroupId).set(true);
 
         newRef.then(() => {
+            let newGroupId = newRef.key;
+
+            // store the new group also under user node
+            this.userGroups.$ref.ref.child(newGroupId).set(true);
 
             let toast = this.toastCtrl.create({
                 message: 'Group was added successfully',
                 duration: 2000
             });
+
             toast.present().then(() => {
                     this.navCtrl.pop();
                 }
