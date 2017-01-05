@@ -1,7 +1,10 @@
 import {Component} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 import {NavController, NavParams} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
+import {AuthService} from "../../components/auth/auth.service";
 
 import {GroupDetailPage} from '../group-detail/group-detail';
 import {GroupAddPage} from "../group-add/group-add";
@@ -19,10 +22,15 @@ import {GroupAddPage} from "../group-add/group-add";
 })
 export class GroupsPage {
 
-    groups: FirebaseListObservable<any>;
+    groups: Observable<any[]>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private af: AngularFire) {
-        this.groups = this.af.database.list('/groups');
+
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,
+                private af: AngularFire,
+                private auth: AuthService) {
+
+
     }
 
     goToDetail(name: string) {
@@ -33,4 +41,17 @@ export class GroupsPage {
         this.navCtrl.push(GroupAddPage);
     }
 
+    ionViewDidLoad() {
+        // get the groups from user node
+        this.groups = this.af.database.list(`/users/${this.auth.getUid()}/groups`)
+            .map(groups => {
+                groups.map(group => {
+                    // get group details from group node
+                    this.af.database.object(`/groups/${group.$key}`).forEach(groupDetail => {
+                        group.name = groupDetail.name;
+                    });
+                });
+                return groups;
+            });
+    }
 }

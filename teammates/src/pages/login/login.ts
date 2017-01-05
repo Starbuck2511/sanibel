@@ -27,15 +27,15 @@ export class LoginPage {
                 private auth: AuthService,
                 private events: Events,
                 private af: AngularFire,) {
-        // construct
+
     }
 
     public login(): void {
         this.alert.showLoading('');
 
         this.auth.login(this.user).then(data => {
-            // we add the user into an extra collection in firebase for our app if not exists yet
-            this.fbUser = this.af.database.list('/users/' + data.uid);
+            // we add the user into an extra node in firebase for our app if user not exists yet
+            this.fbUser = this.af.database.list(`/users/${data.uid}`);
             this.fbUser.$ref.once(
                 'value', snapshot => {
                     // user does not exist in collection yet

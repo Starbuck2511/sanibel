@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {NavController, ToastController} from 'ionic-angular';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+
 import {AuthService} from "../../components/auth/auth.service";
 
 /*
@@ -21,12 +22,16 @@ export class GroupAddPage {
     name: AbstractControl;
     description: AbstractControl;
 
-    groups: FirebaseListObservable<any>;
+    groups: FirebaseListObservable<any[]>;
+    userGroups: FirebaseListObservable<any>;
+
+    userId: string;
 
     group = {
         name: '',
         description: '',
-        uid: ''
+        uid: '',
+        users: {},
     };
 
     constructor(public navCtrl: NavController,
@@ -39,18 +44,26 @@ export class GroupAddPage {
             name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
             description: ['']
         });
-
+        this.userId = this.auth.getUid();
         this.name = this.groupForm.controls['name'];
         this.description = this.groupForm.controls['description'];
         this.groups = this.af.database.list('/groups');
+        this.userGroups = this.af.database.list(`/users/${this.userId}/groups`);
     }
 
     addGroup(formData) {
         this.group.name = this.name.value;
         this.group.description = this.description.value;
-        this.group.uid = this.auth.getUid();
+        this.group.uid = this.userId;
+        this.group.users[this.userId] = true;
 
-        this.groups.push(this.group).then(() => {
+        let newRef = this.groups.push(this.group);
+        let newGroupId = newRef.key;
+        // store the new group also under user node
+        this.userGroups.$ref.ref.child(newGroupId).set(true);
+
+        newRef.then(() => {
+
             let toast = this.toastCtrl.create({
                 message: 'Group was added successfully',
                 duration: 2000
