@@ -1,5 +1,5 @@
 import {NgModule, ErrorHandler} from '@angular/core';
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler, App} from 'ionic-angular';
 import {AngularFireModule} from 'angularfire2';
 import {AppConfig} from './app.config';
 import {MyApp} from './app.component';
@@ -14,6 +14,7 @@ import {GroupAddPage} from '../pages/group-add/group-add';
 import {GroupDetailPage} from '../pages/group-detail/group-detail';
 import {AboutPage} from "../pages/about/about";
 import {TabsPage} from "../pages/tabs/tabs";
+import {ScheduleAddPage} from "../pages/schedule-add/schedule-add";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {TabsPage} from "../pages/tabs/tabs";
         GroupsPage,
         GroupDetailPage,
         GroupAddPage,
+        ScheduleAddPage,
         AboutPage,
         TabsPage
     ],
@@ -33,12 +35,12 @@ import {TabsPage} from "../pages/tabs/tabs";
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp,
         LoginPage,
         SignupPage,
         GroupsPage,
         GroupDetailPage,
         GroupAddPage,
+        ScheduleAddPage,
         AboutPage,
         TabsPage
     ],
@@ -48,9 +50,8 @@ import {TabsPage} from "../pages/tabs/tabs";
             useClass: IonicErrorHandler
         },
         AlertService,
-        AuthService
-
-    ]
+        AuthService,
+   ]
 })
 export class AppModule {
 }

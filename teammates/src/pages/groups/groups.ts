@@ -39,8 +39,8 @@ export class GroupsPage {
 
     }
 
-    public goToDetail(name: string) {
-        this.navCtrl.push(GroupDetailPage, {name: name});
+    public goToDetail(id: string, name: string) {
+        this.navCtrl.push(GroupDetailPage, {id: id, name: name});
     }
 
     public goToAdd() {
@@ -50,6 +50,7 @@ export class GroupsPage {
     public goToEdit(slidingItem: ItemSliding, group: any) {
         console.log('go to edit group');
         slidingItem.close();
+
     }
 
     public delete(slidingItem: ItemSliding, group: any) {

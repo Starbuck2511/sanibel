@@ -6,11 +6,33 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title>{{name}} group-detail</ion-title>
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{name}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToAdd()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-    <h3>Group details view page</h3>
+<ion-content>
+    <ion-list>
+        <ion-list-header color="light">
+            <ion-icon name="calendar" icon-left></ion-icon> Next dates
+        </ion-list-header>
+        <ion-item>Dienstag, 18.05.2017</ion-item>
+        <ion-item>Donnerstag, 20.05.2017</ion-item>
+        <p></p>
+
+        <ion-list-header color="light">
+            <ion-icon name="chatbubbles" icon-left></ion-icon> Lastest messages
+        </ion-list-header>
+        <ion-item>Hi guys ...</ion-item>
+        <ion-item>Who has taken the jersey last time?</ion-item>
+    </ion-list>
+
 </ion-content>

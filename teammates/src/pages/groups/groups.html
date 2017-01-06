@@ -19,10 +19,10 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
     <ion-list>
         <ion-item-sliding *ngFor="let group of groups | async" #slidingItem>
-            <button ion-item (click)="goToDetail(group.name)">
+            <button ion-item (click)="goToDetail(group.id, group.name)">
                 <h3>{{group.name}}</h3>
             </button>
             <ion-item-options>

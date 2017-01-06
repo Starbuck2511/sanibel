@@ -70,9 +70,8 @@ export class MyApp {
     }
 
     openPage(page: PageInterface) {
-
         if (true === page.logout) {
-            // first redirect to the login page (because it's a public page)
+            // on logout -> first redirect to the login page (because it's a public page)
             this.nav.setRoot(page.component).then(() => {
                 this.menu.close();
                 // give the menu a little bit time to close
