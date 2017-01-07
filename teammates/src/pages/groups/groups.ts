@@ -6,8 +6,9 @@ import {AngularFire} from 'angularfire2';
 
 import {AuthService} from "../../components/auth/auth.service";
 
-import {GroupDetailPage} from '../group-detail/group-detail';
+import {GroupEditPage} from '../group-edit/group-edit';
 import {GroupAddPage} from "../group-add/group-add";
+import {GroupDetailPage} from "../group-detail/group-detail";
 
 
 /*
@@ -47,8 +48,8 @@ export class GroupsPage {
         this.navCtrl.push(GroupAddPage);
     }
 
-    public goToEdit(slidingItem: ItemSliding, group: any) {
-        console.log('go to edit group');
+    public goToEdit(slidingItem: ItemSliding, {id: id}) {
+        this.navCtrl.push(GroupEditPage, {id: id});
         slidingItem.close();
 
     }

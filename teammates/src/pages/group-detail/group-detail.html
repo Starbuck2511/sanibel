@@ -24,9 +24,18 @@
         <ion-list-header color="light">
             <ion-icon name="calendar" icon-left></ion-icon> Next dates
         </ion-list-header>
-        <ion-item>Dienstag, 18.05.2017</ion-item>
-        <ion-item>Donnerstag, 20.05.2017</ion-item>
-        <p></p>
+        <ion-item-sliding *ngFor="let schedule of schedules | async" #slidingItem>
+            <button ion-item (click)="goToDetail(schedule.id, schedule.name)">
+                <h3>{{schedule.name}}</h3>
+                <p>{{schedule.date}}</p>
+            </button>
+            <ion-item-options>
+                <button ion-button icon-right color="danger" (click)="delete(slidingItem, schedule)">
+                    <ion-icon name="trash"></ion-icon>
+                    Delete
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
 
         <ion-list-header color="light">
             <ion-icon name="chatbubbles" icon-left></ion-icon> Lastest messages

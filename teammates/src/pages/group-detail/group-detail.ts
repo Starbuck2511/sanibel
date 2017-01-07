@@ -1,6 +1,11 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ionic-angular';
+import {AngularFire} from 'angularfire2';
+
 import {ScheduleAddPage} from "../schedule-add/schedule-add";
+import * as moment from 'moment';
 
 /*
  Generated class for the GroupDetail page.
@@ -17,13 +22,79 @@ export class GroupDetailPage {
     id: string;
     name: string;
 
+    schedules: Observable<any[]>;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    schedule: {
+        id: string,
+        name: string,
+        type: string,
+        date: string,
+    };
+
+
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,
+                private af: AngularFire,
+                private actionSheetCtrl: ActionSheetController
+    ) {
         this.id = navParams.get('id');
         this.name = navParams.get('name');
+        moment.locale('de');
     }
 
     public goToAdd() {
         this.navCtrl.push(ScheduleAddPage, {id: this.id});
+    }
+
+    public delete(slidingItem: ItemSliding, schedule: any) {
+        slidingItem.close();
+        let actionSheet = this.actionSheetCtrl.create({
+            title: 'Schedule',
+            buttons: [
+                {
+                    text: 'Delete',
+                    role: 'destructive',
+                    handler: () => {
+                        this.deleteSchedule(schedule);
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    }
+
+    private deleteSchedule(schedule: any){
+        // delete schedule itself
+        this.af.database.object(`/groups/${this.id}/schedules/${schedule.id}`).remove();
+        this.af.database.object(`/schedules/${schedule.id}`).remove();
+    }
+
+    ionViewDidEnter() {
+        // get the schedules from groups node
+        this.schedules = this.af.database.list(`/groups/${this.id}/schedules`, {
+            query: {
+                orderByChild: 'name',
+            }
+        }).map(schedules => {
+            schedules.map(schedule => {
+                // get schedule details from schedule node
+                this.af.database.object(`/schedules/${schedule.$key}`).forEach(scheduleDetail => {
+                    schedule.id = scheduleDetail.$key;
+                    schedule.name = scheduleDetail.name;
+                    schedule.type = scheduleDetail.type;
+                    schedule.date = moment(scheduleDetail.date).format('LLLL');
+                }).catch((error) => {
+                    console.log(error.message)
+                });
+            });
+            return schedules;
+        });
     }
 }

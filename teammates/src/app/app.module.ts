@@ -11,6 +11,7 @@ import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {GroupsPage} from '../pages/groups/groups';
 import {GroupAddPage} from '../pages/group-add/group-add';
+import {GroupEditPage} from '../pages/group-edit/group-edit';
 import {GroupDetailPage} from '../pages/group-detail/group-detail';
 import {AboutPage} from "../pages/about/about";
 import {TabsPage} from "../pages/tabs/tabs";
@@ -25,6 +26,7 @@ import {ScheduleAddPage} from "../pages/schedule-add/schedule-add";
         GroupsPage,
         GroupDetailPage,
         GroupAddPage,
+        GroupEditPage,
         ScheduleAddPage,
         AboutPage,
         TabsPage
@@ -40,6 +42,7 @@ import {ScheduleAddPage} from "../pages/schedule-add/schedule-add";
         GroupsPage,
         GroupDetailPage,
         GroupAddPage,
+        GroupEditPage,
         ScheduleAddPage,
         AboutPage,
         TabsPage

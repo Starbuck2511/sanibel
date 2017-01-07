@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import * as moment from 'moment';
 
 import {AuthService} from "../../components/auth/auth.service";
 import {AppConfig} from "../../app/app.config";
@@ -34,6 +35,11 @@ export class ScheduleAddPage {
         name: '',
         date: '',
         type: '',
+        current: '',
+        feedback: {
+            accepts:{},
+            declines:{},
+        },
         uid: ''
     };
 
@@ -41,6 +47,7 @@ export class ScheduleAddPage {
     dayShortNames: Array<string>;
     monthNames: Array<string>;
     monthShortNames: Array<string>;
+    minDate: string;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -73,7 +80,9 @@ export class ScheduleAddPage {
 
         // init date picker with today
         setTimeout(() => {
-            this.date.setValue(new Date().toISOString());
+            let nowDate = moment().toISOString();
+            this.date.setValue(nowDate);
+            this.minDate = nowDate;
         });
 
     }
@@ -81,6 +90,7 @@ export class ScheduleAddPage {
     addSchedule(formData) {
         this.schedule.name = this.name.value;
         this.schedule.date = this.date.value;
+        this.schedule.current = this.date.value;
         this.schedule.type = this.type.value;
         this.schedule.uid = this.userId;
 
@@ -106,7 +116,5 @@ export class ScheduleAddPage {
             console.log(error.message)
         });
     }
-
-
 
 }
