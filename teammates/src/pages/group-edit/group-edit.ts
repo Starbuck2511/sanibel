@@ -3,7 +3,7 @@ import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/form
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseObjectObservable} from 'angularfire2';
 
-import {AuthService} from "../../components/auth/auth.service";
+import {AuthService} from '../../components/auth/auth.service';
 
 
 /*

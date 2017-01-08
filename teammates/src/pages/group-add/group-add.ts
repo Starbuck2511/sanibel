@@ -3,7 +3,9 @@ import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/form
 import {NavController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
-import {AuthService} from "../../components/auth/auth.service";
+import {Group} from '../../models/group';
+
+import {AuthService} from '../../components/auth/auth.service';
 
 /*
  Generated class for the GroupAdd page.
@@ -22,23 +24,20 @@ export class GroupAddPage {
     name: AbstractControl;
     description: AbstractControl;
 
-    groups: FirebaseListObservable<any[]>;
+    groups: FirebaseListObservable<Group[]>;
     userGroups: FirebaseListObservable<any>;
 
     userId: string;
 
-    group = {
-        name: '',
-        description: '',
-        uid: '',
-        users: {},
-    };
+    group: Group;
 
     constructor(public navCtrl: NavController,
                 private af: AngularFire,
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
                 private auth: AuthService) {
+
+        this.group = new Group();
 
         this.groupForm = this.formBuilder.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -52,12 +51,17 @@ export class GroupAddPage {
     }
 
     addGroup(formData) {
+
         this.group.name = this.name.value;
         this.group.description = this.description.value;
+
         this.group.uid = this.userId;
-        this.group.users[this.userId] = true;
+        this.group.schedules = null;
 
         let newRef = this.groups.push(this.group);
+
+        // add current user to group/users node
+        newRef.child(`users/${this.userId}`).set(true);
 
         newRef.then(() => {
             let newGroupId = newRef.key;

@@ -4,8 +4,9 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import * as moment from 'moment';
 
-import {AuthService} from "../../components/auth/auth.service";
-import {AppConfig} from "../../app/app.config";
+import {Schedule} from '../../models/schedule';
+import {AuthService} from '../../components/auth/auth.service';
+import {AppConfig} from '../../app/app.config';
 
 /*
   Generated class for the ScheduleAdd page.
@@ -26,22 +27,12 @@ export class ScheduleAddPage {
     type: AbstractControl;
 
     groupSchedules: FirebaseListObservable<any[]>;
-    schedules: FirebaseListObservable<any[]>;
+    schedules: FirebaseListObservable<Schedule[]>;
 
     userId: string;
     groupId: string;
 
-    schedule = {
-        name: '',
-        date: '',
-        type: '',
-        current: '',
-        feedback: {
-            accepts:{},
-            declines:{},
-        },
-        uid: ''
-    };
+    schedule: Schedule;
 
     dayNames: Array<string>;
     dayShortNames: Array<string>;
@@ -55,6 +46,8 @@ export class ScheduleAddPage {
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
                 private auth: AuthService) {
+
+        this.schedule = new Schedule();
 
         this.dayNames = AppConfig.DATETIME_CONFIG.dayNames;
         this.dayShortNames = AppConfig.DATETIME_CONFIG.dayShortNames;
@@ -88,12 +81,13 @@ export class ScheduleAddPage {
     }
 
     addSchedule(formData) {
+
         this.schedule.name = this.name.value;
         this.schedule.date = this.date.value;
         this.schedule.current = this.date.value;
         this.schedule.type = this.type.value;
         this.schedule.uid = this.userId;
-
+        this.schedule.feedback = null;
 
         let newRef = this.schedules.push(this.schedule);
 

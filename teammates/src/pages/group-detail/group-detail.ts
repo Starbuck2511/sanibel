@@ -4,6 +4,8 @@ import 'rxjs/add/operator/map'
 import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 
+import {Group} from '../../models/group';
+import {Schedule} from '../../models/schedule';
 import {ScheduleAddPage} from "../schedule-add/schedule-add";
 import * as moment from 'moment';
 
@@ -21,15 +23,12 @@ export class GroupDetailPage {
 
     id: string;
     name: string;
+    description: string;
+    uid: string;
+    users: any;
+    schedules: Observable<Schedule[]>;
 
-    schedules: Observable<any[]>;
-
-    schedule: {
-        id: string,
-        name: string,
-        type: string,
-        date: string,
-    };
+    schedule: Schedule;
 
 
     constructor(public navCtrl: NavController,

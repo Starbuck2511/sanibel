@@ -4,11 +4,12 @@ import 'rxjs/add/operator/map'
 import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 
-import {AuthService} from "../../components/auth/auth.service";
+import {AuthService} from '../../components/auth/auth.service';
+import {Group} from '../../models/group';
 
 import {GroupEditPage} from '../group-edit/group-edit';
-import {GroupAddPage} from "../group-add/group-add";
-import {GroupDetailPage} from "../group-detail/group-detail";
+import {GroupAddPage} from '../group-add/group-add';
+import {GroupDetailPage} from '../group-detail/group-detail';
 
 
 /*
@@ -23,12 +24,11 @@ import {GroupDetailPage} from "../group-detail/group-detail";
 })
 export class GroupsPage {
 
-    groups: Observable<any[]>;
+    groups: Observable<Group[]>;
 
-    group: {
-        id: string,
-        name: string,
-    };
+    group: Group;
+
+    userId: string;
 
 
     constructor(public navCtrl: NavController,
@@ -37,7 +37,7 @@ export class GroupsPage {
                 private auth: AuthService,
                 private actionSheetCtrl: ActionSheetController
     ) {
-
+        this.userId = this.auth.getUid();
     }
 
     public goToDetail(id: string, name: string) {
@@ -79,17 +79,15 @@ export class GroupsPage {
     }
 
     private deleteGroup(group: any){
-        console.log('deleting group ' + group.id);
         // get all the users of this group node
         this.af.database.list(`/groups/${group.id}/users`).forEach(users => {
             users.forEach(user => {
                 // delete this group id from the user's groups node
                 this.af.database.object(`/users/${user.$key}/groups/${group.id}`).remove();
+                // finally delete the group node itself
                 this.af.database.object(`/groups/${group.id}`).remove();
             });
         }).then( () => {
-                // finally delete the group node itself
-                console.log('group deleted');
             }
         );
         // delete schedules and chats
@@ -105,6 +103,7 @@ export class GroupsPage {
                     this.af.database.object(`/groups/${group.$key}`).forEach(groupDetail => {
                         group.id = groupDetail.$key;
                         group.name = groupDetail.name;
+                        group.uid = groupDetail.uid;
                     }).catch((error) => {console.log(error.message)});
                 });
                 return groups;
