@@ -35,8 +35,7 @@ export class GroupsPage {
                 public navParams: NavParams,
                 private af: AngularFire,
                 private auth: AuthService,
-                private actionSheetCtrl: ActionSheetController
-    ) {
+                private actionSheetCtrl: ActionSheetController) {
         this.userId = this.auth.getUid();
     }
 
@@ -78,19 +77,25 @@ export class GroupsPage {
         actionSheet.present();
     }
 
-    private deleteGroup(group: any){
+    private deleteGroup(group: any) {
+
         // get all the users of this group node
         this.af.database.list(`/groups/${group.id}/users`).forEach(users => {
             users.forEach(user => {
                 // delete this group id from the user's groups node
                 this.af.database.object(`/users/${user.$key}/groups/${group.id}`).remove();
-                // finally delete the group node itself
-                this.af.database.object(`/groups/${group.id}`).remove();
             });
-        }).then( () => {
-            }
-        );
-        // delete schedules and chats
+        });
+
+        // delete schedule nodes
+        this.af.database.list(`/groups/${group.id}/schedules`).forEach(schedules => {
+            schedules.forEach(schedule => {
+                this.af.database.object(`/schedules/${schedule.$key}`).remove();
+            });
+        });
+
+        // finally delete the group node itself
+        this.af.database.object(`/groups/${group.id}`).remove();
     }
 
 
@@ -104,7 +109,9 @@ export class GroupsPage {
                         group.id = groupDetail.$key;
                         group.name = groupDetail.name;
                         group.uid = groupDetail.uid;
-                    }).catch((error) => {console.log(error.message)});
+                    }).catch((error) => {
+                        console.log(error.message)
+                    });
                 });
                 return groups;
             });
