@@ -94,8 +94,8 @@ export class ScheduleAddPage {
         newRef.then(() => {
             let newScheduleId = newRef.key;
 
-            // store the new schedules also under group node
-            this.groupSchedules.$ref.ref.child(newScheduleId).set(true);
+            // store the new schedules also under group node (and current for easier query order by)
+            this.groupSchedules.$ref.ref.child(newScheduleId).set({current: this.schedule.current});
 
             let toast = this.toastCtrl.create({
                 message: 'Schedule was added successfully',

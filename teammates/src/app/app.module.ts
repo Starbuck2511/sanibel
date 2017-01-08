@@ -1,5 +1,5 @@
 import {NgModule, ErrorHandler} from '@angular/core';
-import {IonicApp, IonicModule, IonicErrorHandler, App} from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {AngularFireModule} from 'angularfire2';
 import {AppConfig} from './app.config';
 import {MyApp} from './app.component';
@@ -13,9 +13,10 @@ import {GroupsPage} from '../pages/groups/groups';
 import {GroupAddPage} from '../pages/group-add/group-add';
 import {GroupEditPage} from '../pages/group-edit/group-edit';
 import {GroupDetailPage} from '../pages/group-detail/group-detail';
-import {AboutPage} from "../pages/about/about";
-import {TabsPage} from "../pages/tabs/tabs";
-import {ScheduleAddPage} from "../pages/schedule-add/schedule-add";
+import {AboutPage} from '../pages/about/about';
+import {TabsPage} from '../pages/tabs/tabs';
+import {ScheduleAddPage} from '../pages/schedule-add/schedule-add';
+import {ScheduleDetailPage} from '../pages/schedule-detail/schedule-detail';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {ScheduleAddPage} from "../pages/schedule-add/schedule-add";
         GroupAddPage,
         GroupEditPage,
         ScheduleAddPage,
+        ScheduleDetailPage,
         AboutPage,
         TabsPage
     ],
@@ -44,6 +46,7 @@ import {ScheduleAddPage} from "../pages/schedule-add/schedule-add";
         GroupAddPage,
         GroupEditPage,
         ScheduleAddPage,
+        ScheduleDetailPage,
         AboutPage,
         TabsPage
     ],

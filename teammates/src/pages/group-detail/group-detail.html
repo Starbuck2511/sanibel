@@ -25,9 +25,9 @@
             <ion-icon name="calendar" icon-left></ion-icon> Next dates
         </ion-list-header>
         <ion-item-sliding *ngFor="let schedule of schedules | async" #slidingItem>
-            <button ion-item (click)="goToDetail(schedule.id, schedule.name)">
+            <button ion-item (click)="goToDetail(schedule.id)">
                 <h3>{{schedule.name}}</h3>
-                <p>{{schedule.date}}</p>
+                <p>{{schedule.current}}</p>
             </button>
             <ion-item-options>
                 <button ion-button icon-right color="danger" (click)="delete(slidingItem, schedule)">

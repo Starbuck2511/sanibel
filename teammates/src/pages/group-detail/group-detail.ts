@@ -8,6 +8,7 @@ import {Group} from '../../models/group';
 import {Schedule} from '../../models/schedule';
 import {ScheduleAddPage} from "../schedule-add/schedule-add";
 import * as moment from 'moment';
+import {ScheduleDetailPage} from "../schedule-detail/schedule-detail";
 
 /*
  Generated class for the GroupDetail page.
@@ -34,8 +35,7 @@ export class GroupDetailPage {
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private af: AngularFire,
-                private actionSheetCtrl: ActionSheetController
-    ) {
+                private actionSheetCtrl: ActionSheetController) {
         this.id = navParams.get('id');
         this.name = navParams.get('name');
         moment.locale('de');
@@ -43,6 +43,10 @@ export class GroupDetailPage {
 
     public goToAdd() {
         this.navCtrl.push(ScheduleAddPage, {id: this.id});
+    }
+
+    public goToDetail(id: string) {
+        this.navCtrl.push(ScheduleDetailPage, {id: id});
     }
 
     public delete(slidingItem: ItemSliding, schedule: any) {
@@ -69,17 +73,35 @@ export class GroupDetailPage {
         actionSheet.present();
     }
 
-    private deleteSchedule(schedule: any){
+    private deleteSchedule(schedule: any) {
         // delete schedule itself
         this.af.database.object(`/groups/${this.id}/schedules/${schedule.id}`).remove();
         this.af.database.object(`/schedules/${schedule.id}`).remove();
+    }
+
+    private updateCurrent(id: string, current: any) {
+        // get the date for next week
+        current.add(7, 'days');
+        let string = current.toISOString();
+        // because we have a new current date, reset all accepts and declines
+        this.af.database.object(`/schedules/${id}`).update({
+            current: string,
+            feedback: {
+                accepts: {},
+                declines: {},
+            }
+        });
+
+        // and update the current under this groups schedules node
+        this.af.database.object(`/groups/${this.id}/schedules/${id}`).update({current: string});
+
     }
 
     ionViewDidEnter() {
         // get the schedules from groups node
         this.schedules = this.af.database.list(`/groups/${this.id}/schedules`, {
             query: {
-                orderByChild: 'name',
+                orderByChild: 'current',
             }
         }).map(schedules => {
             schedules.map(schedule => {
@@ -88,7 +110,14 @@ export class GroupDetailPage {
                     schedule.id = scheduleDetail.$key;
                     schedule.name = scheduleDetail.name;
                     schedule.type = scheduleDetail.type;
-                    schedule.date = moment(scheduleDetail.date).format('LLLL');
+                    let current = moment(scheduleDetail.current);
+                    // if type is weekly and current is in the past we have to update the current schedule date
+                    if ('weekly' === scheduleDetail.type && moment() > current) {
+                        this.updateCurrent(schedule.id, current);
+                    }
+
+                    schedule.current = current.format('LLLL');
+
                 }).catch((error) => {
                     console.log(error.message)
                 });
