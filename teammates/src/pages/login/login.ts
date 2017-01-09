@@ -8,6 +8,7 @@ import {AlertService} from '../../components/alert/alert.service';
 import {AuthService} from '../../components/auth/auth.service';
 import {TabsPage} from '../tabs/tabs';
 import {SignupPage} from '../signup/signup';
+import {DisplayNamePage} from '../display-name/display-name';
 
 @Component({
     selector: 'page-login',
@@ -53,14 +54,22 @@ export class LoginPage {
 
             let authStatus = this.auth.isAuthenticated();
             this.events.publish('auth:statusChanged', authStatus);
-            this.navCtrl.setRoot(TabsPage);
+            // after login check if user has a displayName
+            if(null === this.auth.getDisplayName()){
+                this.navCtrl.setRoot(DisplayNamePage).catch(() => {
+                    console.log("Didn't set nav root");
+                });
+            } else {
+                // everything is ok
+                this.navCtrl.setRoot(TabsPage);
+            }
             this.alert.loader.dismiss();
         }).catch(error => {
             this.alert.showError(error.message);
         });
     }
 
-    public gotToRegisterUser(): void {
+    public goToRegisterUser(): void {
         this.navCtrl.setRoot(SignupPage);
     }
 

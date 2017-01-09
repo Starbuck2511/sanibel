@@ -3,11 +3,11 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
+import * as moment from 'moment';
 
 import {Group} from '../../models/group';
 import {Schedule} from '../../models/schedule';
 import {ScheduleAddPage} from "../schedule-add/schedule-add";
-import * as moment from 'moment';
 import {ScheduleDetailPage} from "../schedule-detail/schedule-detail";
 
 /*

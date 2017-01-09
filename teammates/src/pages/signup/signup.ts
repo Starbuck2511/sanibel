@@ -37,9 +37,4 @@ export class SignupPage {
          this.alert.showError(error.message);
          });
     }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad SignupPage');
-    }
-
 }

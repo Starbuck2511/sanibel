@@ -116,5 +116,4 @@ export class GroupsPage {
                 return groups;
             });
     }
-
 }

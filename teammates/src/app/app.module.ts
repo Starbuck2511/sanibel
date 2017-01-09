@@ -17,6 +17,7 @@ import {AboutPage} from '../pages/about/about';
 import {TabsPage} from '../pages/tabs/tabs';
 import {ScheduleAddPage} from '../pages/schedule-add/schedule-add';
 import {ScheduleDetailPage} from '../pages/schedule-detail/schedule-detail';
+import {DisplayNamePage} from '../pages/display-name/display-name';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {ScheduleDetailPage} from '../pages/schedule-detail/schedule-detail';
         MyApp,
         LoginPage,
         SignupPage,
+        DisplayNamePage,
         GroupsPage,
         GroupDetailPage,
         GroupAddPage,
@@ -41,6 +43,7 @@ import {ScheduleDetailPage} from '../pages/schedule-detail/schedule-detail';
     entryComponents: [
         LoginPage,
         SignupPage,
+        DisplayNamePage,
         GroupsPage,
         GroupDetailPage,
         GroupAddPage,

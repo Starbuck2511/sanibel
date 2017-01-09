@@ -9,6 +9,7 @@ import {SignupPage} from '../pages/signup/signup';
 import {TabsPage} from '../pages/tabs/tabs';
 
 
+
 export interface PageInterface {
     title: string;
     component: any;
@@ -52,6 +53,7 @@ export class MyApp {
         this.events.subscribe('auth:statusChanged', (authStatus) => {
             if (true === authStatus) {
                 this.pages = this.pagesAuth;
+
             } else {
                 this.pages = this.pagesPublic;
             }
@@ -91,7 +93,9 @@ export class MyApp {
         // reset the nav to remove previous pages and only have this page
         // we wouldn't want the back button to show in this scenario
         if (page.index) {
-            this.nav.setRoot(page.component, {tabIndex: page.index});
+            this.nav.setRoot(page.component, {tabIndex: page.index}).catch(() => {
+                console.log("Didn't set nav root");
+            });
 
         } else {
             this.nav.setRoot(page.component).catch(() => {
@@ -101,5 +105,7 @@ export class MyApp {
         // close the menu when clicking a link from the menu
         this.menu.close();
     }
+
+
 }
 
