@@ -25,7 +25,7 @@
             <ion-icon name="calendar" icon-left></ion-icon> Next dates
         </ion-list-header>
         <ion-item-sliding *ngFor="let schedule of schedules | async" #slidingItem>
-            <button ion-item (click)="goToDetail(schedule.id)">
+            <button ion-item (click)="goToScheduleDetail(schedule.id)">
                 <h3>{{schedule.name}}</h3>
                 <p>{{schedule.current}}</p>
             </button>
@@ -38,10 +38,13 @@
         </ion-item-sliding>
 
         <ion-list-header color="light">
-            <ion-icon name="chatbubbles" icon-left></ion-icon> Lastest messages
+            <ion-icon name="chatbubbles" icon-left></ion-icon> Group chat
         </ion-list-header>
-        <ion-item>Hi guys ...</ion-item>
-        <ion-item>Who has taken the jersey last time?</ion-item>
+        <ion-item *ngFor="let chat of chats | async">
+            <button ion-item (click)="goToChatDetail(chat.id)">
+                <h3>Chat {{chat.name}}</h3>
+            </button>
+        </ion-item>
     </ion-list>
 
 </ion-content>

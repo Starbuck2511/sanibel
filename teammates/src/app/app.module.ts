@@ -18,6 +18,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {ScheduleAddPage} from '../pages/schedule-add/schedule-add';
 import {ScheduleDetailPage} from '../pages/schedule-detail/schedule-detail';
 import {DisplayNamePage} from '../pages/display-name/display-name';
+import {ChatDetailPage} from '../pages/chat-detail/chat-detail';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {DisplayNamePage} from '../pages/display-name/display-name';
         GroupEditPage,
         ScheduleAddPage,
         ScheduleDetailPage,
+        ChatDetailPage,
         AboutPage,
         TabsPage
     ],
@@ -50,6 +52,7 @@ import {DisplayNamePage} from '../pages/display-name/display-name';
         GroupEditPage,
         ScheduleAddPage,
         ScheduleDetailPage,
+        ChatDetailPage,
         AboutPage,
         TabsPage
     ],

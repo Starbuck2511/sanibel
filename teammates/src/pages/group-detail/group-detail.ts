@@ -5,10 +5,11 @@ import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ioni
 import {AngularFire} from 'angularfire2';
 import * as moment from 'moment';
 
-import {Group} from '../../models/group';
 import {Schedule} from '../../models/schedule';
-import {ScheduleAddPage} from "../schedule-add/schedule-add";
-import {ScheduleDetailPage} from "../schedule-detail/schedule-detail";
+import {ScheduleAddPage} from '../schedule-add/schedule-add';
+import {ScheduleDetailPage} from '../schedule-detail/schedule-detail';
+import {ChatDetailPage} from '../chat-detail/chat-detail'
+import {Chat} from "../../models/chat";
 
 /*
  Generated class for the GroupDetail page.
@@ -28,8 +29,10 @@ export class GroupDetailPage {
     uid: string;
     users: any;
     schedules: Observable<Schedule[]>;
+    chats: Observable<Chat[]>;
 
     schedule: Schedule;
+    chat: Chat;
 
 
     constructor(public navCtrl: NavController,
@@ -45,8 +48,12 @@ export class GroupDetailPage {
         this.navCtrl.push(ScheduleAddPage, {id: this.id});
     }
 
-    public goToDetail(id: string) {
+    public goToScheduleDetail(id: string) {
         this.navCtrl.push(ScheduleDetailPage, {id: id});
+    }
+
+    public goToChatDetail(id: string) {
+        this.navCtrl.push(ChatDetailPage, {id: id});
     }
 
     public delete(slidingItem: ItemSliding, schedule: any) {
@@ -97,7 +104,7 @@ export class GroupDetailPage {
 
     }
 
-    ionViewDidEnter() {
+    private getSchedules(): void {
         // get the schedules from groups node
         this.schedules = this.af.database.list(`/groups/${this.id}/schedules`, {
             query: {
@@ -124,5 +131,28 @@ export class GroupDetailPage {
             });
             return schedules;
         });
+    }
+
+    private getChats(): void {
+        // get the chats from groups node
+        this.chats = this.af.database.list(`/groups/${this.id}/chats`)
+            .map(chats => {
+                chats.map(chat => {
+                    // get chats details from ç node
+                    this.af.database.object(`/chats/${chat.$key}`).forEach(chatDetail => {
+                        chat.id = chatDetail.$key;
+                        chat.name = chatDetail.name;
+                    }).catch((error) => {
+                        console.log(error.message)
+                    });
+                });
+                return chats;
+            });
+    }
+
+    ionViewDidEnter() {
+        this.getSchedules();
+        this.getChats();
+
     }
 }
