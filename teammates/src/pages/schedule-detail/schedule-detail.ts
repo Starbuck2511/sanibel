@@ -67,6 +67,7 @@ export class ScheduleDetailPage {
         );
     }
 
+
     ionViewDidEnter() {
         this.schedule  = this.af.database.object(`/schedules/${this.id}`).map(
             scheduleDetail => {

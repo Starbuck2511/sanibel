@@ -4,6 +4,7 @@ import {NavController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {Group} from '../../models/group';
+import {Chat} from '../../models/chat';
 
 import {AuthService} from '../../components/auth/auth.service';
 
@@ -26,10 +27,12 @@ export class GroupAddPage {
 
     groups: FirebaseListObservable<Group[]>;
     userGroups: FirebaseListObservable<any>;
+    chats: FirebaseListObservable<Chat[]>;
 
     userId: string;
 
     group: Group;
+    chat: Chat;
 
     constructor(public navCtrl: NavController,
                 private af: AngularFire,
@@ -38,6 +41,7 @@ export class GroupAddPage {
                 private auth: AuthService) {
 
         this.group = new Group();
+        this.chat = new Chat();
 
         this.groupForm = this.formBuilder.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -48,6 +52,7 @@ export class GroupAddPage {
         this.description = this.groupForm.controls['description'];
         this.groups = this.af.database.list('/groups');
         this.userGroups = this.af.database.list(`/users/${this.userId}/groups`);
+        this.chats = this.af.database.list('/chats');
     }
 
     addGroup(formData) {
@@ -58,16 +63,25 @@ export class GroupAddPage {
         this.group.uid = this.userId;
         this.group.schedules = null;
 
-        let newRef = this.groups.push(this.group);
+        // first create the chat for the group
+        this.chat.name = this.name.value;
+        let newRef = this.chats.push(this.chat);
+        let chatId = newRef.key;
+
+        newRef = this.groups.push(this.group);
 
         // add current user to group/users node
         newRef.child(`users/${this.userId}`).set(true);
 
+        // add chat to group/chats node
+        newRef.child(`chats/${chatId}`).set(true);
+
+
         newRef.then(() => {
-            let newGroupId = newRef.key;
+            let groupId = newRef.key;
 
             // store the new group also under user node
-            this.userGroups.$ref.ref.child(newGroupId).set(true);
+            this.userGroups.$ref.ref.child(groupId).set(true);
 
             let toast = this.toastCtrl.create({
                 message: 'Group was added successfully',

@@ -5,4 +5,5 @@ export class Group {
     uid: string;
     schedules: any;
     users: any;
+    chats: any;
 }

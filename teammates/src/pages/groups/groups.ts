@@ -94,6 +94,13 @@ export class GroupsPage {
             });
         });
 
+        // delete chat nodes
+        this.af.database.list(`/groups/${group.id}/chats`).forEach(chats => {
+            chats.forEach(chat => {
+                this.af.database.object(`/chats/${chat.$key}`).remove();
+            });
+        });
+
         // finally delete the group node itself
         this.af.database.object(`/groups/${group.id}`).remove();
     }
