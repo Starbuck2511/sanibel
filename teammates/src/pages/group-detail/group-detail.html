@@ -41,7 +41,7 @@
             <ion-icon name="chatbubbles" icon-left></ion-icon> Group chat
         </ion-list-header>
         <ion-item *ngFor="let chat of chats | async">
-            <button ion-item (click)="goToChatDetail(chat.id)">
+            <button ion-item (click)="goToChatDetail(chat.id, chat.name)">
                 <h3>Chat {{chat.name}}</h3>
             </button>
         </ion-item>

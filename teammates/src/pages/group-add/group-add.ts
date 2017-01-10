@@ -50,9 +50,7 @@ export class GroupAddPage {
         this.userId = this.auth.getUid();
         this.name = this.groupForm.controls['name'];
         this.description = this.groupForm.controls['description'];
-        this.groups = this.af.database.list('/groups');
-        this.userGroups = this.af.database.list(`/users/${this.userId}/groups`);
-        this.chats = this.af.database.list('/chats');
+
     }
 
     addGroup(formData) {
@@ -95,6 +93,12 @@ export class GroupAddPage {
         }).catch(error => {
             console.log(error.message)
         });
+    }
+
+    ionViewWillEnter() {
+        this.groups = this.af.database.list('/groups');
+        this.userGroups = this.af.database.list(`/users/${this.userId}/groups`);
+        this.chats = this.af.database.list('/chats');
     }
 
 

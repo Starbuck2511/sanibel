@@ -6,13 +6,32 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>chatDetail</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Chat {{name}}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+    <ion-list>
 
-<ion-content padding>
+        <ion-item *ngFor="let message of messages | async">
+            <p>{{message.content}}</p>
+            <p>{{message.name}}</p>
+            <p>{{message.timestamp}}</p>
+        </ion-item>
+    </ion-list>
 
+    <div padding>
+        <h3>Send a message</h3>
+        <form [formGroup]="messageForm" (ngSubmit)="send(messageForm.value)" novalidate>
+            <ion-item [class.error]="!content.valid && content.touched">
+                <ion-label floating>Message</ion-label>
+                <ion-input type="text" formControlName="content"></ion-input>
+            </ion-item>
+            <div padding>
+                <button ion-button type="submit" [disabled]="!messageForm.valid">Send</button>
+            </div>
+        </form>
+    </div>
 </ion-content>

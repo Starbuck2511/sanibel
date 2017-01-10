@@ -106,7 +106,7 @@ export class GroupsPage {
     }
 
 
-    ionViewDidEnter() {
+    ionViewWillEnter() {
         // get the groups from user node
         this.groups = this.af.database.list(`/users/${this.auth.getUid()}/groups`)
             .map(groups => {

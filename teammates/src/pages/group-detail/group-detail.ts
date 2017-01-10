@@ -32,7 +32,6 @@ export class GroupDetailPage {
     chats: Observable<Chat[]>;
 
     schedule: Schedule;
-    chat: Chat;
 
 
     constructor(public navCtrl: NavController,
@@ -52,8 +51,8 @@ export class GroupDetailPage {
         this.navCtrl.push(ScheduleDetailPage, {id: id});
     }
 
-    public goToChatDetail(id: string) {
-        this.navCtrl.push(ChatDetailPage, {id: id});
+    public goToChatDetail(id: string, name: string) {
+        this.navCtrl.push(ChatDetailPage, {id: id, name: name});
     }
 
     public delete(slidingItem: ItemSliding, schedule: any) {
@@ -150,7 +149,7 @@ export class GroupDetailPage {
             });
     }
 
-    ionViewDidEnter() {
+    ionViewWillEnter() {
         this.getSchedules();
         this.getChats();
 

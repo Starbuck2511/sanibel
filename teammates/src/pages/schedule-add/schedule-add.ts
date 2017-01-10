@@ -9,14 +9,14 @@ import {AuthService} from '../../components/auth/auth.service';
 import {AppConfig} from '../../app/app.config';
 
 /*
-  Generated class for the ScheduleAdd page.
+ Generated class for the ScheduleAdd page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
+ */
 @Component({
-  selector: 'page-schedule-add',
-  templateUrl: 'schedule-add.html'
+    selector: 'page-schedule-add',
+    templateUrl: 'schedule-add.html'
 })
 export class ScheduleAddPage {
 
@@ -48,12 +48,6 @@ export class ScheduleAddPage {
                 private auth: AuthService) {
 
         this.schedule = new Schedule();
-
-        this.dayNames = AppConfig.DATETIME_CONFIG.dayNames;
-        this.dayShortNames = AppConfig.DATETIME_CONFIG.dayShortNames;
-        this.monthNames = AppConfig.DATETIME_CONFIG.monthNames;
-        this.monthShortNames = AppConfig.DATETIME_CONFIG.monthShortNames;
-
         this.groupId = navParams.get('id');
 
         this.scheduleForm = this.formBuilder.group({
@@ -67,16 +61,6 @@ export class ScheduleAddPage {
         this.name = this.scheduleForm.controls['name'];
         this.date = this.scheduleForm.controls['date'];
         this.type = this.scheduleForm.controls['type'];
-
-        this.schedules = this.af.database.list('/schedules');
-        this.groupSchedules = this.af.database.list(`/groups/${this.groupId}/schedules`);
-
-        // init date picker with today
-        setTimeout(() => {
-            let nowDate = moment().toISOString();
-            this.date.setValue(nowDate);
-            this.minDate = nowDate;
-        });
 
     }
 
@@ -110,5 +94,25 @@ export class ScheduleAddPage {
             console.log(error.message)
         });
     }
+
+    ionViewDidLoad() {
+        this.dayNames = AppConfig.DATETIME_CONFIG.dayNames;
+        this.dayShortNames = AppConfig.DATETIME_CONFIG.dayShortNames;
+        this.monthNames = AppConfig.DATETIME_CONFIG.monthNames;
+        this.monthShortNames = AppConfig.DATETIME_CONFIG.monthShortNames;
+    }
+
+    ionViewWillEnter() {
+
+        this.schedules = this.af.database.list('/schedules');
+        this.groupSchedules = this.af.database.list(`/groups/${this.groupId}/schedules`);
+        // init date picker with today
+        setTimeout(() => {
+            let nowDate = moment().toISOString();
+            this.date.setValue(nowDate);
+            this.minDate = nowDate;
+        });
+    }
+
 
 }
