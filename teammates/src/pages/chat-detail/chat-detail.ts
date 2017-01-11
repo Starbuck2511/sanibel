@@ -65,22 +65,27 @@ export class ChatDetailPage {
 
     }
 
+    scrollToBottom(){
+        setTimeout(() => {
+            this.scrollableContent.scrollToBottom(300).then(
+                () => {}
+            );
+        }, 300);
+    }
+
     ionViewWillEnter() {
 
         //@todo limit it to the last 20 messages then implement inifinty scroll
         this.messages = this.af.database.list(`/messages/${this.id}`).map(
             messages => {
-                this.scrollableContent.scrollToBottom(300).then(
-                    () => {}
-                );
+                this.scrollToBottom();
+                console.log('new message recieved');
                 return messages;
-                
             }
         );
-
     }
 
     ionViewDidEnter(){
-
+        this.scrollToBottom();
     }
 }

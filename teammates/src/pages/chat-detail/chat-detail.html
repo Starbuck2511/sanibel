@@ -25,12 +25,13 @@
 
         <form [formGroup]="messageForm" (ngSubmit)="send(messageForm.value)" novalidate>
             <ion-item [class.error]="!content.valid && content.touched">
-                <ion-label floating>Message</ion-label>
+                <ion-label style="margin:0;"></ion-label>
                 <ion-input type="text" formControlName="content"></ion-input>
+                <button style="min-width: 50px" clear medium item-right ion-button icon-only type="submit" [disabled]="!messageForm.valid">
+                    <ion-icon name="send"></ion-icon>
+                </button>
             </ion-item>
-            <div padding>
-                <button ion-button type="submit" [disabled]="!messageForm.valid">Send</button>
-            </div>
+
         </form>
 
     </ion-toolbar>
