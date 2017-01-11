@@ -1,10 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
-import {NavController, NavParams} from 'ionic-angular';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {NavController, NavParams, Content} from 'ionic-angular';
+import {AngularFire} from 'angularfire2';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 import * as firebase from 'firebase';
 
 import {AuthService} from '../../components/auth/auth.service';
+import {ChatBubble} from '../../components/chat/chat-bubble';
 import {Message} from "../../models/message";
 
 /*
@@ -15,10 +18,12 @@ import {Message} from "../../models/message";
  */
 @Component({
     selector: 'page-chat-detail',
-    templateUrl: 'chat-detail.html'
+    templateUrl: 'chat-detail.html',
+    queries: {scrollArea: new ViewChild('content')},
+    entryComponents: [ChatBubble]
 })
 export class ChatDetailPage {
-
+    @ViewChild(Content) scrollableContent: Content;
     id: string;
     name: string;
 
@@ -26,7 +31,7 @@ export class ChatDetailPage {
     content: AbstractControl;
 
     message: Message;
-    messages: FirebaseListObservable<Message[]>;
+    messages: Observable<Message[]>;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -63,7 +68,19 @@ export class ChatDetailPage {
     ionViewWillEnter() {
 
         //@todo limit it to the last 20 messages then implement inifinty scroll
-        this.messages = this.af.database.list(`/messages/${this.id}`);
+        this.messages = this.af.database.list(`/messages/${this.id}`).map(
+            messages => {
+                this.scrollableContent.scrollToBottom(300).then(
+                    () => {}
+                );
+                return messages;
+                
+            }
+        );
+
+    }
+
+    ionViewDidEnter(){
 
     }
 }

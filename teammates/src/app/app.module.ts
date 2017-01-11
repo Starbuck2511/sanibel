@@ -6,6 +6,7 @@ import {MyApp} from './app.component';
 
 import {AlertService} from '../components/alert/alert.service';
 import {AuthService} from '../components/auth/auth.service';
+import {ChatBubble} from '../components/chat/chat-bubble';
 
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
@@ -35,7 +36,8 @@ import {ChatDetailPage} from '../pages/chat-detail/chat-detail';
         ScheduleDetailPage,
         ChatDetailPage,
         AboutPage,
-        TabsPage
+        TabsPage,
+        ChatBubble
     ],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -62,8 +64,8 @@ import {ChatDetailPage} from '../pages/chat-detail/chat-detail';
             useClass: IonicErrorHandler
         },
         AlertService,
-        AuthService,
-   ]
+        AuthService
+    ]
 })
 export class AppModule {
 }
