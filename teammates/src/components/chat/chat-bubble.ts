@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
     inputs: ['message: message'],
     template: `
   <div class="chatBubble">    
-    <div class="chat-bubble left">
+    <div class="chat-bubble {{message.position}}">
       <div class="message">{{message.content}}</div>
       <div class="message-detail">
           <span style="font-weight:bold;">{{message.name}} </span>,
@@ -16,7 +16,6 @@ import {Component} from '@angular/core';
   `
 })
 export class ChatBubble {
-
     constructor() {
 
     }

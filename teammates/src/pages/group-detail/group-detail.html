@@ -22,7 +22,7 @@
 <ion-content>
     <ion-list>
         <ion-list-header color="light">
-            <ion-icon name="calendar" icon-left></ion-icon> Next dates
+            <ion-icon name="calendar" icon-left></ion-icon> NEXT DATES
         </ion-list-header>
         <ion-item-sliding *ngFor="let schedule of schedules | async" #slidingItem>
             <button ion-item (click)="goToScheduleDetail(schedule.id)">
@@ -38,13 +38,16 @@
         </ion-item-sliding>
 
         <ion-list-header color="light">
-            <ion-icon name="chatbubbles" icon-left></ion-icon> Group chat
+            <ion-icon name="chatbubbles" icon-left></ion-icon> MESSAGES
         </ion-list-header>
-        <ion-item *ngFor="let chat of chats | async">
+
+
+        <ion-item-sliding *ngFor="let chat of chats | async">
             <button ion-item (click)="goToChatDetail(chat.id, chat.name)">
-                <h3>Chat {{chat.name}}</h3>
+                <h3>Chat - {{chat.name}}</h3>
             </button>
-        </ion-item>
+            <ion-item-options></ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 
 </ion-content>

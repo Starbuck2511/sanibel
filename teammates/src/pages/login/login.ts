@@ -66,6 +66,8 @@ export class LoginPage {
             this.alert.loader.dismiss();
         }).catch(error => {
             this.alert.showError(error.message);
+            // reset password field
+            this.user.password = '';
         });
     }
 

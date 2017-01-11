@@ -5,6 +5,7 @@ import {AngularFire} from 'angularfire2';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import * as firebase from 'firebase';
+import * as moment from 'moment';
 
 import {AuthService} from '../../components/auth/auth.service';
 import {ChatBubble} from '../../components/chat/chat-bubble';
@@ -38,6 +39,8 @@ export class ChatDetailPage {
                 private af: AngularFire,
                 private auth: AuthService,
                 private formBuilder: FormBuilder) {
+
+        moment.locale('de');
         this.id = navParams.get('id');
         this.name = navParams.get('name');
         this.message = new Message();
@@ -47,6 +50,8 @@ export class ChatDetailPage {
         });
 
         this.content = this.messageForm.controls['content'];
+
+
     }
 
     send() {
@@ -73,19 +78,28 @@ export class ChatDetailPage {
         }, 300);
     }
 
-    ionViewWillEnter() {
 
-        //@todo limit it to the last 20 messages then implement inifinty scroll
-        this.messages = this.af.database.list(`/messages/${this.id}`).map(
+    ionViewDidEnter(){
+        //@todo limit it to the last 50 messages then implement inifinty scroll
+        this.messages = this.af.database.list(`/messages/${this.id}`, {query:
+            {
+                orderByKey: true,
+                limitToLast: 10
+            }}).map(
             messages => {
                 this.scrollToBottom();
-                console.log('new message recieved');
+                messages.map(message => {
+                    if(this.auth.getUid() == message.uid){
+                        message.position = 'right';
+                    } else {
+                        message.position = 'left';
+                    }
+
+                    message.timestamp = moment(message.timestamp).format('llll');
+
+                });
                 return messages;
             }
         );
-    }
-
-    ionViewDidEnter(){
-        this.scrollToBottom();
     }
 }
