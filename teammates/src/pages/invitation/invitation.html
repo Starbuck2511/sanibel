@@ -5,18 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Invite your friends</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Invite your friends</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-<h2>Invitation - {{name}}</h2>
+    <h2>Invitation - {{name}}</h2>
     <p>You can invite people to join this group by sending them an email with the following invitation code:</p>
-    <p>{{code}}</p>
-    <ion-buttons>
-        <button ion-button outline (click)="copyToClipboard()">Copy invitation to clipboard</button>
-        <button ion-button outline (click)="openMail()">Open Mail</button>
-    </ion-buttons>
+    <p></p>
+    <p class="code">{{code}}</p>
+    <p></p>
+    <div *ngIf="'device' == platform" center>
+        <ion-buttons>
+            <button ion-button outline (click)="copyToClipboard()">Copy invitation to clipboard</button>
+            <button ion-button outline (click)="openMail()">Open Mail</button>
+        </ion-buttons>
+    </div>
+
+    <div *ngIf="'browser' == platform" center>
+        <ion-buttons>
+            <button ion-button outline (click)="openMailHref()">Open Mail</button>
+        </ion-buttons>
+    </div>
+
+
 </ion-content>

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {NavController, NavParams, ToastController, Platform} from 'ionic-angular';
 import {Clipboard, SocialSharing} from 'ionic-native';
 
 
@@ -18,42 +18,61 @@ export class InvitationPage {
     id: string;
     name: string;
     code: string;
+    body: string;
+    subject: string;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController) {
+    platform: string;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+                private toastCtrl: ToastController,
+                private plt: Platform) {
         this.id = navParams.get('id');
         this.name = navParams.get('name');
         this.code = navParams.get('code');
+
+        this.body = `URL: http://localhost:8100
+                    Invitation Code: ${this.code}`;
+
+        this.subject = `Invitation from ${this.name}`;
+
+        if (this.plt.is('core') || this.plt.is('mobileweb')) {
+            this.platform = 'browser';
+        } else {
+            this.platform = 'device';
+        }
     }
 
     public openMail() {
 
-        let body = `URL: http://localhost:8100
-                    Invitation Code: ${this.code}
-`;
-        let subject = `Invitation from ${this.name}`;
+
+
 
         SocialSharing.canShareViaEmail().then(() => {
             // Sharing via email is possible
             // Share via email
-            SocialSharing.shareViaEmail(`${body}`, `${subject}`, []).then(() => {
+            SocialSharing.shareViaEmail(`${this.body}`, `${this.subject}`, []).then(() => {
                 // Success!
             }).catch(error => {
                 console.log(error.message);
             });
-        }).catch(() => {
+        }).catch(error => {
             // Sharing via email is not possible
-            console.log('alternative sharing via email ...');
+            console.log(error.message);
 
         });
+
+
+    }
+
+    public openMailHref(){
+        window.location.href=`mailto:%20?subject=${this.subject}&body=${this.body}`;
     }
 
     public copyToClipboard() {
 
-        let text = `URL: http://localhost:8100
-                    Invitation Code: ${this.code}
-`;
 
-        Clipboard.copy(text).then(() => {
+        // use cordova plugin
+        Clipboard.copy(this.body).then(() => {
                 let toast = this.toastCtrl.create({
                     message: 'Invitation copied to clipboard',
                     duration: 2000
