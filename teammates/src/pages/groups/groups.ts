@@ -94,9 +94,10 @@ export class GroupsPage {
             });
         });
 
-        // delete chat nodes
+        // delete chat nodes and messages of chat
         this.af.database.list(`/groups/${group.id}/chats`).forEach(chats => {
             chats.forEach(chat => {
+                this.af.database.object(`/messages/${chat.$key}`).remove();
                 this.af.database.object(`/chats/${chat.$key}`).remove();
             });
         });

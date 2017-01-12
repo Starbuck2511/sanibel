@@ -61,6 +61,9 @@ export class GroupAddPage {
         this.group.uid = this.userId;
         this.group.schedules = null;
 
+        // set an invitation code
+        this.group.invitation = (+new Date * Math.random()).toString(36).substring(0,8);
+
         // first create the chat for the group
         this.chat.name = this.name.value;
         let newRef = this.chats.push(this.chat);

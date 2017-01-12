@@ -6,4 +6,5 @@ export class Group {
     schedules: any;
     users: any;
     chats: any;
+    invitation: string;
 }

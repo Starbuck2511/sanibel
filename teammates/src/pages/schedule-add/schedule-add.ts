@@ -47,6 +47,12 @@ export class ScheduleAddPage {
                 private formBuilder: FormBuilder,
                 private auth: AuthService) {
 
+        moment.locale('de');
+        this.dayNames = AppConfig.DATETIME_CONFIG.dayNames;
+        this.dayShortNames = AppConfig.DATETIME_CONFIG.dayShortNames;
+        this.monthNames = AppConfig.DATETIME_CONFIG.monthNames;
+        this.monthShortNames = AppConfig.DATETIME_CONFIG.monthShortNames;
+
         this.schedule = new Schedule();
         this.groupId = navParams.get('id');
 
@@ -95,12 +101,6 @@ export class ScheduleAddPage {
         });
     }
 
-    ionViewDidLoad() {
-        this.dayNames = AppConfig.DATETIME_CONFIG.dayNames;
-        this.dayShortNames = AppConfig.DATETIME_CONFIG.dayShortNames;
-        this.monthNames = AppConfig.DATETIME_CONFIG.monthNames;
-        this.monthShortNames = AppConfig.DATETIME_CONFIG.monthShortNames;
-    }
 
     ionViewWillEnter() {
 

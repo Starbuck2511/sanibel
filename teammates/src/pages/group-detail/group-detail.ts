@@ -10,6 +10,7 @@ import {ScheduleAddPage} from '../schedule-add/schedule-add';
 import {ScheduleDetailPage} from '../schedule-detail/schedule-detail';
 import {ChatDetailPage} from '../chat-detail/chat-detail'
 import {Chat} from "../../models/chat";
+import {InvitationPage} from "../invitation/invitation";
 
 /*
  Generated class for the GroupDetail page.
@@ -53,6 +54,26 @@ export class GroupDetailPage {
 
     public goToChatDetail(id: string, name: string) {
         this.navCtrl.push(ChatDetailPage, {id: id, name: name});
+    }
+
+    public goToInvitation(id: string, name: string) {
+        let code: string;
+        console.log('goToInvitation');
+        this.af.database.object(`/groups/${this.id}/invitation`).forEach(
+
+            invitation => {
+
+                code = invitation.$val;
+            }
+        ).then(
+            (code) => {
+                console.log(code);
+                this.navCtrl.push(InvitationPage, {id: id, name: name, code: code});
+            }
+        ).catch(error => {
+            console.log(error.message);
+        });
+
     }
 
     public delete(slidingItem: ItemSliding, schedule: any) {
@@ -147,6 +168,11 @@ export class GroupDetailPage {
                 });
                 return chats;
             });
+    }
+
+    public share() {
+        console.log('Invite friends via e-mail.');
+
     }
 
     ionViewWillEnter() {
