@@ -27,6 +27,7 @@ export class GroupDetailPage {
     id: string;
     name: string;
     description: string;
+    code: string;
     uid: string;
     users: any;
     schedules: Observable<Schedule[]>;
@@ -57,23 +58,8 @@ export class GroupDetailPage {
     }
 
     public goToInvitation(id: string, name: string) {
-        let code: string;
-        console.log('goToInvitation');
-        this.af.database.object(`/groups/${this.id}/invitation`).forEach(
 
-            invitation => {
-
-                code = invitation.$val;
-            }
-        ).then(
-            (code) => {
-                console.log(code);
-                this.navCtrl.push(InvitationPage, {id: id, name: name, code: code});
-            }
-        ).catch(error => {
-            console.log(error.message);
-        });
-
+        this.navCtrl.push(InvitationPage, {id: id, name: name, code: this.code});
     }
 
     public delete(slidingItem: ItemSliding, schedule: any) {
@@ -170,14 +156,23 @@ export class GroupDetailPage {
             });
     }
 
-    public share() {
-        console.log('Invite friends via e-mail.');
-
-    }
-
     ionViewWillEnter() {
         this.getSchedules();
         this.getChats();
 
+    }
+
+    ionViewDidEnter(){
+
+        this.af.database.object(`/groups/${this.id}/invitation`).forEach(
+            invitation => {
+                console.dir(invitation);
+                this.code = invitation.$val;
+
+
+            }
+        ).catch(error => {
+            console.log(error.message);
+        });
     }
 }
