@@ -23,7 +23,6 @@ export class InvitationPage {
         this.id = navParams.get('id');
         this.name = navParams.get('name');
         this.code = navParams.get('code');
-        console.log(this.code);
     }
 
     public openMail() {

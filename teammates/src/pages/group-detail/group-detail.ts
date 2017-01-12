@@ -26,8 +26,8 @@ export class GroupDetailPage {
 
     id: string;
     name: string;
+    code: Observable<string>;
     description: string;
-    code: string;
     uid: string;
     users: any;
     schedules: Observable<Schedule[]>;
@@ -84,6 +84,7 @@ export class GroupDetailPage {
             ]
         });
         actionSheet.present();
+
     }
 
     private deleteSchedule(schedule: any) {
@@ -162,17 +163,9 @@ export class GroupDetailPage {
 
     }
 
-    ionViewDidEnter(){
-
-        this.af.database.object(`/groups/${this.id}/invitation`).forEach(
-            invitation => {
-                console.dir(invitation);
-                this.code = invitation.$val;
-
-
-            }
-        ).catch(error => {
-            console.log(error.message);
+    ionViewDidLoad(){
+        this.af.database.object(`/groups/${this.id}/invitation`).$ref.ref.once('value', snap => {
+            this.code = snap.val();
         });
     }
 }
