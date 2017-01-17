@@ -44,9 +44,6 @@ export class InvitationPage {
 
     public openMail() {
 
-
-
-
         SocialSharing.canShareViaEmail().then(() => {
             // Sharing via email is possible
             // Share via email

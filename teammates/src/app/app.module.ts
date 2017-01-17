@@ -20,7 +20,8 @@ import {ScheduleAddPage} from '../pages/schedule-add/schedule-add';
 import {ScheduleDetailPage} from '../pages/schedule-detail/schedule-detail';
 import {DisplayNamePage} from '../pages/display-name/display-name';
 import {ChatDetailPage} from '../pages/chat-detail/chat-detail';
-import {InvitationPage} from "../pages/invitation/invitation";
+import {InvitationPage} from '../pages/invitation/invitation';
+import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {InvitationPage} from "../pages/invitation/invitation";
         AboutPage,
         TabsPage,
         ChatBubble,
-        InvitationPage
+        InvitationPage,
+        InvitationCheckPage
     ],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -59,7 +61,8 @@ import {InvitationPage} from "../pages/invitation/invitation";
         ChatDetailPage,
         AboutPage,
         TabsPage,
-        InvitationPage
+        InvitationPage,
+        InvitationCheckPage
     ],
     providers: [
         {

@@ -20,6 +20,8 @@ export class AuthService {
         });
     }
 
+
+
     public login(user): Promise<any> {
         return new Promise((resolve, reject) => {
             this.af.auth.login(user, {

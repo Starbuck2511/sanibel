@@ -7,6 +7,7 @@ import {AuthService} from '../components/auth/auth.service';
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {TabsPage} from '../pages/tabs/tabs';
+import {InvitationCheckPage} from "../pages/invitation-check/invitation-check";
 
 
 
@@ -43,6 +44,7 @@ export class MyApp {
 
         this.pagesAuth = [
             {title: 'Groups', component: TabsPage, index: 0},
+            {title: 'Invites', component: InvitationCheckPage},
             {title: 'About', component: TabsPage, index: 1},
             {title: 'Logout', component: LoginPage, logout: true}
         ];
