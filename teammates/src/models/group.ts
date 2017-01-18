@@ -7,4 +7,5 @@ export class Group {
     users: any;
     chats: any;
     invitation: string;
+    pin: number;
 }

@@ -6,26 +6,52 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Invitation Code</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Invitation Code</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <h3>Please enter your invitation code</h3>
-  <form [formGroup]="inviteForm" (ngSubmit)="checkInvitationCode(inviteForm.value)" novalidate>
-    <ion-item [class.error]="!code.valid && code.touched">
-      <ion-label floating>Code</ion-label>
-      <ion-input type="text" formControlName="code"></ion-input>
-    </ion-item>
-    <p *ngIf="code.hasError('required') && code.touched"
-       class="form-error">* A invitation code is required.
-    </p>
 
-    <div padding>
-      <button ion-button type="submit" [disabled]="!inviteForm.valid">Send</button>
-    </div>
-  </form>
+        <form *ngIf="!showPin" [formGroup]="inviteForm" (ngSubmit)="checkCode(inviteForm.value)" novalidate>
+            <h3>Please enter invitation code</h3>
+
+            <ion-item [class.error]="!code.valid && code.touched">
+                <ion-label floating>Code</ion-label>
+                <ion-input type="text" formControlName="code"></ion-input>
+            </ion-item>
+            <p *ngIf="code.hasError('required') && code.touched"
+               class="form-error">* A invitation code is required.
+            </p>
+            <div padding>
+                <button ion-button type="submit">Send</button>
+            </div>
+        </form>
+
+
+
+
+        <form *ngIf="showPin" [formGroup]="inviteForm" (ngSubmit)="checkPin(inviteForm.value)" novalidate>
+            <h3>Please enter PIN</h3>
+            <p>You will be added to group {{group?.name}} after entering PIN</p>
+            <ion-item [class.error]="!pin.valid && pin.touched">
+                <ion-label floating>PIN</ion-label>
+                <ion-input type="text" formControlName="pin"></ion-input>
+            </ion-item>
+            <p *ngIf="pin.hasError('required') && pin.touched"
+               class="form-error">* Please enter correct PIN.
+            </p>
+
+            <div padding>
+                <button ion-button type="submit">Send</button>
+            </div>
+        </form>
+
+
+
+
+
+
 </ion-content>

@@ -63,6 +63,8 @@ export class GroupAddPage {
 
         // set an invitation code
         this.group.invitation = (+new Date * Math.random()).toString(36).substring(0,8);
+        // set pin
+        this.group.pin = Math.floor(1000 + Math.random() * 9000);
 
         // first create the chat for the group
         this.chat.name = this.name.value;
