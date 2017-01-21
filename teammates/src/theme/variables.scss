@@ -27,8 +27,12 @@ $colors: (
   primary:    #387ef5,
   secondary:  #32db64,
   danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  light:      #f9f9f9,
+  dark:       #222,
+
+
+
+
 );
 
 $chat-bubble: (
@@ -82,3 +86,6 @@ $chat-bubble: (
 
 @import "roboto";
 @import "noto-sans";
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One');
+//@import url('../assets/fonts/lobster.otf');
+
