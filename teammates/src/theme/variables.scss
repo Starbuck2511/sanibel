@@ -33,13 +33,31 @@ $colors: (
 
 
 
+
 );
+
+$dark-light: #060102;
+
+
+
 
 $chat-bubble: (
         background-left: #d7edf5,
         background-right: #cbebc3,
 
 );
+
+$background-color: $dark-light;
+$background-ios-color: $background-color;
+$background-md-color: $background-color;
+$background-wp-color: $background-color;
+$toolbar-background: $background-color;
+
+$text-color: #f9f9f9;
+
+$tabs-background: #262626;
+$tabs-tab-color-inactive: #A0A082;
+$tabs-tab-color-active: #02E551;
 
 
 // App iOS Variables
@@ -88,4 +106,7 @@ $chat-bubble: (
 @import "noto-sans";
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One');
 //@import url('../assets/fonts/lobster.otf');
+
+
+;
 

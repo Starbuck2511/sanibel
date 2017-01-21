@@ -13,8 +13,8 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <h3>Register a new account</h3>
+<ion-content padding class="turtle">
+    <h3 padding class="font-secondary">SIGN UP</h3>
     <form novalidate>
         <ion-item>
             <ion-label floating>E-Mail</ion-label>
@@ -26,8 +26,8 @@
             <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
         </ion-item>
 
-        <div padding>
-            <button ion-button (click)="signUp()">Sign up</button>
+        <div class="font-secondary" padding>
+            <button ion-button  outline round color="light"  (click)="signUp()">Sign up</button>
         </div>
     </form>
 </ion-content>
