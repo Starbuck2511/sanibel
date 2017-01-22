@@ -16,6 +16,7 @@ export interface PageInterface {
     component: any;
     index?: number;
     logout?: boolean;
+    icon?: string;
 }
 
 
@@ -30,6 +31,8 @@ export class MyApp {
     pagesPublic: PageInterface[];
     pagesAuth: PageInterface[];
 
+    isPrivate: boolean = false;
+
 
     constructor(public platform: Platform,
                 public menu: MenuController,
@@ -38,15 +41,15 @@ export class MyApp {
         this.initializeApp();
 
         this.pagesPublic = [
-            {title: 'Login', component: LoginPage},
-            {title: 'Sign up', component: SignupPage}
+            {title: 'Login', component: LoginPage, icon: ''},
+            {title: 'Sign up', component: SignupPage, icon: ''}
         ];
 
         this.pagesAuth = [
-            {title: 'Groups', component: TabsPage, index: 0},
-            {title: 'Invites', component: InvitationCheckPage},
-            {title: 'About', component: TabsPage, index: 1},
-            {title: 'Logout', component: LoginPage, logout: true}
+            {title: 'Groups', component: TabsPage, index: 0, icon: 'contacts'},
+            {title: 'Invites', component: InvitationCheckPage, icon: 'paper-plane'},
+            {title: 'About', component: TabsPage, index: 1, icon: 'information-circle'},
+            {title: 'Logout', component: LoginPage, logout: true, icon: 'power'}
         ];
 
         this.pages = this.pagesPublic;
@@ -54,9 +57,11 @@ export class MyApp {
 
         this.events.subscribe('auth:statusChanged', (authStatus) => {
             if (true === authStatus) {
+                this.isPrivate = true;
                 this.pages = this.pagesAuth;
 
             } else {
+                this.isPrivate = false;
                 this.pages = this.pagesPublic;
             }
         });

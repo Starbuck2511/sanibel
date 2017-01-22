@@ -84,7 +84,6 @@ export class GroupDetailPage {
             ]
         });
         actionSheet.present();
-
     }
 
     private deleteSchedule(schedule: any) {

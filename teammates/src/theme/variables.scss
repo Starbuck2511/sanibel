@@ -24,22 +24,30 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
+//  primary:    #387ef5,
+  primary:    #459be8,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f9f9f9,
   dark:       #222,
-
-
-
+  trans:      transparent,
+  signal:     #22da4d,
+  dark-decent:(
+          base: #282828,
+        contrast: #A0A0A0),
+  dark-signal: (
+      base: #282828,
+      contrast: #22da4d
+  )
 
 
 );
 
 $dark-light: #060102;
-
-
-
+$dark-bright: #282828;
+$dark-invert: #A0A0A0;
+$signal: #22da4d;
+$signal-decent: #07c734;
 
 $chat-bubble: (
         background-left: #d7edf5,
@@ -53,11 +61,52 @@ $background-md-color: $background-color;
 $background-wp-color: $background-color;
 $toolbar-background: $background-color;
 
+$backdrop-color: $signal;
+
 $text-color: #f9f9f9;
 
-$tabs-background: #262626;
-$tabs-tab-color-inactive: #A0A082;
-$tabs-tab-color-active: #02E551;
+$tabs-background: $dark-bright;
+$tabs-tab-color-inactive: $dark-invert;
+//$tabs-tab-color-active: #1DB954;
+$tabs-tab-color-active: $signal;
+
+$tabs-md-tab-color-inactive: $dark-invert;
+$tabs-md-tab-opacity: 1;
+
+$tabs-ios-tab-color-inactive: $dark-invert;
+$tabs-ios-tab-opacity: 1;
+
+$tabs-wp-tab-color-inactive: $dark-invert;
+$tabs-wp-tab-opacity: 1;
+
+$toolbar-text-color: $dark-invert;
+$toolbar-active-color: $dark-invert;
+$toolbar-inactive-color: $dark-invert;
+
+$toolbar-md-title-text-color: $dark-invert;
+$toolbar-ios-title-text-color: $dark-invert;
+$toolbar-wp-title-text-color: $dark-invert;
+
+$toolbar-md-text-color: $dark-invert;
+$toolbar-ios-text-color: $dark-invert;
+$toolbar-wp-text-color: $dark-invert;
+
+$toolbar-md-button-color: $signal;
+$toolbar-ios-button-color: $signal;
+$toolbar-wp-button-color: $signal;
+
+$toolbar-md-button-font-size: 1.4rem;
+$toolbar-ios-button-font-size: 1.4rem;
+$toolbar-wp-button-font-size: 1.4rem;
+
+$item-md-divider-color: $dark-invert;
+$item-ios-divider-color: $dark-invert;
+$item-wp-divider-color: $dark-invert;
+
+$item-md-divider-background: $dark-invert;
+$item-ios-divider-background: $dark-invert;
+$item-wp-divider-background: $dark-invert;
+
 
 
 // App iOS Variables
