@@ -26,8 +26,8 @@ $font-path: "../assets/fonts";
 $colors: (
 //  primary:    #387ef5,
   primary:    #459be8,
-  secondary:  #32db64,
-  danger:     #f53d3d,
+  secondary:  #17963c,
+  danger:     #b51919,
   light:      #f9f9f9,
   dark:       #222,
   trans:      transparent,
@@ -99,21 +99,21 @@ $toolbar-md-button-font-size: 1.4rem;
 $toolbar-ios-button-font-size: 1.4rem;
 $toolbar-wp-button-font-size: 1.4rem;
 
-//$item-md-divider-color: $dark-invert;
-//$item-ios-divider-color: $dark-invert;
-//$item-wp-divider-color: $dark-invert;
-//
-//$item-md-divider-background: $dark-invert;
-//$item-ios-divider-background: $dark-invert;
-//$item-wp-divider-background: $dark-invert;
-
 $list-border-color: $dark-invert;
-
 $list-md-border-color: $dark-invert;
 $list-ios-border-color: $dark-invert;
 $list-wp-border-color: $dark-invert;
 
+$list-md-header-border-top: none;
+$list-ios-header-border-top: none;
+$list-wp-header-border-top: none;
 
+$item-md-detail-push-show: true;
+$item-ios-detail-push-show: true;
+$item-wp-detail-push-show: true;
+
+$text-input-highlight-color-valid: #32db64;
+$text-input-highlight-color-invalid: #f53d3d;
 
 // App iOS Variables
 // --------------------------------------------------
@@ -161,7 +161,7 @@ $list-wp-border-color: $dark-invert;
 @import "noto-sans";
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One');
 //@import url('../assets/fonts/lobster.otf');
-
+$font-secondary: 'Poiret One', cursive;
 
 ;
 

@@ -28,14 +28,24 @@
 }
 
 .font-secondary {
-  font-family: 'Poiret One', cursive;
+  font-family: $font-secondary;
 }
 
 .main-menu {
   color: $dark-invert;
   font-size: 1.4rem;
+  ion-icon{
+    &:before{
+      padding-right: 1.4rem;
+    }
+  }
 }
 
+ion-list-header{
+  ion-icon{
+    padding-right: 0.5rem;
+  }
+}
 
 form {
   .form-error {

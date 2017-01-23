@@ -37,7 +37,7 @@
         </div>
 
         <ion-list *ngSwitchCase="'overview'">
-            <ion-list-header color="light">
+            <ion-list-header color="dark-decent">
                 Accepts
             </ion-list-header>
             <ion-item *ngFor="let accept of accepts | async">
@@ -45,7 +45,7 @@
                 <p>{{accept.email}}</p>
             </ion-item>
 
-            <ion-list-header color="light">
+            <ion-list-header color="dark-decent">
                 Declines
             </ion-list-header>
             <ion-item *ngFor="let decline of declines | async">
