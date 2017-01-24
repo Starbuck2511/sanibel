@@ -32,6 +32,7 @@ $colors: (
   dark:       #222,
   trans:      transparent,
   signal:     #22da4d,
+  decent: #A0A0A0,
   dark-decent:(
           base: #282828,
         contrast: #A0A0A0),
@@ -99,6 +100,10 @@ $toolbar-md-button-font-size: 1.4rem;
 $toolbar-ios-button-font-size: 1.4rem;
 $toolbar-wp-button-font-size: 1.4rem;
 
+$toolbar-md-title-font-weight: 300;
+$toolbar-ios-title-font-weight: 300;
+$toolbar-wp-title-font-weight: 300;
+
 $list-border-color: $dark-invert;
 $list-md-border-color: $dark-invert;
 $list-ios-border-color: $dark-invert;
@@ -114,6 +119,10 @@ $item-wp-detail-push-show: true;
 
 $text-input-highlight-color-valid: #32db64;
 $text-input-highlight-color-invalid: #f53d3d;
+
+$button-md-height: 2.1em;
+$button-ios-height: 2.1em;
+$button-wp-height: 2.1em;
 
 // App iOS Variables
 // --------------------------------------------------
@@ -162,6 +171,4 @@ $text-input-highlight-color-invalid: #f53d3d;
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One');
 //@import url('../assets/fonts/lobster.otf');
 $font-secondary: 'Poiret One', cursive;
-
-;
 
