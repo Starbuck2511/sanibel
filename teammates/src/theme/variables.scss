@@ -31,14 +31,14 @@ $colors: (
   light:      #f9f9f9,
   dark:       #222,
   trans:      transparent,
-  signal:     #22da4d,
+  signal:     #52e8b3,
   decent: #A0A0A0,
   dark-decent:(
           base: #282828,
         contrast: #A0A0A0),
   dark-signal: (
       base: #282828,
-      contrast: #22da4d
+      contrast: #52e8b3
   )
 
 
@@ -47,8 +47,9 @@ $colors: (
 $dark-light: #060102;
 $dark-bright: #282828;
 $dark-invert: #A0A0A0;
-$signal: #22da4d;
-$signal-decent: #07c734;
+$signal: #52e8b3;
+$signal-decent: #b2ecd8;
+
 
 $chat-bubble: (
         background-left: #d7edf5,
@@ -168,7 +169,7 @@ $button-wp-height: 2.1em;
 
 @import "roboto";
 @import "noto-sans";
-@import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One|Kaushan+Script|Mrs+Sheppards');
 //@import url('../assets/fonts/lobster.otf');
 $font-secondary: 'Poiret One', cursive;
 

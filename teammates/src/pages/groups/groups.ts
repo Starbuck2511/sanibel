@@ -75,8 +75,8 @@ export class GroupsPage {
             ]
         });
 
+       actionSheet.present();
 
-        actionSheet.present();
     }
 
     private deleteGroup(group: any) {

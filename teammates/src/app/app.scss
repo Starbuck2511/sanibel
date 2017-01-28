@@ -15,9 +15,6 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-//font-family: 'Lobster', cursive;
-//font-family: 'Bungee Shade', cursive;
-//font-family: 'Poiret One', cursive;
 
 .handwriting {
   font-family: 'Lobster', cursive;
@@ -29,6 +26,15 @@
 
 .font-secondary {
   font-family: $font-secondary;
+}
+
+.font-logo {
+  font-family: 'Mrs Sheppards', cursive;
+  //font-family: 'Kaushan Script', cursive;
+}
+
+.logo {
+  font-size: 4rem;
 }
 
 .main-menu {
