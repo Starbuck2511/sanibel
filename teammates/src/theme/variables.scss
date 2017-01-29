@@ -4,16 +4,12 @@ $font-path: "../assets/fonts";
 
 @import "ionic.globals";
 
-
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
-
-
-
 
 // Named Color Variables
 // --------------------------------------------------
@@ -25,36 +21,37 @@ $font-path: "../assets/fonts";
 
 $colors: (
 //  primary:    #387ef5,
-  primary:    #459be8,
-  secondary:  #17963c,
-  danger:     #b51919,
-  light:      #f9f9f9,
-  dark:       #222,
-  trans:      transparent,
-  signal:     #52e8b3,
-  decent: #A0A0A0,
-  dark-decent:(
-          base: #282828,
+primary: #459be8,
+secondary: #305a3d,
+danger: #b13f33,
+light: #f9f9f9,
+dark: #222,
+trans: (
+        base: transparent,
+        contrast: #bdbdbd
+),
+signal: #52e8b3,
+decent: #A0A0A0,
+dark-decent:(
+        base: #282828,
         contrast: #A0A0A0),
-  dark-signal: (
-      base: #282828,
-      contrast: #52e8b3
-  )
-
-
+dark-signal: (
+        base: #282828,
+        contrast: #52e8b3
+),
+signal-alternative: #d6d2d2
 );
 
-$dark-light: #060102;
+$dark-light: #242626;
 $dark-bright: #282828;
 $dark-invert: #A0A0A0;
 $signal: #52e8b3;
 $signal-decent: #b2ecd8;
-
+$signal-alternative: #d6d2d2;
 
 $chat-bubble: (
         background-left: #d7edf5,
         background-right: #cbebc3,
-
 );
 
 $background-color: $dark-light;
@@ -129,22 +126,13 @@ $button-wp-height: 2.1em;
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -155,14 +143,12 @@ $button-wp-height: 2.1em;
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/v2/ionicons/
 
 @import "ionicons";
-
 
 // Fonts
 // --------------------------------------------------
@@ -171,5 +157,7 @@ $button-wp-height: 2.1em;
 @import "noto-sans";
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One|Kaushan+Script|Mrs+Sheppards');
 //@import url('../assets/fonts/lobster.otf');
+@import url("../assets/fonts/KR Beautiful Flowers 3.ttf");
+
 $font-secondary: 'Poiret One', cursive;
 
