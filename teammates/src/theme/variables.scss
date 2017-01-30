@@ -30,14 +30,14 @@ trans: (
         base: transparent,
         contrast: #bdbdbd
 ),
-signal: #52e8b3,
+signal: #4de068,
 decent: #A0A0A0,
 dark-decent:(
         base: #282828,
         contrast: #A0A0A0),
 dark-signal: (
         base: #282828,
-        contrast: #52e8b3
+        contrast: #4de068
 ),
 signal-alternative: #d6d2d2
 );
@@ -45,7 +45,7 @@ signal-alternative: #d6d2d2
 $dark-light: #242626;
 $dark-bright: #282828;
 $dark-invert: #A0A0A0;
-$signal: #52e8b3;
+$signal: #4de068;
 $signal-decent: #b2ecd8;
 $signal-alternative: #d6d2d2;
 
