@@ -3,7 +3,7 @@ page-signup {
 
 
   .toolbar-title-md {
-    font-size: 4.1rem;
+    font-size: 3.1rem;
     color: $signal;
 
     .logo {
@@ -12,7 +12,7 @@ page-signup {
     }
   }
   .toolbar-title-ios {
-    font-size: 3.1rem;
+    font-size: 2.1rem;
     color: $signal;
     .logo {
       font-size: 2.1rem;
@@ -20,7 +20,7 @@ page-signup {
     }
   }
   .toolbar-title-wp {
-    font-size: 4.1rem;
+    font-size: 3.1rem;
     color: $signal;
     .logo {
       font-size: 3.1rem;
@@ -36,12 +36,12 @@ page-signup {
     font-size: 1.5em;
   }
   .turtle {
-    /*background: #232526; /* Old browsers */
-    background: -moz-linear-gradient(top, #232526 0%, #414345 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #232526 0%, #414345 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #232526 0%, #414345 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#232526', endColorstr='#414345', GradientType=0); /* IE6-9 */
 
+    background: #232526; /* Old browsers */
+    background: -moz-linear-gradient(top,  #232526 0%, #3e7573 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #232526 0%,#3e7573 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #232526 0%,#3e7573 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#232526', endColorstr='#3e7573',GradientType=0 ); /* IE6-9 */
 
     color: #f9f9f9;
     label {

@@ -22,8 +22,8 @@ $font-path: "../assets/fonts";
 $colors: (
 //  primary:    #387ef5,
 primary: #459be8,
-secondary: #305a3d,
-danger: #b13f33,
+secondary: #11a03d,
+danger: #a50f10,
 light: #f9f9f9,
 dark: #222,
 trans: (
@@ -33,8 +33,8 @@ trans: (
 signal: #4de068,
 decent: #A0A0A0,
 dark-decent:(
-        base: #282828,
-        contrast: #A0A0A0),
+        base: #3a3636,
+        contrast: #c1bebe),
 dark-signal: (
         base: #282828,
         contrast: #4de068
@@ -121,6 +121,10 @@ $text-input-highlight-color-invalid: #f53d3d;
 $button-md-height: 2.1em;
 $button-ios-height: 2.1em;
 $button-wp-height: 2.1em;
+
+$segment-button-md-background-color-activated: #5d5454;
+$segment-button-ios-background-color-activated:#5d5454;
+$segment-button-wp-background-color-activated: #5d5454;
 
 // App iOS Variables
 // --------------------------------------------------

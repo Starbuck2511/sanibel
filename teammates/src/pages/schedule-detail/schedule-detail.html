@@ -24,13 +24,15 @@
 <ion-content>
     <div [ngSwitch]="segment">
         <div class="center" *ngSwitchCase="'feedback'" padding>
-            <h3>{{(schedule | async)?.prettyDate}}</h3>
-            <button class="call-to-action" color="secondary" ion-button icon-left (click)="accept()">
+            <h3 class="font-secondary"><strong>{{(schedule | async)?.prettyDate}}</strong></h3>
+            <p></p>
+            <p></p>
+            <button round class="call-to-action" color="secondary" ion-button icon-left (click)="accept()">
                 <ion-icon name="checkmark-circle"></ion-icon>
                 Accept
             </button>
 
-            <button class="call-to-action" color="danger" ion-button icon-left (click)="decline()">
+            <button round class="call-to-action" color="danger" ion-button icon-left (click)="decline()">
                 <ion-icon name="close-circle"></ion-icon>
                 Decline
             </button>
@@ -38,6 +40,7 @@
 
         <ion-list *ngSwitchCase="'overview'">
             <ion-list-header color="dark-decent">
+                <ion-icon name="checkmark-circle" icon-left></ion-icon>
                 Accepts
             </ion-list-header>
             <ion-item *ngFor="let accept of accepts | async">
@@ -46,6 +49,7 @@
             </ion-item>
 
             <ion-list-header color="dark-decent">
+                <ion-icon name="close-circle" icon-left></ion-icon>
                 Declines
             </ion-list-header>
             <ion-item *ngFor="let decline of declines | async">
