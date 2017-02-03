@@ -46,11 +46,14 @@ export class LoginPage {
                             data.uid,
                             {
                                 'email': data.auth.email,
-                                'created': firebase.database.ServerValue.TIMESTAMP
+                                'created': firebase.database['ServerValue']['TIMESTAMP']
                             });
                     }
                 }
             );
+
+
+
 
             let authStatus = this.auth.isAuthenticated();
             this.events.publish('auth:statusChanged', authStatus);

@@ -58,7 +58,7 @@ export class ChatDetailPage {
         this.message.content = this.content.value;
         this.message.uid = this.auth.getUid();
         this.message.name = this.auth.getDisplayName();
-        this.message.timestamp = firebase.database.ServerValue.TIMESTAMP;
+        this.message.timestamp = firebase.database['ServerValue']['TIMESTAMP'];
 
         this.af.database.list(`/messages/${this.id}`).push(this.message).then(
             () => {

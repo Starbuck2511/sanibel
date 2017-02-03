@@ -10,6 +10,7 @@ import {Group} from '../../models/group';
 
 import {AuthService} from '../../components/auth/auth.service'
 import {TabsPage} from "../tabs/tabs";
+import {groupBy} from "rxjs/operator/groupBy";
 
 /*
  Generated class for the InvitationCheck page.
@@ -23,24 +24,26 @@ import {TabsPage} from "../tabs/tabs";
 })
 export class InvitationCheckPage {
 
-    inviteForm:FormGroup;
+    inviteForm: FormGroup;
 
-    code:AbstractControl;
-    pin:AbstractControl;
+    code: AbstractControl;
+    pin: AbstractControl;
 
-    userId:string;
+    userId: string;
 
-    group:Observable<Group>;
-    groupId:string;
+    group: Observable<Group>;
+    groupId: string;
+    groupPin: number;
 
-    showPin:boolean = false;
+    showPin: boolean = false;
 
 
-    constructor(public navCtrl:NavController,
-                private af:AngularFire,
-                private toastCtrl:ToastController,
-                private formBuilder:FormBuilder,
-                private auth:AuthService) {
+
+    constructor(public navCtrl: NavController,
+                private af: AngularFire,
+                private toastCtrl: ToastController,
+                private formBuilder: FormBuilder,
+                private auth: AuthService) {
 
 
         this.inviteForm = this.formBuilder.group({
@@ -61,16 +64,27 @@ export class InvitationCheckPage {
         this.af.database.list('groups').$ref.ref.orderByChild('invitation').equalTo(code).once('value', snapshot => {
             snapshot.forEach(data => {
                 this.groupId = data.key;
-                this.group = data.val();
+                data.val().forEach(
+                    group => {
+                        this.groupPin = group.pin;
+                    }
+                );
                 this.showPin = true;
+                // needs the forEach method of a snapshot to continue,
+                // false to stay in the loop
+                // return true to exit the loop early
+                return false;
             });
-        }).catch(error => {console.log(error.message);});
+        }).catch(error => {
+            console.log(error.message);
+        });
 
     }
 
-    checkPin(formData){
+    checkPin(formData) {
 
-        if (this.pin.value == this.group.pin) {
+
+        if (this.pin.value == this.groupPin) {
             // add group to user data
             this.af.database.object(`/users/${this.userId}/groups`).$ref.ref.child(this.groupId).set(true);
 
