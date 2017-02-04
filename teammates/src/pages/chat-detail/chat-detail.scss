@@ -10,11 +10,12 @@ page-chat-detail {
       font-size: medium;
       word-wrap: break-word;
       white-space: pre-wrap;
+      font-size: 12px;
     }
 
     .message-detail {
       white-space: nowrap;
-      font-size: 14px;
+      font-size: 11px;
     }
 
     .chat-bubble {
@@ -37,6 +38,7 @@ page-chat-detail {
 
     .chat-bubble.left {
       background-color: map-get($chat-bubble, background-left);
+      color: #000;
       float: left;
       margin-left: 45px;
     }

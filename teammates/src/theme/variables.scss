@@ -32,25 +32,25 @@ trans: (
 ),
 signal: #4de068,
 decent: #A0A0A0,
+decent-light: #dedada,
 dark-decent:(
         base: #3a3636,
         contrast: #c1bebe),
 dark-signal: (
         base: #282828,
         contrast: #4de068
-),
-signal-alternative: #d6d2d2
+)
 );
-
 $dark-light: #242626;
 $dark-bright: #282828;
 $dark-invert: #A0A0A0;
 $signal: #4de068;
 $signal-decent: #b2ecd8;
 $signal-alternative: #d6d2d2;
+$decent-light: #dedada;
 
 $chat-bubble: (
-        background-left: #d7edf5,
+        background-left: #f9f9f9,
         background-right: #cbebc3,
 );
 
