@@ -7,14 +7,13 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>New group</ion-title>
+        <ion-title>Create a group</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <h3>Add a new group</h3>
     <form [formGroup]="groupForm" (ngSubmit)="addGroup(groupForm.value)" novalidate>
         <ion-item [class.error]="!name.valid && name.touched">
             <ion-label floating>Name</ion-label>
@@ -34,7 +33,7 @@
         </ion-item>
 
         <div padding>
-            <button ion-button type="submit" [disabled]="!groupForm.valid">Save</button>
+            <button round color="secondary" ion-button type="submit" [disabled]="!groupForm.valid">Save</button>
         </div>
     </form>
 </ion-content>

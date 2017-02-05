@@ -1,7 +1,15 @@
 page-chat-detail {
 
+
+ .item-input ion-textarea {
+    border: 1px solid $dark-invert;
+  }
+
   textarea {
     resize: both;
+    font-size: 13px;
+    font-weight: 300;
+
   }
 
   .chatBubble {
@@ -10,12 +18,12 @@ page-chat-detail {
       font-size: medium;
       word-wrap: break-word;
       white-space: pre-wrap;
-      font-size: 12px;
+      font-size: 13px;
     }
 
     .message-detail {
-      white-space: nowrap;
       font-size: 11px;
+
     }
 
     .chat-bubble {

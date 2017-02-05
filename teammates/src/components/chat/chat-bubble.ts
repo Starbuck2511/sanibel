@@ -8,8 +8,7 @@ import {Component} from '@angular/core';
     <div class="chat-bubble {{message.position}}">
       <div class="message">{{message.content}}</div>
       <div class="message-detail">
-          <span style="font-weight:bold;">{{message.name}} </span>,
-          <span>{{message.timestamp}}</span>
+          <span><strong>{{message.name}}</strong>, {{message.timestamp}}</span>        
       </div>
     </div>
   </div>
