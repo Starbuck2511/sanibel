@@ -16,7 +16,7 @@
 <ion-content padding>
     <form [formGroup]="groupForm" (ngSubmit)="addGroup(groupForm.value)" novalidate>
         <ion-item [class.error]="!name.valid && name.touched">
-            <ion-label floating>Name</ion-label>
+            <ion-label floating color="dark-invert">Name</ion-label>
             <ion-input type="text" formControlName="name"></ion-input>
         </ion-item>
         <p *ngIf="name.hasError('required') && name.touched"
@@ -28,7 +28,7 @@
 
 
         <ion-item>
-            <ion-label floating>Description</ion-label>
+            <ion-label floating color="dark-invert">Description</ion-label>
             <ion-input type="text" formControlName="description"></ion-input>
         </ion-item>
 

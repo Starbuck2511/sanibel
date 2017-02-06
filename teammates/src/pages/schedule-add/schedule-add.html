@@ -7,14 +7,13 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>New Schedule</ion-title>
+        <ion-title>Add a schedule</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <h3>Add a new schedule</h3>
     <form [formGroup]="scheduleForm" (ngSubmit)="addSchedule(scheduleForm.value)" novalidate>
         <ion-item [class.error]="!name.valid && name.touched">
             <ion-label floating>Name</ion-label>
@@ -45,7 +44,8 @@
         <p></p>
 
         <ion-list radio-group formControlName="type">
-            <ion-list-header color="light">
+            <ion-list-header color="dark-decent">
+                <ion-icon name="calendar" icon-left></ion-icon>
                 Type of schedule
             </ion-list-header>
 

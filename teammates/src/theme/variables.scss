@@ -48,10 +48,12 @@ $signal: #4de068;
 $signal-decent: #b2ecd8;
 $signal-alternative: #d6d2d2;
 $decent-light: #dedada;
+$danger: #a50f10;
+$danger-bright: #eb2951;
 
 $chat-bubble: (
         background-left: #f9f9f9,
-        background-right: #cbebc3,
+        background-right: #97d887,
 );
 
 $background-color: $dark-light;
@@ -60,7 +62,7 @@ $background-md-color: $background-color;
 $background-wp-color: $background-color;
 $toolbar-background: $background-color;
 
-$backdrop-color: $signal;
+$backdrop-color: #136258;
 
 $text-color: #f9f9f9;
 
@@ -161,7 +163,7 @@ $segment-button-wp-background-color-activated: #5d5454;
 @import "noto-sans";
 @import url('https://fonts.googleapis.com/css?family=Bungee+Shade|Lobster|Poiret+One|Kaushan+Script|Mrs+Sheppards|Proza+Libre');
 //@import url('../assets/fonts/lobster.otf');
-@import url("../assets/fonts/KR Beautiful Flowers 3.ttf");
+
 
 $font-secondary: 'Poiret One', cursive;
 
