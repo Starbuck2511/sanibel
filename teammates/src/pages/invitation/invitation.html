@@ -6,27 +6,28 @@
 -->
 <ion-header>
     <ion-navbar>
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
         <ion-title>Invite your friends</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-    <h2>Invitation - {{name}}</h2>
-    <p>You can invite people to join this group by sending them an email with the following invitation code:</p>
-    <p></p>
+    <p>You can invite your friends to this group by sending them an email with the following invitation code:</p>
     <p class="code">{{code}}</p>
-    <p></p>
-    <div *ngIf="'device' == platform" center>
+    <hr class="gradient-line">
+    <div *ngIf="'device' == platform">
         <ion-buttons>
-            <button ion-button outline (click)="copyToClipboard()">Copy invitation to clipboard</button>
-            <button ion-button outline (click)="openMail()">Open Mail</button>
+            <button ion-button round color="secondary" (click)="copyToClipboard()">Copy invitation to clipboard</button>
+            <button ion-button round color="secondary" (click)="openMail()">Open Mail</button>
         </ion-buttons>
     </div>
 
-    <div *ngIf="'browser' == platform" center>
+    <div *ngIf="'browser' == platform">
         <ion-buttons>
-            <button ion-button outline (click)="openMailHref()">Open Mail</button>
+            <button ion-button round color="secondary" (click)="openMailHref()">Open Mail</button>
         </ion-buttons>
     </div>
 

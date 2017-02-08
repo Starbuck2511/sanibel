@@ -22,6 +22,7 @@ $font-path: "../assets/fonts";
 $colors: (
 //  primary:    #387ef5,
 primary: #459be8,
+primary-decent: #455063,
 secondary: #11a03d,
 danger: #a50f10,
 light: #f9f9f9,
@@ -39,7 +40,9 @@ dark-decent:(
 dark-signal: (
         base: #282828,
         contrast: #4de068
-)
+
+),
+        dark-action: #373b42
 );
 $dark-light: #242626;
 $dark-bright: #282828;
@@ -50,6 +53,8 @@ $signal-alternative: #d6d2d2;
 $decent-light: #dedada;
 $danger: #a50f10;
 $danger-bright: #eb2951;
+$primary-decent: #455063;
+$dark-action: #373b42;
 
 $chat-bubble: (
         background-left: #f9f9f9,

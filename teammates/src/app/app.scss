@@ -36,6 +36,7 @@
 
 h3 {
   color: $decent-light;
+  font-weight: 300;
 }
 
 
@@ -64,7 +65,7 @@ ion-list-header{
 form {
   .form-error {
     padding-left: $content-padding;
-    color: $danger;
+    color: $danger-bright;
 
   }
 }

@@ -1,9 +1,22 @@
 page-invitation {
-  .center{
+  p {
+    color: $decent-light;
+
+  }
+
+  hr {
+    color: $decent-light;
+  }
+
+  .center {
     text-align: center;
   }
-  .code{
-    font-size: 24px;
-    font-weight: bold;
+  .code {
+    font-size: 18px;
+    font-weight: 300;
+    color: $dark-bright;
+    text-align: center;
+    padding: 0.2em 0;
+    background-color: #ddddbe;
   }
 }
