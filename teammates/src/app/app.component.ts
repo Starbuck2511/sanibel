@@ -41,8 +41,8 @@ export class MyApp {
         this.initializeApp();
 
         this.pagesPublic = [
-            {title: 'Login', component: LoginPage, icon: ''},
-            {title: 'Sign up', component: SignupPage, icon: ''}
+            {title: 'Login', component: LoginPage, icon: 'log-in'},
+            {title: 'Sign up', component: SignupPage, icon: 'create'}
         ];
 
         this.pagesAuth = [

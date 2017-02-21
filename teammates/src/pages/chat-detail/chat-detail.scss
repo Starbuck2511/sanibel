@@ -2,13 +2,15 @@ page-chat-detail {
 
 
  .item-input ion-textarea {
-    border: 1px solid #524f4f;
+    /*border: 1px solid #524f4f;*/
+   background-color: $dark-action;
   }
 
   textarea {
     resize: both;
     font-size: 13px;
     font-weight: 300;
+
 
   }
 

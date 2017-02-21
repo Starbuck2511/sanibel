@@ -28,6 +28,7 @@ export class SignupPage {
     }
 
     public signUp() {
+
         this.alert.showLoading('');
 
         this.af.auth.createUser(this.user).then((authData) => {

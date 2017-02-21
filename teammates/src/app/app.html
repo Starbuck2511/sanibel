@@ -15,7 +15,7 @@
 
         <ion-list *ngIf="isPrivate == false">
             <button class="main-menu" ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
-                {{p.title}}
+                <ion-icon [name]="p.icon" small color="signal"><span color="decent">{{p.title}}</span></ion-icon>
             </button>
         </ion-list>
     </ion-content>

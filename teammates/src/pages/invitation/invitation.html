@@ -20,14 +20,14 @@
     <hr class="gradient-line">
     <div *ngIf="'device' == platform">
         <ion-buttons>
-            <button ion-button round color="secondary" (click)="copyToClipboard()">Copy invitation to clipboard</button>
-            <button ion-button round color="secondary" (click)="openMail()">Open Mail</button>
+            <button ion-button block color="secondary" (click)="copyToClipboard()">Copy invitation to clipboard</button>
+            <button ion-button block color="secondary" (click)="openMail()">Open Mail</button>
         </ion-buttons>
     </div>
 
     <div *ngIf="'browser' == platform">
         <ion-buttons>
-            <button ion-button round color="secondary" (click)="openMailHref()">Open Mail</button>
+            <button ion-button block color="secondary" (click)="openMailHref()">Open Mail</button>
         </ion-buttons>
     </div>
 

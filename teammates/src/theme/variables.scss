@@ -31,7 +31,7 @@ trans: (
         base: transparent,
         contrast: #bdbdbd
 ),
-signal: #4de068,
+signal: #48BE3C,
 decent: #A0A0A0,
 decent-light: #dedada,
 dark-decent:(
@@ -39,7 +39,7 @@ dark-decent:(
         contrast: #c1bebe),
 dark-signal: (
         base: #282828,
-        contrast: #4de068
+        contrast: #48BE3C
 
 ),
         dark-action: #373b42
@@ -47,7 +47,7 @@ dark-signal: (
 $dark-light: #242626;
 $dark-bright: #282828;
 $dark-invert: #A0A0A0;
-$signal: #4de068;
+$signal: #48BE3C;
 $signal-decent: #b2ecd8;
 $signal-alternative: #d6d2d2;
 $decent-light: #dedada;
@@ -57,8 +57,8 @@ $primary-decent: #455063;
 $dark-action: #373b42;
 
 $chat-bubble: (
-        background-left: #bebeb8,
-        background-right: #91c08a,
+        background-left: #e7ecec,
+        background-right: #e7ecec,
 );
 
 $background-color: $dark-light;
