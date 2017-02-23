@@ -21,7 +21,7 @@ $font-path: "../assets/fonts";
 
 $colors: (
 //  primary:    #387ef5,
-primary: #459be8,
+primary: #556c8e,
 primary-decent: #455063,
 secondary: #11a03d,
 danger: #a50f10,
@@ -122,8 +122,9 @@ $item-md-detail-push-show: true;
 $item-ios-detail-push-show: true;
 $item-wp-detail-push-show: true;
 
-$text-input-highlight-color-valid: #32db64;
-$text-input-highlight-color-invalid: #f53d3d;
+$text-input-highlight-color-valid: $dark-invert;
+$text-input-highlight-color-invalid: $danger-bright;
+$text-input-md-highlight-color: $decent-light;
 
 $button-md-height: 2.1em;
 $button-ios-height: 2.1em;
