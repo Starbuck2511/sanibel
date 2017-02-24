@@ -2,14 +2,15 @@ page-chat-detail {
 
 
  .item-input ion-textarea {
-    /*border: 1px solid #524f4f;*/
-   background-color: $dark-action;
+   border-top: 1px solid #524f4f;
+
   }
 
   textarea {
     resize: both;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 300;
+    margin-right: 10px;
 
 
   }
@@ -48,7 +49,7 @@ page-chat-detail {
 
     .chat-bubble.left {
       background-color: map-get($chat-bubble, background-left);
-      color: #000;
+      color: #3b3c3f;
       float: left;
       margin-left: 45px;
     }
@@ -61,7 +62,7 @@ page-chat-detail {
 
     .chat-bubble.right {
       background-color: map-get($chat-bubble, background-right);
-      color: #000;
+      color: #dadfe0;
       float: right;
       margin-right: 45px;
     }
@@ -73,7 +74,7 @@ page-chat-detail {
     }
 
     .chat-bubble.right a.autolinker {
-      color: #000;
+      color: $decent-light;
       font-weight: bold;
     }
   }

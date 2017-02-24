@@ -23,42 +23,43 @@ $colors: (
 //  primary:    #387ef5,
 primary: #556c8e,
 primary-decent: #455063,
-secondary: #11a03d,
-danger: #a50f10,
+secondary: #30864b,
+danger: #ab3a3a,
 light: #f9f9f9,
 dark: #222,
 trans: (
         base: transparent,
         contrast: #bdbdbd
 ),
-signal: #48BE3C,
+signal: #499ed0,
 decent: #A0A0A0,
 decent-light: #dedada,
 dark-decent:(
-        base: #3a3636,
+        base: #3b3c3f,
         contrast: #c1bebe),
 dark-signal: (
         base: #282828,
-        contrast: #48BE3C
+        contrast: #499ed0
 
 ),
         dark-action: #373b42
 );
+$light: #f9f9f9;
 $dark-light: #242626;
 $dark-bright: #282828;
 $dark-invert: #A0A0A0;
-$signal: #48BE3C;
+$signal: #499ed0;
 $signal-decent: #b2ecd8;
 $signal-alternative: #d6d2d2;
 $decent-light: #dedada;
-$danger: #a50f10;
+$danger: #ab3a3a;
 $danger-bright: #eb2951;
 $primary-decent: #455063;
 $dark-action: #373b42;
 
 $chat-bubble: (
-        background-left: #e7ecec,
-        background-right: #e7ecec,
+        background-left: #c1bebe,
+        background-right: $signal,
 );
 
 $background-color: $dark-light;
