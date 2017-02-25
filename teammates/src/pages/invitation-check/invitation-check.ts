@@ -38,7 +38,6 @@ export class InvitationCheckPage {
     showPin: boolean = false;
 
 
-
     constructor(public navCtrl: NavController,
                 private af: AngularFire,
                 private toastCtrl: ToastController,

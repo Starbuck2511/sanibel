@@ -17,7 +17,7 @@
         <form *ngIf="!showPin" [formGroup]="inviteForm" (ngSubmit)="checkCode(inviteForm.value)" novalidate>
 
 
-            <p padding>Please enter your invitation code</p>
+            <p padding class="font-secondary">Please enter your invitation code</p>
 
             <ion-item [class.error]="!code.valid && code.touched">
                 <ion-label floating>Code</ion-label>

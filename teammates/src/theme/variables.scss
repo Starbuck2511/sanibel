@@ -35,7 +35,7 @@ signal: #499ed0,
 decent: #A0A0A0,
 decent-light: #dedada,
 dark-decent:(
-        base: #3b3c3f,
+        base: #52535a,
         contrast: #c1bebe),
 dark-signal: (
         base: #282828,
@@ -68,7 +68,7 @@ $background-md-color: $background-color;
 $background-wp-color: $background-color;
 $toolbar-background: $background-color;
 
-$backdrop-color: #716d68;
+$backdrop-color: #4d6d71;
 
 $text-color: #f9f9f9;
 
@@ -131,9 +131,9 @@ $button-md-height: 2.1em;
 $button-ios-height: 2.1em;
 $button-wp-height: 2.1em;
 
-$segment-button-md-background-color-activated: #5d5454;
-$segment-button-ios-background-color-activated:#5d5454;
-$segment-button-wp-background-color-activated: #5d5454;
+$segment-button-md-background-color-activated: #3b3c3f;
+$segment-button-ios-background-color-activated:#3b3c3f;
+$segment-button-wp-background-color-activated: #3b3c3f;
 
 // App iOS Variables
 // --------------------------------------------------

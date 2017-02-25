@@ -33,7 +33,7 @@ export class GroupAddPage {
 
     group: Group;
     chat: Chat;
-
+    
     constructor(public navCtrl: NavController,
                 private af: AngularFire,
                 private toastCtrl: ToastController,
