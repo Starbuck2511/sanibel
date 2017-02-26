@@ -18,6 +18,7 @@ export class InvitationPage {
     id: string;
     name: string;
     code: string;
+    pin: string;
     body: string;
     subject: string;
 
@@ -29,10 +30,15 @@ export class InvitationPage {
         this.id = navParams.get('id');
         this.name = navParams.get('name');
         this.code = navParams.get('code');
+        this.pin = navParams.get('pin');
 
-        this.body = `URL: http://localhost:8100
-                    Invitation Code: ${this.code}`;
-
+        this.body = `This is a Sunbelt invitation for joining the group "${this.name}". 
+Just get the free Sunbelt App from Google Play or the Apple Store and enter the following code and PIN. %0D%0A
+Invitation Code: ${this.code} %0D%0A
+PIN: ${this.pin} %0D%0A %0D%0A
+Best regards %0D%0A
+Your Sunbelt Team %0D%0A
+`;
         this.subject = `Invitation from ${this.name}`;
 
         if (this.plt.is('core') || this.plt.is('mobileweb')) {
@@ -66,8 +72,6 @@ export class InvitationPage {
     }
 
     public copyToClipboard() {
-
-
         // use cordova plugin
         Clipboard.copy(this.body).then(() => {
                 let toast = this.toastCtrl.create({

@@ -13,10 +13,9 @@ page-invitation {
     text-align: center;
   }
   .code {
-    font-size: 26px;
     font-weight: 300;
-    color: $decent-light;
-    text-align: center;
+    font-family: $font-main;
+    color: $light;
     padding: 0.2em 0;
   }
 }

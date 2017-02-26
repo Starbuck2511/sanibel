@@ -9,8 +9,9 @@ import {Group} from '../../models/group';
 
 
 import {AuthService} from '../../components/auth/auth.service'
+import {AlertService} from '../../components/alert/alert.service';
 import {TabsPage} from "../tabs/tabs";
-import {groupBy} from "rxjs/operator/groupBy";
+
 
 /*
  Generated class for the InvitationCheck page.
@@ -33,16 +34,16 @@ export class InvitationCheckPage {
 
     group: Observable<Group>;
     groupId: string;
-    groupPin: number;
 
     showPin: boolean = false;
-
 
     constructor(public navCtrl: NavController,
                 private af: AngularFire,
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
-                private auth: AuthService) {
+                private auth: AuthService,
+                private alert: AlertService
+    ) {
 
 
         this.inviteForm = this.formBuilder.group({
@@ -58,32 +59,41 @@ export class InvitationCheckPage {
 
     checkCode(formData) {
 
+        this.alert.showLoading('');
         let code = this.code.value;
         // check invitation code
         this.af.database.list('groups').$ref.ref.orderByChild('invitation').equalTo(code).once('value', snapshot => {
             snapshot.forEach(data => {
                 this.groupId = data.key;
-                data.val().forEach(
-                    group => {
-                        this.groupPin = group.pin;
-                    }
-                );
+                this.group = data.val();
+                this.alert.showSuccess('Code successfully validated.');
                 this.showPin = true;
+
                 // needs the forEach method of a snapshot to continue,
                 // false to stay in the loop
                 // return true to exit the loop early
                 return false;
             });
+
+            if(false === this.showPin){
+                this.alert.showError('Code invalid. Please enter code again.');
+                this.inviteForm.reset();
+
+            }
+
+
         }).catch(error => {
             console.log(error.message);
+
         });
 
     }
 
     checkPin(formData) {
+        this.alert.showLoading('');
 
-
-        if (this.pin.value == this.groupPin) {
+        if (this.pin.value == this.group.pin) {
+            this.alert.hideLoading();
             // add group to user data
             this.af.database.object(`/users/${this.userId}/groups`).$ref.ref.child(this.groupId).set(true);
 
@@ -91,7 +101,7 @@ export class InvitationCheckPage {
             this.af.database.object(`/groups/${this.groupId}/users`).$ref.ref.child(this.userId).set(true).then(
                 () => {
                     let toast = this.toastCtrl.create({
-                        message: 'Your invitation code was processed successfuly.',
+                        message: `You have been successfully added to group ${this.group.name}`,
                         duration: 2000
                     });
 
@@ -103,6 +113,9 @@ export class InvitationCheckPage {
             ).catch(error => {
                 console.log(error.message);
             });
+        } else {
+            this.alert.showError('PIN invalid. Please enter PIN again.');
+            this.inviteForm.reset();
         }
     }
 }

@@ -24,6 +24,10 @@
   font-family: 'Bungee Shade', cursive;
 }
 
+.font-main {
+  font-family: $font-main;
+}
+
 .font-secondary {
   font-family: $font-secondary;
 }
@@ -34,8 +38,10 @@
   font-family: 'Lobster', cursive;
 }
 
+.font-logo-menu {
+  font-size: 2.1rem;
+}
 h3 {
-  color: $decent-light;
   font-weight: 300;
 }
 
@@ -75,6 +81,7 @@ form {
   .form-error {
     padding-left: $content-padding;
     color: $danger-bright;
+    font-size: 1.5rem;
 
   }
 }

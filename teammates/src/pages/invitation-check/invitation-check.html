@@ -16,7 +16,6 @@
 <ion-content padding>
         <form *ngIf="!showPin" [formGroup]="inviteForm" (ngSubmit)="checkCode(inviteForm.value)" novalidate>
 
-
             <p padding class="font-secondary">Please enter your invitation code</p>
 
             <ion-item [class.error]="!code.valid && code.touched">
@@ -33,8 +32,8 @@
         </form>
 
         <form *ngIf="showPin" [formGroup]="inviteForm" (ngSubmit)="checkPin(inviteForm.value)" novalidate>
-            <p>Please enter PIN</p>
-            <p>You will be added to group {{group?.name}} after entering PIN</p>
+            <p padding class="font-secondary">Please enter PIN <br>
+            You will be added to group "{{group?.name}}" after entering correct PIN</p>
             <ion-item [class.error]="!pin.valid && pin.touched">
                 <ion-label floating>PIN</ion-label>
                 <ion-input type="text" formControlName="pin"></ion-input>

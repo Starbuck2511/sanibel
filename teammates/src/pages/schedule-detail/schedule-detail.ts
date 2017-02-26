@@ -54,6 +54,7 @@ export class ScheduleDetailPage {
             displayName: this.auth.getDisplayName()
         });
         this.feedbackToast();
+
     }
 
     private feedbackToast(){
@@ -72,7 +73,7 @@ export class ScheduleDetailPage {
         this.schedule  = this.af.database.object(`/schedules/${this.id}`).map(
             scheduleDetail => {
                 // format the ISO 8601 date string into a pretty locale date
-                scheduleDetail.prettyDate = moment(scheduleDetail.current).format('LLLL') + ' Uhr';
+                scheduleDetail.prettyDate = moment(scheduleDetail.current).format('LLLL') + '\xa0Uhr';
                 return scheduleDetail;
             }
         );

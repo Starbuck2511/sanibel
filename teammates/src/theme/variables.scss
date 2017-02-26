@@ -42,7 +42,8 @@ dark-signal: (
         contrast: #499ed0
 
 ),
-        dark-action: #373b42
+        dark-action: #373b42,
+        sunlight: #cdd87f
 );
 $light: #f9f9f9;
 $dark-light: #242626;
@@ -56,6 +57,7 @@ $danger: #ab3a3a;
 $danger-bright: #eb2951;
 $primary-decent: #455063;
 $dark-action: #373b42;
+
 
 $chat-bubble: (
         background-left: #c1bebe,
@@ -135,6 +137,8 @@ $segment-button-md-background-color-activated: #3b3c3f;
 $segment-button-ios-background-color-activated:#3b3c3f;
 $segment-button-wp-background-color-activated: #3b3c3f;
 
+
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -173,4 +177,5 @@ $segment-button-wp-background-color-activated: #3b3c3f;
 
 
 $font-secondary: 'Poiret One', cursive;
+$font-main: 'Roboto', sans-serif;
 

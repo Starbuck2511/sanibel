@@ -25,6 +25,7 @@ export class SignupPage {
                 private af: AngularFire
     ) {
         // construct
+
     }
 
     public signUp() {

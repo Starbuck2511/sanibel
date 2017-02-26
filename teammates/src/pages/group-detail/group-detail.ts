@@ -27,6 +27,7 @@ export class GroupDetailPage {
     id: string;
     name: string;
     code: Observable<string>;
+    pin: Observable<string>;
     description: string;
     uid: string;
     users: any;
@@ -59,7 +60,7 @@ export class GroupDetailPage {
 
     public goToInvitation(id: string, name: string) {
 
-        this.navCtrl.push(InvitationPage, {id: id, name: name, code: this.code});
+        this.navCtrl.push(InvitationPage, {id: id, name: name, code: this.code, pin: this.pin});
     }
 
     public delete(slidingItem: ItemSliding, schedule: any) {
@@ -166,6 +167,9 @@ export class GroupDetailPage {
     ionViewDidLoad(){
         this.af.database.object(`/groups/${this.id}/invitation`).$ref.ref.once('value', snap => {
             this.code = snap.val();
+        });
+        this.af.database.object(`/groups/${this.id}/pin`).$ref.ref.once('value', snap => {
+            this.pin = snap.val();
         });
     }
 }
