@@ -19,10 +19,9 @@ page-chat-detail {
   .chatBubble {
 
     .message {
-      font-size: medium;
       word-wrap: break-word;
       white-space: pre-wrap;
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .message-detail {
@@ -63,7 +62,7 @@ page-chat-detail {
 
     .chat-bubble.right {
       background-color: map-get($chat-bubble, background-right);
-      color: #dadfe0;
+      color: #ffffff;
       float: right;
       margin-right: 45px;
     }
@@ -75,7 +74,7 @@ page-chat-detail {
     }
 
     .chat-bubble.right a.autolinker {
-      color: $decent-light;
+      color: #ffffff;
       font-weight: bold;
     }
   }

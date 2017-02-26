@@ -4,6 +4,7 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseObjectObservable} from 'angularfire2';
 
 import {AuthService} from '../../components/auth/auth.service';
+import {AlertService} from '../../components/alert/alert.service';
 
 
 /*
@@ -29,13 +30,15 @@ export class GroupEditPage {
     group: FirebaseObjectObservable<any>;
 
     userId: string;
+    chatId: string;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private af: AngularFire,
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
-                private auth: AuthService) {
+                private auth: AuthService,
+                private alert: AlertService) {
 
 
         this.id = navParams.get('id');
@@ -54,7 +57,7 @@ export class GroupEditPage {
         this.af.database.object(`/groups/${this.id}`).forEach(group => {
             // pre populate form controls with existing values
             this.groupForm.setValue({name: group.name, description: group.description});
-
+            this.updateGroupChat();
         }).catch((error) => {
             console.log(error.message)
         });
@@ -62,11 +65,15 @@ export class GroupEditPage {
     }
 
     editGroup(formData) {
-
+        this.alert.showLoading('');
         this.af.database.object(`/groups/${this.id}`).update({
             name: this.name.value,
             description: this.description.value
         }).then(() => {
+            this.af.database.object(`/chats/${this.chatId}`).update({
+                name: this.name.value
+            }).then(() => {
+                this.alert.hideLoading();
                 let toast = this.toastCtrl.create({
                     message: 'Group edited successfully',
                     duration: 2000
@@ -76,11 +83,27 @@ export class GroupEditPage {
                         this.navCtrl.pop();
                     }
                 );
-            }
-        ).catch(
+            }).catch(
+                error => {
+                    console.log(error.message)
+                }
+            );
+        }).catch(
             error => {
                 console.log(error.message)
             }
         );
+    }
+    
+
+    updateGroupChat() {
+        this.af.database.list(`/groups/${this.id}/chats`).forEach(chats => {
+            chats.forEach(chat => {
+                // update this group chats
+                this.af.database.object(`/chats/${chat.$key}`).update({
+                    name: this.name.value,
+                });
+            });
+        });
     }
 }

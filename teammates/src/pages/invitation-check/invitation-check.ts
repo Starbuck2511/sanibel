@@ -34,6 +34,8 @@ export class InvitationCheckPage {
 
     group: Observable<Group>;
     groupId: string;
+    groupPin: number;
+    groupName: string;
 
     showPin: boolean = false;
 
@@ -66,6 +68,8 @@ export class InvitationCheckPage {
             snapshot.forEach(data => {
                 this.groupId = data.key;
                 this.group = data.val();
+                this.groupPin = data.val().pin;
+                this.groupName = data.val().name;
                 this.alert.showSuccess('Code successfully validated.');
                 this.showPin = true;
 
@@ -92,7 +96,7 @@ export class InvitationCheckPage {
     checkPin(formData) {
         this.alert.showLoading('');
 
-        if (this.pin.value == this.group.pin) {
+        if (this.pin.value == this.groupPin) {
             this.alert.hideLoading();
             // add group to user data
             this.af.database.object(`/users/${this.userId}/groups`).$ref.ref.child(this.groupId).set(true);
@@ -101,7 +105,7 @@ export class InvitationCheckPage {
             this.af.database.object(`/groups/${this.groupId}/users`).$ref.ref.child(this.userId).set(true).then(
                 () => {
                     let toast = this.toastCtrl.create({
-                        message: `You have been successfully added to group ${this.group.name}`,
+                        message: `You have been successfully added to group ${this.groupName}`,
                         duration: 2000
                     });
 

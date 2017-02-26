@@ -49,7 +49,6 @@ Your Sunbelt Team %0D%0A
     }
 
     public openMail() {
-
         SocialSharing.canShareViaEmail().then(() => {
             // Sharing via email is possible
             // Share via email

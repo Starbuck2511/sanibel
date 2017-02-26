@@ -7,6 +7,7 @@ import {Group} from '../../models/group';
 import {Chat} from '../../models/chat';
 
 import {AuthService} from '../../components/auth/auth.service';
+import {AlertService} from '../../components/alert/alert.service';
 
 /*
  Generated class for the GroupAdd page.
@@ -38,7 +39,9 @@ export class GroupAddPage {
                 private af: AngularFire,
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
-                private auth: AuthService) {
+                private auth: AuthService,
+                private alert: AlertService
+    ) {
 
         this.group = new Group();
         this.chat = new Chat();
@@ -54,7 +57,7 @@ export class GroupAddPage {
     }
 
     addGroup(formData) {
-
+        this.alert.showLoading('');
         this.group.name = this.name.value;
         this.group.description = this.description.value;
 
@@ -85,7 +88,7 @@ export class GroupAddPage {
 
             // store the new group also under user node
             this.userGroups.$ref.ref.child(groupId).set(true);
-
+            this.alert.hideLoading();
             let toast = this.toastCtrl.create({
                 message: 'Group was added successfully',
                 duration: 2000

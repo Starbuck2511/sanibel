@@ -6,6 +6,7 @@ import * as moment from 'moment';
 
 import {Schedule} from '../../models/schedule';
 import {AuthService} from '../../components/auth/auth.service';
+import {AlertService} from '../../components/alert/alert.service';
 import {AppConfig} from '../../app/app.config';
 
 /*
@@ -45,7 +46,9 @@ export class ScheduleAddPage {
                 private af: AngularFire,
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
-                private auth: AuthService) {
+                private auth: AuthService,
+                private alert: AlertService
+    ) {
 
         moment.locale('de');
         this.dayNames = AppConfig.DATETIME_CONFIG.dayNames;
@@ -71,7 +74,7 @@ export class ScheduleAddPage {
     }
 
     addSchedule(formData) {
-
+        this.alert.showLoading('');
         this.schedule.name = this.name.value;
         this.schedule.date = this.date.value;
         this.schedule.current = this.date.value;
@@ -86,7 +89,7 @@ export class ScheduleAddPage {
 
             // store the new schedules also under group node (and current for easier query order by)
             this.groupSchedules.$ref.ref.child(newScheduleId).set({current: this.schedule.current});
-
+            this.alert.hideLoading();
             let toast = this.toastCtrl.create({
                 message: 'Schedule was added successfully',
                 duration: 2000
