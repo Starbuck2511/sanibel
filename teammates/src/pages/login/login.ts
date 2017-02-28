@@ -52,13 +52,10 @@ export class LoginPage {
                 }
             );
 
-
-
-
             let authStatus = this.auth.isAuthenticated();
             this.events.publish('auth:statusChanged', authStatus);
             // after login check if user has a displayName
-            if(null === this.auth.getDisplayName()){
+            if (null === this.auth.getDisplayName()) {
                 this.navCtrl.setRoot(DisplayNamePage).catch(() => {
                     console.log("Didn't set nav root");
                 });
