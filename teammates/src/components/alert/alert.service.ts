@@ -24,7 +24,6 @@ export class AlertService {
         setTimeout(() => {
             this.loader.dismiss();
         });
-
     }
 
     showError(text: string) {

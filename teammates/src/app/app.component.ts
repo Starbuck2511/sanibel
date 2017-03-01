@@ -8,7 +8,7 @@ import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {TabsPage} from '../pages/tabs/tabs';
 import {InvitationCheckPage} from "../pages/invitation-check/invitation-check";
-
+import {AppConfig} from './app.config';
 
 
 export interface PageInterface {
@@ -71,10 +71,23 @@ export class MyApp {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
+            // okay, so the platform is ready and our plugins are available
+            // here you can do any higher level native things you might need
             StatusBar.styleDefault();
             Splashscreen.hide();
+
+            // enable push notifications
+            // to debug issues
+            // window["plugins"].OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+            let notificationOpenedCallback = function (jsonData) {
+                console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            };
+
+            window["plugins"].OneSignal
+                .startInit(AppConfig.ONE_SIGNAL_CONFIG.appId, AppConfig.FIREBASE_CONFIG.messagingSenderId)
+                .handleNotificationOpened(notificationOpenedCallback)
+                .endInit();
         });
     }
 
@@ -93,7 +106,6 @@ export class MyApp {
             });
             return;
         }
-
 
 
         // the nav component was found using @ViewChild(Nav)
