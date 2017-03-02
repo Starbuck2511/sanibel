@@ -8,6 +8,7 @@ import {Chat} from '../../models/chat';
 
 import {AuthService} from '../../components/auth/auth.service';
 import {AlertService} from '../../components/alert/alert.service';
+import {PushService} from '../../components/push/push.service';
 
 /*
  Generated class for the GroupAdd page.
@@ -40,7 +41,8 @@ export class GroupAddPage {
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
                 private auth: AuthService,
-                private alert: AlertService
+                private alert: AlertService,
+                private push: PushService
     ) {
 
         this.group = new Group();
@@ -82,12 +84,19 @@ export class GroupAddPage {
         // add chat to group/chats node
         newRef.child(`chats/${chatId}`).set(true);
 
+        // add onesignal userId to group/pushNotificationsUsers node
+        this.push.oneSignal.getIds().then(
+            ids => {
+                newRef.child(`pushNotificationUsers/${ids.userId}`).set(true);
+            }
+        );
 
         newRef.then(() => {
             let groupId = newRef.key;
 
             // store the new group also under user node
             this.userGroups.$ref.ref.child(groupId).set(true);
+
             this.alert.hideLoading();
             let toast = this.toastCtrl.create({
                 message: 'Group was added successfully',

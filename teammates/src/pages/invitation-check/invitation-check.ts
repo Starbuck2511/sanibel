@@ -10,6 +10,7 @@ import {Group} from '../../models/group';
 
 import {AuthService} from '../../components/auth/auth.service'
 import {AlertService} from '../../components/alert/alert.service';
+import {PushService} from '../../components/push/push.service';
 import {TabsPage} from "../tabs/tabs";
 
 
@@ -44,7 +45,8 @@ export class InvitationCheckPage {
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
                 private auth: AuthService,
-                private alert: AlertService
+                private alert: AlertService,
+                private push: PushService
     ) {
 
 
@@ -104,6 +106,13 @@ export class InvitationCheckPage {
             // add user to this group
             this.af.database.object(`/groups/${this.groupId}/users`).$ref.ref.child(this.userId).set(true).then(
                 () => {
+                    // add onesignal userId to group/pushNotificationsUsers node
+                    this.push.oneSignal.getIds().then(
+                        ids => {
+                            this.af.database.object(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.child(ids.userId).set(true);
+                        }
+                    );
+
                     let toast = this.toastCtrl.create({
                         message: `You have been successfully added to group ${this.groupName}`,
                         duration: 2000

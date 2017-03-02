@@ -3,12 +3,13 @@ import {Platform, MenuController, Nav, Events} from 'ionic-angular';
 import {StatusBar, Splashscreen} from 'ionic-native';
 
 import {AuthService} from '../components/auth/auth.service';
+import {PushService} from '../components/push/push.service';
 
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {TabsPage} from '../pages/tabs/tabs';
 import {InvitationCheckPage} from "../pages/invitation-check/invitation-check";
-import {AppConfig} from './app.config';
+
 
 
 export interface PageInterface {
@@ -37,6 +38,7 @@ export class MyApp {
     constructor(public platform: Platform,
                 public menu: MenuController,
                 private auth: AuthService,
+                private push: PushService,
                 private events: Events) {
         this.initializeApp();
 
@@ -48,7 +50,8 @@ export class MyApp {
         this.pagesAuth = [
             {title: 'Groups', component: TabsPage, index: 0, icon: 'contacts'},
             {title: 'Invites', component: InvitationCheckPage, icon: 'paper-plane'},
-            {title: 'About', component: TabsPage, index: 1, icon: 'information-circle'},
+            {title: 'Settings', component: TabsPage, index: 1, icon: 'settings'},
+            {title: 'About', component: TabsPage, index: 2, icon: 'information-circle'},
             {title: 'Logout', component: LoginPage, logout: true, icon: 'power'}
         ];
 
@@ -77,17 +80,7 @@ export class MyApp {
             Splashscreen.hide();
 
             // enable push notifications
-            // to debug issues
-            // window["plugins"].OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-
-            let notificationOpenedCallback = function (jsonData) {
-                console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-            };
-
-            window["plugins"].OneSignal
-                .startInit(AppConfig.ONE_SIGNAL_CONFIG.appId, AppConfig.FIREBASE_CONFIG.messagingSenderId)
-                .handleNotificationOpened(notificationOpenedCallback)
-                .endInit();
+            this.push.init(window["plugins"].OneSignal);
         });
     }
 

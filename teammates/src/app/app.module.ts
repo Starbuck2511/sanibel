@@ -6,6 +6,7 @@ import {MyApp} from './app.component';
 
 import {AlertService} from '../components/alert/alert.service';
 import {AuthService} from '../components/auth/auth.service';
+import {PushService} from '../components/push/push.service';
 import {ChatBubble} from '../components/chat/chat-bubble';
 
 import {LoginPage} from '../pages/login/login';
@@ -22,6 +23,9 @@ import {DisplayNamePage} from '../pages/display-name/display-name';
 import {ChatDetailPage} from '../pages/chat-detail/chat-detail';
 import {InvitationPage} from '../pages/invitation/invitation';
 import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
+import {UserSettingsPage} from '../pages/user-settings/user-settings';
+
+
 
 
 @NgModule({
@@ -41,7 +45,8 @@ import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
         TabsPage,
         ChatBubble,
         InvitationPage,
-        InvitationCheckPage
+        InvitationCheckPage,
+        UserSettingsPage
     ],
     imports: [
         IonicModule.forRoot(MyApp),
@@ -62,7 +67,8 @@ import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
         AboutPage,
         TabsPage,
         InvitationPage,
-        InvitationCheckPage
+        InvitationCheckPage,
+        UserSettingsPage
     ],
     providers: [
         {
@@ -70,7 +76,8 @@ import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
             useClass: IonicErrorHandler
         },
         AlertService,
-        AuthService
+        AuthService,
+        PushService
     ]
 })
 export class AppModule {

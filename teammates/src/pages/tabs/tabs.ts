@@ -5,7 +5,8 @@ import {AuthService} from '../../components/auth/auth.service';
 
 import {LoginPage} from '../login/login';
 import {GroupsPage} from '../groups/groups';
-import {AboutPage} from "../about/about";
+import {AboutPage} from '../about/about';
+import {UserSettingsPage} from '../user-settings/user-settings';
 
 
 /*
@@ -22,7 +23,8 @@ import {AboutPage} from "../about/about";
 export class TabsPage {
     // set the root pages for each tab
     tab1Root: any = GroupsPage;
-    tab2Root: any = AboutPage;
+    tab2Root: any = UserSettingsPage;
+    tab3Root: any = AboutPage;
     tabSelectedIndex: number;
 
     constructor(public navCtrl: NavController, navParams: NavParams, private auth: AuthService) {
