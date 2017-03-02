@@ -5,6 +5,7 @@ import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ioni
 import {AngularFire} from 'angularfire2';
 
 import {AuthService} from '../../components/auth/auth.service';
+import {PushService} from '../../components/push/push.service';
 import {Group} from '../../models/group';
 
 import {GroupEditPage} from '../group-edit/group-edit';
@@ -35,6 +36,7 @@ export class GroupsPage {
                 public navParams: NavParams,
                 private af: AngularFire,
                 private auth: AuthService,
+                private push: PushService,
                 private actionSheetCtrl: ActionSheetController) {
         this.userId = this.auth.getUid();
     }
@@ -106,8 +108,47 @@ export class GroupsPage {
         this.af.database.object(`/groups/${group.id}`).remove();
     }
 
+    promptForPermission(){
+        this.push.oneSignal.registerForPushNotifications();
+    }
+
+    ionViewDidLoad(){
+        // ask the user one time for permission on push notifications
+        // its a good practice to do this on your own, because if the user
+        // rejects the system message, he has to go through multi steps in the
+        // device settings to enable push notifications for this app
+        let pushNotificationsRequested = window.localStorage.getItem('pushNotificationsRequest');
+        if(!pushNotificationsRequested){
+            let actionSheet = this.actionSheetCtrl.create({
+                title: 'Allow push notifications? It is recommended to choose OK. You can easily turn them off in your user settings',
+                buttons: [
+                    {
+                        text: 'OK',
+                        icon: 'checkmark',
+                        handler: () => {
+                            this.promptForPermission();
+                            window.localStorage.setItem('pushNotificationsRequest', 'true');
+                            window.localStorage.setItem('pushNotificationsEnabled', 'true');
+                        }
+                    },
+                    {
+                        text: 'No, thank you.',
+                        icon: 'close',
+                        handler: () => {
+                            window.localStorage.setItem('pushNotificationsRequest', 'true');
+                            window.localStorage.setItem('pushNotificationsEnabled', 'false');
+                        }
+                    }
+                ]
+            });
+            actionSheet.present();
+        }
+
+    }
+
 
     ionViewWillEnter() {
+
         // get the groups from user node
         this.groups = this.af.database.list(`/users/${this.auth.getUid()}/groups`)
             .map(groups => {

@@ -6,15 +6,15 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title>Required user information</ion-title>
+        <ion-title>Display Name</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-    <h3>Display Name</h3>
-    <p>Please enter your display name for this app.</p>
+
     <form [formGroup]="userForm" (ngSubmit)="updateData(userForm.value)" novalidate>
+        <p padding class="font-secondary">Please enter your display name you want to use for this app.<p>
         <ion-item [class.error]="!displayName.valid && displayName.touched">
             <ion-label floating>Display Name</ion-label>
             <ion-input type="text" formControlName="displayName"></ion-input>
@@ -27,7 +27,7 @@
         </p>
 
         <div padding>
-            <button ion-button block type="submit" [disabled]="!userForm.valid">Save</button>
+            <button ion-button block type="submit" color="secondary" [disabled]="!userForm.valid">Save</button>
         </div>
     </form>
 </ion-content>

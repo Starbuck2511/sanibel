@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, MenuController, Nav, Events} from 'ionic-angular';
-import {StatusBar, Splashscreen} from 'ionic-native';
+import {StatusBar, Splashscreen, OneSignal} from 'ionic-native';
 
 import {AuthService} from '../components/auth/auth.service';
 import {PushService} from '../components/push/push.service';
@@ -80,7 +80,7 @@ export class MyApp {
             Splashscreen.hide();
 
             // enable push notifications
-            this.push.init(window["plugins"].OneSignal);
+            this.push.init(OneSignal);
         });
     }
 
