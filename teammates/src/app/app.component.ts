@@ -80,7 +80,10 @@ export class MyApp {
             Splashscreen.hide();
 
             // enable push notifications
-            this.push.init(OneSignal);
+            if(!this.platform.is('core') && !this.platform.is('mobileweb')){
+                this.push.init(OneSignal);
+            }
+
         });
     }
 

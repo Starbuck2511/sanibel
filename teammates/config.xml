@@ -3,7 +3,7 @@
   <name>Sunbelt</name>
   <description>An app for groups and easy scheduling</description>
   <author email="starbuck@gmx-topmail.de" href="">Starbuck2511</author>
-  <content src="http://192.168.2.108:8100" original-src="index.html"/>
+  <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>

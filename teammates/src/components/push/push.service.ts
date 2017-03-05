@@ -31,4 +31,26 @@ export class PushService {
             .iOSSettings(iosSettings)
             .endInit();
     }
+
+    changeSubscriptionStatus($status: boolean){
+        this.oneSignal.setSubscription($status);
+    }
+
+    sendToGroup($message, $users){
+        let notificationObj = { contents: {en: $message}, include_player_ids: [$users]};
+        console.dir(notificationObj);
+        this.oneSignal.postNotification(notificationObj).then(
+            response => {
+                console.log('Notification Post Success');
+                console.dir(response);
+            }
+        ).catch(
+            response => {
+                console.log('Notification Post Failed');
+                console.dir(response);
+            }
+        );
+
+
+    }
 }

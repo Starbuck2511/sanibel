@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 

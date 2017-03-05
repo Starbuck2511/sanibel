@@ -16,7 +16,7 @@ import {PushService} from '../../components/push/push.service';
 })
 export class UserSettingsPage {
 
-    pushNotifications: boolean;
+    pushNotificationsStatus: boolean;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -34,13 +34,13 @@ export class UserSettingsPage {
     }
 
     setPushNotifications() {
-        this.push.oneSignal.setSubscription(this.pushNotifications);
-        window.localStorage.setItem('pushNotificationsEnabled', this.pushNotifications.toString());
+        this.push.changeSubscriptionStatus(this.pushNotificationsStatus);
+        window.localStorage.setItem('pushNotificationsEnabled', this.pushNotificationsStatus.toString());
     }
 
     ionViewWillEnter() {
         // get the push notification settings
-        this.pushNotifications = !!window.localStorage.getItem('pushNotificationsEnabled');
+        this.pushNotificationsStatus = !!window.localStorage.getItem('pushNotificationsEnabled');
     }
 
 }

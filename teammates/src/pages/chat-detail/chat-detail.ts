@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import * as moment from 'moment';
 
 import {AuthService} from '../../components/auth/auth.service';
+import {PushService} from '../../components/push/push.service';
 import {ChatBubble} from '../../components/chat/chat-bubble';
 import {Message} from "../../models/message";
 
@@ -27,22 +28,27 @@ export class ChatDetailPage {
     @ViewChild(Content) scrollableContent: Content;
     id: string;
     name: string;
+    groupId: string;
 
     messageForm: FormGroup;
     content: AbstractControl;
 
     message: Message;
     messages: Observable<Message[]>;
+    recipients: Array<string>;
+
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private af: AngularFire,
                 private auth: AuthService,
+                private push: PushService,
                 private formBuilder: FormBuilder) {
 
         moment.locale('de');
         this.id = navParams.get('id');
         this.name = navParams.get('name');
+        this.groupId = navParams.get('groupId');
         this.message = new Message();
 
         this.messageForm = this.formBuilder.group({
@@ -63,6 +69,9 @@ export class ChatDetailPage {
         this.af.database.list(`/messages/${this.id}`).push(this.message).then(
             () => {
                 this.messageForm.reset();
+                // send a push notification
+                this.push.sendToGroup(this.message.content, this.recipients);
+
             }
         ).catch(error => {
             console.log(error.message)
@@ -70,26 +79,40 @@ export class ChatDetailPage {
 
     }
 
-    scrollToBottom(){
+    scrollToBottom() {
         setTimeout(() => {
             this.scrollableContent.scrollToBottom(300).then(
-                () => {}
+                () => {
+                }
             );
         }, 300);
     }
 
+    private getPushNotificationUsers(): void {
+        this.af.database.list(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.once('value').then(
+            snapshot => {
+                let users = snapshot.val();
+                this.recipients = Object.keys(users);
+            }
+        );
 
-    ionViewDidEnter(){
+    }
+
+
+    ionViewDidEnter() {
+
+
         //@todo limit it to the last 50 messages then implement inifinty scroll
-        this.messages = this.af.database.list(`/messages/${this.id}`, {query:
-            {
+        this.messages = this.af.database.list(`/messages/${this.id}`, {
+            query: {
                 orderByKey: true,
-                limitToLast: 10
-            }}).map(
+                limitToLast: 10,
+            }
+        }).map(
             messages => {
                 this.scrollToBottom();
                 messages.map(message => {
-                    if(this.auth.getUid() == message.uid){
+                    if (this.auth.getUid() == message.uid) {
                         message.position = 'right';
                     } else {
                         message.position = 'left';
@@ -101,5 +124,10 @@ export class ChatDetailPage {
                 return messages;
             }
         );
+    }
+
+    ionViewWillEnter() {
+        this.getPushNotificationUsers();
+
     }
 }

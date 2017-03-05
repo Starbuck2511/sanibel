@@ -45,7 +45,7 @@
 
 
         <ion-item-sliding *ngFor="let chat of chats | async">
-            <button ion-item (click)="goToChatDetail(chat.id, chat.name)">
+            <button ion-item (click)="goToChatDetail(chat.id, chat.name, id)">
                 <h3>Chat - {{chat.name}}</h3>
             </button>
             <ion-item-options></ion-item-options>

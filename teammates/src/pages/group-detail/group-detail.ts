@@ -54,8 +54,8 @@ export class GroupDetailPage {
         this.navCtrl.push(ScheduleDetailPage, {id: id});
     }
 
-    public goToChatDetail(id: string, name: string) {
-        this.navCtrl.push(ChatDetailPage, {id: id, name: name});
+    public goToChatDetail(id: string, name: string, groupId: string) {
+        this.navCtrl.push(ChatDetailPage, {id: id, name: name, groupId: groupId});
     }
 
     public goToInvitation(id: string, name: string) {
