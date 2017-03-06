@@ -1,4 +1,14 @@
 page-about {
+  #content-box {
+    position: relative;
+  }
+
+  #logos {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    z-index: 1000;
+  }
   h3 {
     text-align: center;
   }

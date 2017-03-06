@@ -8,9 +8,8 @@ import {PushService} from '../components/push/push.service';
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
 import {TabsPage} from '../pages/tabs/tabs';
-import {InvitationCheckPage} from "../pages/invitation-check/invitation-check";
-
-
+import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
+import {UserSettingsPage} from '../pages/user-settings/user-settings';
 
 export interface PageInterface {
     title: string;
@@ -50,8 +49,8 @@ export class MyApp {
         this.pagesAuth = [
             {title: 'Groups', component: TabsPage, index: 0, icon: 'contacts'},
             {title: 'Invites', component: InvitationCheckPage, icon: 'paper-plane'},
-            {title: 'Settings', component: TabsPage, index: 1, icon: 'settings'},
-            {title: 'About', component: TabsPage, index: 2, icon: 'information-circle'},
+            {title: 'About', component: TabsPage, index: 1, icon: 'information-circle'},
+            {title: 'Settings', component: UserSettingsPage, icon: 'settings'},
             {title: 'Logout', component: LoginPage, logout: true, icon: 'power'}
         ];
 
