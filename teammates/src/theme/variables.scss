@@ -23,7 +23,7 @@ $colors: (
 //  primary:    #387ef5,
 primary: #4357a7,
 primary-decent: #455063,
-secondary: #5264ae,
+secondary: #bf17a0,
 danger: #ab3a3a,
 light: #f9f9f9,
 dark: #313131,
@@ -32,7 +32,8 @@ trans: (
         contrast: #bdbdbd
 ),
 signal: #3CDC72,
-signal-alternative: #1dd0a8,
+signal-alternative: #094990,
+signal-decent: #555b8c,
 decent: #A0A0A0,
 decent-light: #dedada,
 dark-decent:(
@@ -52,12 +53,11 @@ $dark-light: #242626;
 $dark-bright: #282828;
 $dark-invert: #A0A0A0;
 $signal: #3CDC72;
-$signal-alternative: #1dd0a8;
-$signal-decent: #b2ecd8;
-$signal-alternative: #d6d2d2;
+$signal-alternative: #094990;
+$signal-decent: #555b8c;
 $decent-light: #dedada;
 $danger: #ab3a3a;
-$danger-bright: #eb2951;
+$danger-bright: #bf576c;
 $primary-decent: #455063;
 $dark-action: #373b42;
 
@@ -75,7 +75,7 @@ $toolbar-background: $background-color;
 
 $backdrop-color: #4d6d71;
 
-$text-color: #f9f9f9;
+$text-color: $dark-invert;
 
 $tabs-background: $dark-bright;
 $tabs-tab-color-inactive: $dark-invert;
@@ -184,7 +184,7 @@ $toggle-wp-handle-background-color-off: $light;
 
 @import "roboto";
 @import "noto-sans";
-@import url('https://fonts.googleapis.com/css?family=Lobster|Poiret+One');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
 //@import url('../assets/fonts/lobster.otf');
 
 
