@@ -23,8 +23,8 @@ $colors: (
 //  primary:    #387ef5,
 primary: #4357a7,
 primary-decent: #455063,
-secondary: #bf17a0,
-danger: #ab3a3a,
+secondary: #4c3548,
+danger: #de4e4e,
 light: #f9f9f9,
 dark: #313131,
 trans: (
@@ -32,8 +32,8 @@ trans: (
         contrast: #bdbdbd
 ),
 signal: #3CDC72,
-signal-alternative: #094990,
-signal-decent: #555b8c,
+signal-alternative: #37ca69,
+signal-decent: #344f63,
 decent: #A0A0A0,
 decent-light: #dedada,
 dark-decent:(
@@ -50,13 +50,13 @@ dark-signal: (
 $dark: #313131;
 $light: #f9f9f9;
 $dark-light: #242626;
-$dark-bright: #282828;
+$dark-bright: #686b6f;
 $dark-invert: #A0A0A0;
 $signal: #3CDC72;
-$signal-alternative: #094990;
+$signal-alternative: #37ca69;
 $signal-decent: #555b8c;
 $decent-light: #dedada;
-$danger: #ab3a3a;
+$danger: #de4e4e;
 $danger-bright: #bf576c;
 $primary-decent: #455063;
 $dark-action: #373b42;
@@ -67,7 +67,7 @@ $chat-bubble: (
         background-right: $signal,
 );
 
-$background-color: $dark-light;
+$background-color: $decent-light;
 $background-ios-color: $background-color;
 $background-md-color: $background-color;
 $background-wp-color: $background-color;
@@ -75,9 +75,9 @@ $toolbar-background: $background-color;
 
 $backdrop-color: #4d6d71;
 
-$text-color: $dark-invert;
+$text-color: $dark-bright;
 
-$tabs-background: $dark-bright;
+$tabs-background: $decent-light;
 $tabs-tab-color-inactive: $dark-invert;
 $tabs-tab-color-active: $signal;
 
