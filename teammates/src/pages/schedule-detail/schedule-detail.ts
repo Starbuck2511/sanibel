@@ -3,7 +3,7 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
-import * as moment from 'moment';
+import * as moment from 'moment/min/moment-with-locales';
 
 import {AuthService} from '../../components/auth/auth.service';
 

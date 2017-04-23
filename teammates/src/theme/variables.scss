@@ -25,6 +25,7 @@ primary: #4357a7,
 primary-decent: #455063,
 secondary: #4c3548,
 danger: #de4e4e,
+danger-bright: #e46666,
 light: #f9f9f9,
 dark: #313131,
 trans: (
@@ -37,8 +38,8 @@ signal-decent: #344f63,
 decent: #A0A0A0,
 decent-light: #dedada,
 dark-decent:(
-        base: #52535a,
-        contrast: #c1bebe),
+        base: #e5e5e5,
+        contrast: #a9adb3),
 dark-signal: (
         base: #282828,
         contrast: #3CDC72
@@ -57,13 +58,15 @@ $signal-alternative: #37ca69;
 $signal-decent: #555b8c;
 $decent-light: #dedada;
 $danger: #de4e4e;
-$danger-bright: #bf576c;
+$danger-bright: #e46666;
 $primary-decent: #455063;
 $dark-action: #373b42;
+$light-medium: #bdb5b5;
 
 
 $chat-bubble: (
-        background-left: #c1bebe,
+        background-left: #f4f5f7,
+        //background-left: #009fff,
         background-right: $signal,
 );
 
@@ -139,14 +142,19 @@ $button-md-height: 2.1em;
 $button-ios-height: 2.1em;
 $button-wp-height: 2.1em;
 
-$segment-button-md-background-color-activated: #3b3c3f;
-$segment-button-ios-background-color-activated:#3b3c3f;
-$segment-button-wp-background-color-activated: #3b3c3f;
+$segment-button-md-background-color-activated: #455063;
+$segment-button-ios-background-color-activated:#455063;
+$segment-button-wp-background-color-activated: #455063;
 
 
 $toggle-md-handle-background-color-off: $light;
 $toggle-ios-handle-background-color-off: $light;
 $toggle-wp-handle-background-color-off: $light;
+
+$toast-md-background: rgba(0, 0, 0, .7);
+$toast-ios-background: rgba(0, 0, 0, .7);
+$toast-wp-background: rgba(0, 0, 0, .7);
+
 
 
 

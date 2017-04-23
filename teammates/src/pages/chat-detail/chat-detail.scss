@@ -1,9 +1,10 @@
 page-chat-detail {
 
-
  .item-input ion-textarea {
-   border: 1px solid #524f4f;
-   margin-right: 15px;
+   background-color: $light;
+   margin-right: 7px;
+   max-height: 40px;
+   margin-top: 7px;
 
   }
 
@@ -11,9 +12,6 @@ page-chat-detail {
     resize: both;
     font-size: 15px;
     font-weight: 300;
-
-
-
   }
 
   .chatBubble {
@@ -49,7 +47,9 @@ page-chat-detail {
 
     .chat-bubble.left {
       background-color: map-get($chat-bubble, background-left);
-      color: #3b3c3f;
+      color: #6b6c6f;
+      //color: #3b3c3f;
+      //color: #ffffff;
       float: left;
       margin-left: 45px;
     }

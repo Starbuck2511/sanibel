@@ -1,12 +1,11 @@
 page-invitation {
   p {
-    color: $decent-light;
     font-size: 1.9rem;
 
   }
 
-  hr {
-    color: $decent-light;
+    hr {
+
   }
 
   .center {
@@ -15,7 +14,7 @@ page-invitation {
   .code {
     font-weight: 300;
     font-family: $font-main;
-    color: $light;
+    color: $dark;
     padding: 0.2em 0;
   }
 }
