@@ -1,20 +1,13 @@
 page-invitation {
   p {
-    font-size: 1.9rem;
-
-  }
-
-    hr {
-
+    font-weight: 300;
+    font-size: 1.8rem;
   }
 
   .center {
     text-align: center;
   }
   .code {
-    font-weight: 300;
-    font-family: $font-main;
-    color: $dark;
     padding: 0.2em 0;
   }
 }

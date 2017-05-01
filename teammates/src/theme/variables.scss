@@ -32,8 +32,8 @@ trans: (
         base: transparent,
         contrast: #bdbdbd
 ),
-signal: #3CDC72,
-signal-alternative: #37ca69,
+signal: #37ca69,
+signal-alternative: #3CDC72,
 signal-decent: #344f63,
 decent: #A0A0A0,
 decent-light: #dedada,
@@ -42,7 +42,7 @@ dark-decent:(
         contrast: #a9adb3),
 dark-signal: (
         base: #282828,
-        contrast: #3CDC72
+        contrast: #37ca69
 
 ),
         dark-action: #373b42,
@@ -53,8 +53,8 @@ $light: #f9f9f9;
 $dark-light: #242626;
 $dark-bright: #686b6f;
 $dark-invert: #A0A0A0;
-$signal: #3CDC72;
-$signal-alternative: #37ca69;
+$signal: #37ca69;
+$signal-alternative: #3CDC72;
 $signal-decent: #555b8c;
 $decent-light: #dedada;
 $danger: #de4e4e;
@@ -67,7 +67,7 @@ $light-medium: #bdb5b5;
 $chat-bubble: (
         background-left: #f4f5f7,
         //background-left: #009fff,
-        background-right: $signal,
+        background-right: $signal-alternative,
 );
 
 $background-color: $decent-light;
@@ -93,17 +93,17 @@ $tabs-ios-tab-opacity: 1;
 $tabs-wp-tab-color-inactive: $dark-invert;
 $tabs-wp-tab-opacity: 1;
 
-$toolbar-text-color: $dark-invert;
-$toolbar-active-color: $dark-invert;
-$toolbar-inactive-color: $dark-invert;
+$toolbar-text-color: $dark-bright;
+$toolbar-active-color: $dark-bright;
+$toolbar-inactive-color: $dark-bright;
 
-$toolbar-md-title-text-color: $dark-invert;
-$toolbar-ios-title-text-color: $dark-invert;
-$toolbar-wp-title-text-color: $dark-invert;
+$toolbar-md-title-text-color: $dark-bright;
+$toolbar-ios-title-text-color: $dark-bright;
+$toolbar-wp-title-text-color: $dark-bright;
 
-$toolbar-md-text-color: $dark-invert;
-$toolbar-ios-text-color: $dark-invert;
-$toolbar-wp-text-color: $dark-invert;
+$toolbar-md-text-color: $dark-bright;
+$toolbar-ios-text-color: $dark-bright;
+$toolbar-wp-text-color: $dark-bright;
 
 $toolbar-md-button-color: $signal;
 $toolbar-ios-button-color: $signal;
@@ -151,9 +151,17 @@ $toggle-md-handle-background-color-off: $light;
 $toggle-ios-handle-background-color-off: $light;
 $toggle-wp-handle-background-color-off: $light;
 
-$toast-md-background: rgba(0, 0, 0, .7);
-$toast-ios-background: rgba(0, 0, 0, .7);
-$toast-wp-background: rgba(0, 0, 0, .7);
+$toast-md-background: rgba(249, 249, 249, .7);
+$toast-ios-background: rgba(249, 249, 249, .7);
+$toast-wp-background: rgba(249, 249, 249, .7);
+
+$toast-md-title-color: $dark-invert;
+$toast-ios-title-color: $dark-invert;
+$toast-wp-title-color: $dark-invert;
+
+
+
+$loading-ios-background: transparent;
 
 
 

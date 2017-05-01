@@ -1,16 +1,21 @@
 page-chat-detail {
 
- .item-input ion-textarea {
-   background-color: $light;
-   margin-right: 7px;
-   max-height: 40px;
-   margin-top: 7px;
 
+  .item-input {
+    line-height: 20px;
+
+    ion-textarea {
+      background-color: $light;
+      margin-right: 7px;
+      max-height: 40px;
+      margin-top: 7px;
+      color: $dark-light;
+    }
   }
 
   textarea {
     resize: both;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 300;
   }
 

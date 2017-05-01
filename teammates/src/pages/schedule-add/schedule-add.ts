@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import * as moment from 'moment';
+import * as moment from 'moment/min/moment-with-locales';
 
 import {Schedule} from '../../models/schedule';
 import {AuthService} from '../../components/auth/auth.service';
@@ -76,8 +76,11 @@ export class ScheduleAddPage {
     addSchedule(formData) {
         this.alert.showLoading('');
         this.schedule.name = this.name.value;
-        this.schedule.date = this.date.value;
-        this.schedule.current = this.date.value;
+        // datetime picker returns utc without local offset, so we have to handle it here
+        let offset = moment().utcOffset();
+        let offsetDate = moment(this.date.value).utc().subtract(offset, 'm').format();
+        this.schedule.date = offsetDate;
+        this.schedule.current = offsetDate;
         this.schedule.type = this.type.value;
         this.schedule.uid = this.userId;
         this.schedule.feedback = null;

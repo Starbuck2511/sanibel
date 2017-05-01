@@ -28,12 +28,12 @@
         </button>-->
         <ion-item>
             <ion-label>Subscribe to push notifications</ion-label>
-            <ion-toggle [(ngModel)]="pushNotifications" (ngModelChange)="setPushNotifications()"
-                        color="secondary"></ion-toggle>
+            <ion-toggle [(ngModel)]="pushNotificationsStatus" (ngModelChange)="setPushNotifications()"
+                        color="signal" [checked]="pushNotificationsStatus"></ion-toggle>
         </ion-item>
 
     </ion-list>
-    <div padding>
+    <div padding-left>
         <p>HINT: If you don't recieve push notfications, you probably must enable push notfications for this app in the
             system settings of your device.</p>
     </div>

@@ -24,9 +24,7 @@
 <ion-content>
     <div [ngSwitch]="segment">
         <div class="center" *ngSwitchCase="'feedback'" padding>
-            <h3>{{(schedule | async)?.prettyDate}}</h3>
-            <p></p>
-            <p></p>
+            <h3 class="date-info">{{(schedule | async)?.prettyDate}}</h3>
             <button round class="call-to-action" color="signal-alternative" ion-button icon-left (click)="accept()">
                 <ion-icon name="checkmark-circle"></ion-icon>
                 Accept

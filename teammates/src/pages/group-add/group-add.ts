@@ -49,7 +49,7 @@ export class GroupAddPage {
         this.chat = new Chat();
 
         this.groupForm = this.formBuilder.group({
-            name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+            name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             description: ['']
         });
         this.userId = this.auth.getUid();

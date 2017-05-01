@@ -9,6 +9,7 @@ import * as moment from 'moment/min/moment-with-locales';
 
 import {AuthService} from '../../components/auth/auth.service';
 import {PushService} from '../../components/push/push.service';
+import {AlertService} from '../../components/alert/alert.service';
 import {ChatBubble} from '../../components/chat/chat-bubble';
 import {Message} from "../../models/message";
 
@@ -43,7 +44,9 @@ export class ChatDetailPage {
                 private af: AngularFire,
                 private auth: AuthService,
                 private push: PushService,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                private alert: AlertService
+    ) {
 
         moment.locale('de');
         this.id = navParams.get('id');
@@ -92,7 +95,9 @@ export class ChatDetailPage {
         this.af.database.list(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.once('value').then(
             snapshot => {
                 let users = snapshot.val();
-                this.recipients = Object.keys(users);
+                if('undefined' !== users && null !== users) {
+                    this.recipients = Object.keys(users);
+                }
             }
         );
 
@@ -100,8 +105,7 @@ export class ChatDetailPage {
 
 
     ionViewDidEnter() {
-
-
+        this.alert.showLoading('');
         //@todo limit it to the last 50 messages then implement inifinty scroll
         this.messages = this.af.database.list(`/messages/${this.id}`, {
             query: {
@@ -121,6 +125,7 @@ export class ChatDetailPage {
                     message.timestamp = moment(message.timestamp).format('llll');
 
                 });
+                this.alert.loader.dismiss();
                 return messages;
             }
         );
