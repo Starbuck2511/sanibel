@@ -6,6 +6,7 @@ import {AngularFire} from 'angularfire2';
 
 import {AuthService} from '../../components/auth/auth.service';
 import {PushService} from '../../components/push/push.service';
+import {AlertService} from '../../components/alert/alert.service';
 import {Group} from '../../models/group';
 
 import {GroupEditPage} from '../group-edit/group-edit';
@@ -37,7 +38,9 @@ export class GroupsPage {
                 private af: AngularFire,
                 private auth: AuthService,
                 private push: PushService,
-                private actionSheetCtrl: ActionSheetController) {
+                private actionSheetCtrl: ActionSheetController,
+                private alert: AlertService
+    ) {
         this.userId = this.auth.getUid();
     }
 
@@ -148,7 +151,7 @@ export class GroupsPage {
 
 
     ionViewWillEnter() {
-
+        this.alert.showLoading('');
         // get the groups from user node
         this.groups = this.af.database.list(`/users/${this.auth.getUid()}/groups`)
             .map(groups => {
@@ -162,6 +165,7 @@ export class GroupsPage {
                         console.log(error.message)
                     });
                 });
+                this.alert.loader.dismiss();
                 return groups;
             });
     }

@@ -1,22 +1,12 @@
 page-about {
-  #content-box {
-    position: relative;
-  }
 
-  #logos {
-    position: absolute;
-    top: 10px;
-    left: 100px;
-    z-index: 1000;
-  }
   h3 {
     text-align: center;
   }
 
   p {
     text-align: center;
-    font-size: 3rem;
-    color: $decent-light;
+    color: $light-medium;
     ion-icon {
       margin-right: 20px;
       font-size: 5rem;

@@ -6,7 +6,6 @@
 -->
 <ion-header>
     <ion-navbar>
-
         <ion-title>Chat - {{name}}</ion-title>
     </ion-navbar>
 </ion-header>
@@ -17,9 +16,7 @@
             <chat-bubble [message]="message"></chat-bubble>
         </ion-item>
     </ion-list>
-
 </ion-content>
-
 
 <ion-footer>
     <ion-toolbar>
@@ -27,7 +24,7 @@
             <ion-item [class.error]="!content.valid && content.touched" no-lines>
                 <ion-label style="margin:0;"></ion-label>
                 <ion-textarea rows="1" formControlName="content"></ion-textarea>
-                <button style="height: 40px; width: 40px;" round color="signal" item-right ion-button icon-only type="submit" [disabled]="!messageForm.valid">
+                <button style="width: 40px; height: 40px;" class="button-round-ios" color="signal" item-right ion-button icon-only type="submit" [disabled]="!messageForm.valid">
                     <ion-icon name="send"></ion-icon>
                 </button>
             </ion-item>
