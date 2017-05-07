@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, MenuController, Nav, Events} from 'ionic-angular';
 import {StatusBar, Splashscreen, OneSignal} from 'ionic-native';
+import {TranslateService} from 'ng2-translate';
 
 import {AuthService} from '../components/auth/auth.service';
 import {PushService} from '../components/push/push.service';
@@ -38,20 +39,22 @@ export class MyApp {
                 public menu: MenuController,
                 private auth: AuthService,
                 private push: PushService,
-                private events: Events) {
+                private events: Events,
+                private translate: TranslateService
+    ) {
         this.initializeApp();
 
         this.pagesPublic = [
-            {title: 'Login', component: LoginPage, icon: 'log-in'},
-            {title: 'Sign up', component: SignupPage, icon: 'create'}
+            {title: 'login', component: LoginPage, icon: 'log-in'},
+            {title: 'sign_up', component: SignupPage, icon: 'create'}
         ];
 
         this.pagesAuth = [
-            {title: 'Groups', component: TabsPage, index: 0, icon: 'contacts'},
-            {title: 'Invites', component: InvitationCheckPage, icon: 'paper-plane'},
-            {title: 'About', component: TabsPage, index: 1, icon: 'information-circle'},
-            {title: 'Settings', component: UserSettingsPage, icon: 'settings'},
-            {title: 'Logout', component: LoginPage, logout: true, icon: 'power'}
+            {title: 'groups', component: TabsPage, index: 0, icon: 'contacts'},
+            {title: 'invites', component: InvitationCheckPage, icon: 'paper-plane'},
+            {title: 'about', component: TabsPage, index: 1, icon: 'information-circle'},
+            {title: 'settings', component: UserSettingsPage, icon: 'settings'},
+            {title: 'logout', component: LoginPage, logout: true, icon: 'power'}
         ];
 
         this.pages = this.pagesPublic;
@@ -77,6 +80,15 @@ export class MyApp {
             // here you can do any higher level native things you might need
             StatusBar.styleDefault();
             Splashscreen.hide();
+
+            // translations
+            this.translate.setDefaultLang('de');
+            this.translate.use('de');
+
+            this.translate.get('hello').subscribe((res: string) => {
+                console.log(res);
+                //=> 'hello world'
+            });
 
             // enable push notifications
             if(!this.platform.is('core') && !this.platform.is('mobileweb')){

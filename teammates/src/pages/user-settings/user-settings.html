@@ -9,7 +9,7 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Settings</ion-title>
+        <ion-title>{{'settings' | translate}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -18,24 +18,23 @@
     <ion-list>
         <ion-list-header color="dark-decent">
             <ion-icon name="settings" icon-left></ion-icon>
-            Manage your account
+            {{'manage_account' | translate}}
         </ion-list-header>
         <button ion-item (click)="goToDisplayName()">
-            <h3>Change display name</h3>
+            <h3>{{'change_display_name' | translate}}</h3>
         </button>
         <!--<button ion-item (click)="goToPassword()">
             <h3>Change password</h3>
         </button>-->
         <ion-item>
-            <ion-label>Subscribe to push notifications</ion-label>
+            <ion-label>{{'subscribe_push' | translate}}</ion-label>
             <ion-toggle [(ngModel)]="pushNotificationsStatus" (ngModelChange)="setPushNotifications()"
                         color="signal" [checked]="pushNotificationsStatus"></ion-toggle>
         </ion-item>
 
     </ion-list>
     <div padding-left>
-        <p>HINT: If you don't recieve push notfications, you probably must enable push notfications for this app in the
-            system settings of your device.</p>
+        <p>{{'settings_hint' | translate}}</p>
     </div>
 
 </ion-content>

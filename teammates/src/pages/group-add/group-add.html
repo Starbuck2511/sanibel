@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>Create a group</ion-title>
+        <ion-title>{{'create_group' | translate}}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -20,20 +20,20 @@
             <ion-input type="text" formControlName="name"></ion-input>
         </ion-item>
         <p *ngIf="name.hasError('required') && name.touched"
-           class="form-error">* A group name is required.
+           class="form-error">* {{'group_name_required' | translate}}
         </p>
         <p *ngIf="name.hasError('minlength') && name.touched"
-           class="form-error">* A group name should have a least 3 characters.
+           class="form-error">* {{'group_name_min_length' | translate }}
         </p>
 
 
         <ion-item>
-            <ion-label floating color="dark-invert">Description</ion-label>
+            <ion-label floating color="dark-invert">{{'description' | translate}}</ion-label>
             <ion-input type="text" formControlName="description"></ion-input>
         </ion-item>
 
         <div padding>
-            <button block color="secondary" ion-button type="submit" [disabled]="!groupForm.valid">Save</button>
+            <button block color="secondary" ion-button type="submit" [disabled]="!groupForm.valid">{{'save' | translate}}</button>
         </div>
     </form>
 </ion-content>

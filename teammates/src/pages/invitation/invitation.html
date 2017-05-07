@@ -9,26 +9,26 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Invite your friends</ion-title>
+        <ion-title>{{'invite_friends' | translate}</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-    <p>You can invite your friends to this group by sending them an email with the following invitation code and PIN:</p>
+    <p>{{'you_can_invite' | translate}}</p>
     <p>Code: <span class="code">{{code}}</span></p>
     <p>PIN: <span class="code">{{pin}}</span></p>
     <hr class="gradient-line">
     <div *ngIf="'device' == platform">
         <ion-buttons>
-            <button ion-button block color="secondary" (click)="copyToClipboard()">Copy invitation to clipboard</button>
+            <button ion-button block color="secondary" (click)="copyToClipboard()">{{'copy_invitation' | translate}}</button>
             <!--<button ion-button block color="secondary" (click)="openMail()">Open Mail</button>-->
         </ion-buttons>
     </div>
 
     <div *ngIf="'browser' == platform">
         <ion-buttons>
-            <button ion-button block color="secondary" (click)="openMailHref()">Open Mail</button>
+            <button ion-button block color="secondary" (click)="openMailHref()">{{'open_mail' | translate}}</button>
         </ion-buttons>
     </div>
 

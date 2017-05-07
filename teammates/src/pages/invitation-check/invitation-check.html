@@ -9,14 +9,14 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Invites</ion-title>
+        <ion-title>{{'invites' | translate}}</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
         <form *ngIf="!showPin" [formGroup]="inviteForm" (ngSubmit)="checkCode(inviteForm.value)" novalidate>
 
-            <p padding>Please enter your invitation code</p>
+            <p padding>{{'enter_invitation' | translate}}</p>
 
             <ion-item [class.error]="!code.valid && code.touched">
                 <ion-label floating>Code</ion-label>
@@ -24,7 +24,7 @@
 
             </ion-item>
             <p *ngIf="code.hasError('required') && code.touched"
-               class="form-error">* An invitation code is required.
+               class="form-error">* {{'invitation_code_required' | translate}}
             </p>
             <div padding>
                 <button ion-button block color="secondary" type="submit">Send</button>
@@ -32,18 +32,18 @@
         </form>
 
         <form *ngIf="showPin" [formGroup]="inviteForm" (ngSubmit)="checkPin(inviteForm.value)" novalidate>
-            <p padding class="font-secondary">Please enter PIN <br>
-            You will be added to group "{{group?.name}}" after entering correct PIN</p>
+            <p padding class="font-secondary">{{'enter_pin' | translate}}<br>
+             {{'added_to_group' | translate}} "{{group?.name}}" {{'after_entering_pin' | translate}}</p>
             <ion-item [class.error]="!pin.valid && pin.touched">
                 <ion-label floating>PIN</ion-label>
                 <ion-input type="text" formControlName="pin"></ion-input>
             </ion-item>
             <p *ngIf="pin.hasError('required') && pin.touched"
-               class="form-error">* Please enter correct PIN.
+               class="form-error">* {{'invitation_pin_required' | translate}}
             </p>
 
             <div padding>
-                <button ion-button block color="secondary" type="submit">Send</button>
+                <button ion-button block color="secondary" type="submit">{{'send' | translate}}</button>
             </div>
         </form>
 </ion-content>

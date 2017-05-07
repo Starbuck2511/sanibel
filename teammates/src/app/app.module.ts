@@ -1,6 +1,8 @@
 import {NgModule, ErrorHandler} from '@angular/core';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {AngularFireModule} from 'angularfire2';
+import {TranslateModule, TranslateStaticLoader, TranslateLoader} from 'ng2-translate';
+import {HttpModule, Http} from '@angular/http';
 import {AppConfig} from './app.config';
 import {MyApp} from './app.component';
 
@@ -25,6 +27,9 @@ import {InvitationPage} from '../pages/invitation/invitation';
 import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
 import {UserSettingsPage} from '../pages/user-settings/user-settings';
 
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
 
 
 
@@ -50,7 +55,13 @@ import {UserSettingsPage} from '../pages/user-settings/user-settings';
     ],
     imports: [
         IonicModule.forRoot(MyApp),
-        AngularFireModule.initializeApp(AppConfig.FIREBASE_CONFIG)
+        AngularFireModule.initializeApp(AppConfig.FIREBASE_CONFIG),
+        HttpModule,
+        TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [Http]
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
