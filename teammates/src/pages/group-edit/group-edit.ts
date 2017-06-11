@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseObjectObservable} from 'angularfire2';
+import {TranslateService} from 'ng2-translate';
+import {Observable} from 'rxjs/Observable';
 
 import {AuthService} from '../../components/auth/auth.service';
 import {AlertService} from '../../components/alert/alert.service';
@@ -31,6 +33,7 @@ export class GroupEditPage {
 
     userId: string;
     chatId: string;
+    translation: Observable<Object>;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -38,7 +41,9 @@ export class GroupEditPage {
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
                 private auth: AuthService,
-                private alert: AlertService) {
+                private alert: AlertService,
+                private translate: TranslateService
+    ) {
 
 
         this.id = navParams.get('id');
@@ -75,7 +80,7 @@ export class GroupEditPage {
             }).then(() => {
                 this.alert.hideLoading();
                 let toast = this.toastCtrl.create({
-                    message: 'Group edited successfully',
+                    message: this.translation['action_success'],
                     duration: 2000
                 });
 
@@ -105,5 +110,13 @@ export class GroupEditPage {
                 });
             });
         });
+    }
+
+    ionViewWillEnter() {
+
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+                this.translation = res.app;
+            }
+        );
     }
 }

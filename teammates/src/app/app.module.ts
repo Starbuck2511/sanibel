@@ -54,7 +54,7 @@ export function createTranslateLoader(http: Http) {
         UserSettingsPage
     ],
     imports: [
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp, {backButtonText: ''}, {}),
         AngularFireModule.initializeApp(AppConfig.FIREBASE_CONFIG),
         HttpModule,
         TranslateModule.forRoot({

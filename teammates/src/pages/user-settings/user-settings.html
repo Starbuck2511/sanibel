@@ -9,7 +9,7 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>{{'settings' | translate}}</ion-title>
+        <ion-title>{{'app.settings' | translate}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -18,23 +18,23 @@
     <ion-list>
         <ion-list-header color="dark-decent">
             <ion-icon name="settings" icon-left></ion-icon>
-            {{'manage_account' | translate}}
+            {{'app.manage_account' | translate}}
         </ion-list-header>
         <button ion-item (click)="goToDisplayName()">
-            <h3>{{'change_display_name' | translate}}</h3>
+            <h3>{{'app.change_display_name' | translate}}</h3>
         </button>
         <!--<button ion-item (click)="goToPassword()">
             <h3>Change password</h3>
         </button>-->
         <ion-item>
-            <ion-label>{{'subscribe_push' | translate}}</ion-label>
+            <ion-label>{{'app.subscribe_push' | translate}}</ion-label>
             <ion-toggle [(ngModel)]="pushNotificationsStatus" (ngModelChange)="setPushNotifications()"
                         color="signal" [checked]="pushNotificationsStatus"></ion-toggle>
         </ion-item>
 
     </ion-list>
     <div padding-left>
-        <p>{{'settings_hint' | translate}}</p>
+        <p>{{'app.settings_hint' | translate}}</p>
     </div>
 
 </ion-content>

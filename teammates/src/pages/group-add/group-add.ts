@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {NavController, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {TranslateService} from 'ng2-translate';
+import {Observable} from 'rxjs/Observable';
 
 import {Group} from '../../models/group';
 import {Chat} from '../../models/chat';
@@ -35,6 +37,8 @@ export class GroupAddPage {
 
     group: Group;
     chat: Chat;
+
+    translation: Observable<Object>;
     
     constructor(public navCtrl: NavController,
                 private af: AngularFire,
@@ -42,7 +46,8 @@ export class GroupAddPage {
                 private formBuilder: FormBuilder,
                 private auth: AuthService,
                 private alert: AlertService,
-                private push: PushService
+                private push: PushService,
+                private translate: TranslateService
     ) {
 
         this.group = new Group();
@@ -99,7 +104,7 @@ export class GroupAddPage {
 
             this.alert.hideLoading();
             let toast = this.toastCtrl.create({
-                message: 'Group was added successfully',
+                message: this.translation['action_success'],
                 duration: 2000
             });
 
@@ -116,7 +121,11 @@ export class GroupAddPage {
         this.groups = this.af.database.list('/groups');
         this.userGroups = this.af.database.list(`/users/${this.userId}/groups`);
         this.chats = this.af.database.list('/chats');
+
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+                this.translation = res.app;
+            }
+        );
+
     }
-
-
 }

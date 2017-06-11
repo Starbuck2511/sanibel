@@ -45,16 +45,16 @@ export class MyApp {
         this.initializeApp();
 
         this.pagesPublic = [
-            {title: 'login', component: LoginPage, icon: 'log-in'},
-            {title: 'sign_up', component: SignupPage, icon: 'create'}
+            {title: 'app.login', component: LoginPage, icon: 'log-in'},
+            {title: 'app.sign_up', component: SignupPage, icon: 'create'}
         ];
 
         this.pagesAuth = [
-            {title: 'groups', component: TabsPage, index: 0, icon: 'contacts'},
-            {title: 'invites', component: InvitationCheckPage, icon: 'paper-plane'},
-            {title: 'about', component: TabsPage, index: 1, icon: 'information-circle'},
-            {title: 'settings', component: UserSettingsPage, icon: 'settings'},
-            {title: 'logout', component: LoginPage, logout: true, icon: 'power'}
+            {title: 'app.groups', component: TabsPage, index: 0, icon: 'contacts'},
+            {title: 'app.invites', component: InvitationCheckPage, icon: 'paper-plane'},
+            {title: 'app.about', component: TabsPage, index: 1, icon: 'information-circle'},
+            {title: 'app.settings', component: UserSettingsPage, icon: 'settings'},
+            {title: 'app.logout', component: LoginPage, logout: true, icon: 'power'}
         ];
 
         this.pages = this.pagesPublic;
@@ -84,11 +84,6 @@ export class MyApp {
             // translations
             this.translate.setDefaultLang('de');
             this.translate.use('de');
-
-            this.translate.get('hello').subscribe((res: string) => {
-                console.log(res);
-                //=> 'hello world'
-            });
 
             // enable push notifications
             if(!this.platform.is('core') && !this.platform.is('mobileweb')){
