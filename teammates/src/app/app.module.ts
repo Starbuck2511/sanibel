@@ -26,6 +26,7 @@ import {ChatDetailPage} from '../pages/chat-detail/chat-detail';
 import {InvitationPage} from '../pages/invitation/invitation';
 import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
 import {UserSettingsPage} from '../pages/user-settings/user-settings';
+import {ForgotPasswordPage} from '../pages/forgot-password/forgot-password';
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -51,7 +52,8 @@ export function createTranslateLoader(http: Http) {
         ChatBubble,
         InvitationPage,
         InvitationCheckPage,
-        UserSettingsPage
+        UserSettingsPage,
+        ForgotPasswordPage
     ],
     imports: [
         IonicModule.forRoot(MyApp, {backButtonText: ''}, {}),
@@ -79,7 +81,8 @@ export function createTranslateLoader(http: Http) {
         TabsPage,
         InvitationPage,
         InvitationCheckPage,
-        UserSettingsPage
+        UserSettingsPage,
+        ForgotPasswordPage
     ],
     providers: [
         {
