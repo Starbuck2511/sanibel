@@ -27,6 +27,9 @@ export class InvitationPage {
     platform: string;
     translation: Observable<Object>;
 
+    canShareViaWhatsApp: boolean = false;
+    canShareViaEmail: boolean = false;
+
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 private toastCtrl: ToastController,
                 private plt: Platform,
@@ -51,28 +54,42 @@ Your Sunbelt Team %0D%0A
         } else {
             this.platform = 'device';
         }
+
+        SocialSharing.canShareVia('whatsapp').then(() => {
+            this.canShareViaWhatsApp = true;
+        }).catch(error => {
+            // Sharing via whatsapp is not possible
+            console.log(error.message);
+
+        });
+
+        SocialSharing.canShareViaEmail().then(() => {
+            this.canShareViaEmail = true;
+        }).catch(error => {
+            // Sharing via whatsapp is not possible
+            console.log(error.message);
+
+        });
     }
 
-    public openMail() {
-        SocialSharing.canShareViaEmail().then(() => {
-            // Sharing via email is possible
-            // Share via email
-            SocialSharing.shareViaEmail(`${this.body}`, `${this.subject}`, []).then(() => {
+
+    public openMailHref(){
+        window.location.href=`mailto:%20?subject=${this.subject}&body=${this.body}`;
+    }
+
+    public shareViaWhatsApp(){
+        SocialSharing.canShareVia('whatsapp').then(() => {
+            // Sharing via whatsapp is possible
+            SocialSharing.shareViaWhatsApp(`${this.body}`).then(() => {
                 // Success!
             }).catch(error => {
                 console.log(error.message);
             });
         }).catch(error => {
-            // Sharing via email is not possible
+            // Sharing via whatsapp is not possible
             console.log(error.message);
 
         });
-
-
-    }
-
-    public openMailHref(){
-        window.location.href=`mailto:%20?subject=${this.subject}&body=${this.body}`;
     }
 
     public copyToClipboard() {

@@ -22,7 +22,7 @@
     "display_name_required": "A display name is required.",
     "display_name_min_length": "A display name should have a least 3 characters.",
     "invite_friends": "Invite your friends",
-    "you_can_invite": "You can invite your friends to this group by sending them an email with the following invitation code and PIN:",
+    "you_can_invite": "You can invite your friends to this group by sending them a message with the following invitation code and PIN:",
     "copy_invitation": "Copy invitation to clipboard",
     "open_mail": "Open mail",
     "enter_invitation": "Please enter your invitation code",
@@ -55,6 +55,8 @@
     "cancel": "Cancel",
     "pin_invalid": "PIN invalid. Please enter PIN again.",
     "code_invalid": "Code invalid. Please enter Code again."‚
-    "code_valid": "Code was validated"
+    "code_valid": "Code was validated",
+    "share_via_whatsapp": "Send via WhatsApp",
+    "share_via_mail": "Send via email"
   }
 }
