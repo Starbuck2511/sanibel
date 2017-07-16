@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {NavController, ToastController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
+import {TranslateService} from 'ng2-translate';
+import {Observable} from 'rxjs/Observable';
 
 import {Group} from '../../models/group';
 
@@ -39,6 +40,7 @@ export class InvitationCheckPage {
     groupName: string;
 
     showPin: boolean = false;
+    translation: Observable<Object>;
 
     constructor(public navCtrl: NavController,
                 private af: AngularFire,
@@ -46,7 +48,8 @@ export class InvitationCheckPage {
                 private formBuilder: FormBuilder,
                 private auth: AuthService,
                 private alert: AlertService,
-                private push: PushService
+                private push: PushService,
+                private translate: TranslateService
     ) {
 
 
@@ -72,7 +75,7 @@ export class InvitationCheckPage {
                 this.group = data.val();
                 this.groupPin = data.val().pin;
                 this.groupName = data.val().name;
-                this.alert.showSuccess('Code successfully validated.');
+                this.alert.showSuccess(this.translation['code_valid']);
                 this.showPin = true;
 
                 // needs the forEach method of a snapshot to continue,
@@ -82,7 +85,7 @@ export class InvitationCheckPage {
             });
 
             if(false === this.showPin){
-                this.alert.showError('Code invalid. Please enter code again.');
+                this.alert.showError(this.translation['code_invalid']);
                 this.inviteForm.reset();
 
             }
@@ -114,7 +117,7 @@ export class InvitationCheckPage {
                     );
 
                     let toast = this.toastCtrl.create({
-                        message: `You have been successfully added to group ${this.groupName}`,
+                        message: this.translation['action_success'],
                         duration: 2000
                     });
 
@@ -127,8 +130,16 @@ export class InvitationCheckPage {
                 console.log(error.message);
             });
         } else {
-            this.alert.showError('PIN invalid. Please enter PIN again.');
+            this.alert.showError(this.translation['pin_invalid']);
             this.inviteForm.reset();
         }
+    }
+
+    ionViewWillEnter() {
+
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+                this.translation = res.app;
+            }
+        );
     }
 }

@@ -14,7 +14,7 @@
                 Feedback
             </ion-segment-button>
             <ion-segment-button value="overview">
-                Overview
+                {{'app.overview' | translate}}
             </ion-segment-button>
         </ion-segment>
     </div>
@@ -27,19 +27,19 @@
             <h3 class="date-info">{{(schedule | async)?.prettyDate}}</h3>
             <button round class="call-to-action" color="signal-alternative" ion-button icon-left (click)="accept()">
                 <ion-icon name="checkmark-circle"></ion-icon>
-                Accept
+                {{'app.accept' | translate}}
             </button>
 
             <button round class="call-to-action" color="danger" ion-button icon-left (click)="decline()">
                 <ion-icon name="close-circle"></ion-icon>
-                Decline
+                {{'app.decline' | translate}}
             </button>
         </div>
 
         <ion-list *ngSwitchCase="'overview'">
             <ion-list-header color="dark-decent">
                 <ion-icon name="checkmark-circle" icon-left></ion-icon>
-                Accepts
+                {{'app.accepts' | translate}}
             </ion-list-header>
             <ion-item *ngFor="let accept of accepts | async">
                 <h3>{{accept.displayName}}</h3>
@@ -48,7 +48,7 @@
 
             <ion-list-header color="dark-decent">
                 <ion-icon name="close-circle" icon-left></ion-icon>
-                Declines
+                {{'app.declines' | translate}}
             </ion-list-header>
             <ion-item *ngFor="let decline of declines | async">
                 <h3>{{decline.displayName}}</h3>

@@ -3,11 +3,14 @@ import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/form
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import * as moment from 'moment/min/moment-with-locales';
+import {TranslateService} from 'ng2-translate';
+import {Observable} from 'rxjs/Observable';
 
 import {Schedule} from '../../models/schedule';
 import {AuthService} from '../../components/auth/auth.service';
 import {AlertService} from '../../components/alert/alert.service';
 import {AppConfig} from '../../app/app.config';
+
 
 /*
  Generated class for the ScheduleAdd page.
@@ -40,6 +43,7 @@ export class ScheduleAddPage {
     monthNames: Array<string>;
     monthShortNames: Array<string>;
     minDate: string;
+    translation: Observable<Object>;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -47,9 +51,9 @@ export class ScheduleAddPage {
                 private toastCtrl: ToastController,
                 private formBuilder: FormBuilder,
                 private auth: AuthService,
-                private alert: AlertService
+                private alert: AlertService,
+                private translate: TranslateService
     ) {
-
         moment.locale('de');
         this.dayNames = AppConfig.DATETIME_CONFIG.dayNames;
         this.dayShortNames = AppConfig.DATETIME_CONFIG.dayShortNames;
@@ -60,7 +64,7 @@ export class ScheduleAddPage {
         this.groupId = navParams.get('id');
 
         this.scheduleForm = this.formBuilder.group({
-            name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+            name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
             date: ['', Validators.required],
             type: ['', Validators.required]
 
@@ -94,7 +98,7 @@ export class ScheduleAddPage {
             this.groupSchedules.$ref.ref.child(newScheduleId).set({current: this.schedule.current});
             this.alert.hideLoading();
             let toast = this.toastCtrl.create({
-                message: 'Schedule was added successfully',
+                message: this.translation['action_success'],
                 duration: 2000
             });
 
@@ -118,6 +122,11 @@ export class ScheduleAddPage {
             this.date.setValue(nowDate);
             this.minDate = nowDate;
         });
+
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+            this.translation = res.app;
+            }
+        );
     }
 
 

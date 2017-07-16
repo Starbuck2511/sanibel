@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Validators, FormBuilder, FormGroup, AbstractControl} from '@angular/forms';
 import {NavController, ToastController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
+import {TranslateService} from 'ng2-translate';
+import {Observable} from 'rxjs/Observable';
 
 import {TabsPage} from '../tabs/tabs';
 
@@ -23,11 +25,14 @@ export class DisplayNamePage {
 
     displayName: AbstractControl;
 
+    translation: Observable<Object>;
+
     constructor(public navCtrl: NavController,
                 private toastCtrl: ToastController,
                 private af: AngularFire,
                 private auth: AuthService,
-                private formBuilder: FormBuilder
+                private formBuilder: FormBuilder,
+                private translate: TranslateService
                 ) {
 
         this.userForm = this.formBuilder.group({
@@ -47,7 +52,7 @@ export class DisplayNamePage {
         this.af.database.object(`/users/${this.auth.getUid()}/displayName`).set(this.displayName.value).then(() => {
 
             let toast = this.toastCtrl.create({
-                message: 'Display name was saved successfully',
+                message: this.translation['action_success'],
                 duration: 2000
             });
 
@@ -58,6 +63,14 @@ export class DisplayNamePage {
         }).catch(error => {
             console.log(error.message)
         });
+    }
+
+    ionViewWillEnter() {
+
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+                this.translation = res.app;
+            }
+        );
     }
 
 }

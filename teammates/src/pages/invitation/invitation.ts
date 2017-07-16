@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, ToastController, Platform} from 'ionic-angular';
 import {Clipboard, SocialSharing} from 'ionic-native';
+import {TranslateService} from 'ng2-translate';
+import {Observable} from 'rxjs/Observable';
 
 
 /*
@@ -23,10 +25,13 @@ export class InvitationPage {
     subject: string;
 
     platform: string;
+    translation: Observable<Object>;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 private toastCtrl: ToastController,
-                private plt: Platform) {
+                private plt: Platform,
+                private translate: TranslateService
+    ) {
         this.id = navParams.get('id');
         this.name = navParams.get('name');
         this.code = navParams.get('code');
@@ -74,7 +79,7 @@ Your Sunbelt Team %0D%0A
         // use cordova plugin
         Clipboard.copy(this.body).then(() => {
                 let toast = this.toastCtrl.create({
-                    message: 'Invitation copied to clipboard',
+                    message: this.translation['action_success'],
                     duration: 2000
                 });
 
@@ -86,6 +91,14 @@ Your Sunbelt Team %0D%0A
         ).catch(
             error => {
                 console.log(error.message);
+            }
+        );
+    }
+
+    ionViewWillEnter() {
+
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+                this.translation = res.app;
             }
         );
     }

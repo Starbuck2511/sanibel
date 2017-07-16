@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import * as moment from 'moment/min/moment-with-locales';
+import {TranslateService} from 'ng2-translate';
+import {Observable} from 'rxjs/Observable';
 
 import {AuthService} from '../../components/auth/auth.service';
 
@@ -26,13 +27,15 @@ export class ScheduleDetailPage {
     segment: string;
     accepts: Observable<any>;
     declines: Observable<any>;
+    translation: Observable<Object>;
 
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private toastCtrl: ToastController,
                 private af: AngularFire,
-                private auth: AuthService) {
+                private auth: AuthService,
+                private translate: TranslateService) {
         this.id = navParams.get('id');
         moment.locale('de');
         this.segment = 'feedback';
@@ -59,7 +62,7 @@ export class ScheduleDetailPage {
 
     private feedbackToast(){
         let toast = this.toastCtrl.create({
-            message: 'Thank you for your reply!',
+            message: this.translation['action_success'],
             duration: 2000
         });
         toast.present().then(() => {
@@ -80,6 +83,11 @@ export class ScheduleDetailPage {
 
         this.accepts = this.af.database.list(`/schedules/${this.id}/feedback/accepts`);
         this.declines = this.af.database.list(`/schedules/${this.id}/feedback/declines`);
+
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+                this.translation = res.app;
+            }
+        );
     }
 
 

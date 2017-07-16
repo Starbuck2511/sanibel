@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFire, FirebaseAuth, FirebaseAuthState, AuthProviders, AuthMethods} from 'angularfire2';
-
+import * as firebase from 'firebase';
 
 
 @Injectable()
@@ -19,7 +19,6 @@ export class AuthService {
             this.fbAuthState = state;
         });
     }
-
 
 
     public login(user): Promise<any> {
@@ -73,5 +72,19 @@ export class AuthService {
             console.log(error.message)
         });
     }
+
+    public sendResetPasswordMail(email:string): Promise<any>  {
+        return new Promise((resolve, reject) => {
+            firebase.auth().sendPasswordResetEmail(email)
+                .then((authData) => {
+                resolve(authData);
+
+            }).catch((error) => {
+                reject(error);
+            });
+        });
+
+    }
+
 
 }

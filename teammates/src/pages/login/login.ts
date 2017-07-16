@@ -9,6 +9,7 @@ import {AuthService} from '../../components/auth/auth.service';
 import {TabsPage} from '../tabs/tabs';
 import {SignupPage} from '../signup/signup';
 import {DisplayNamePage} from '../display-name/display-name';
+import {ForgotPasswordPage} from '../forgot-password/forgot-password';
 
 @Component({
     selector: 'page-login',
@@ -73,6 +74,10 @@ export class LoginPage {
 
     public goToRegisterUser(): void {
         this.navCtrl.setRoot(SignupPage);
+    }
+
+    public goToForgotPassword(): void {
+        this.navCtrl.setRoot(ForgotPasswordPage);
     }
 
 
