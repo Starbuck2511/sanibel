@@ -22,7 +22,7 @@
     "display_name_required": "Ein Anzeige-Name wird benötigt.",
     "display_name_min_length": "Der Anzeige-Name sollte mindestens 3 Zeichen haben.",
     "invite_friends": "Freunde einladen",
-    "you_can_invite": "Du kannst deine Freunde zu dieser Gruppe einladen indem du ihnen eine E-Mail mit folgendem Code und PIN sendest:",
+    "you_can_invite": "Du kannst deine Freunde zu dieser Gruppe einladen indem du ihnen eine Nachricht mit folgendem Code und PIN sendest:",
     "copy_invitation": "Einladung in die Zwischenablage kopieren",
     "open_mail": "E-Mail öffnen",
     "enter_invitation": "Bitte Einladungs-Code eingeben",
@@ -55,6 +55,9 @@
     "cancel": "Abbrechen",
     "pin_invalid": "PIN ist ungültig. Bitte PIN erneut eingeben.",
     "code_invalid": "Code ist ungültig. Bitte Code erneut eingeben.",
-    "code_valid": "Code wurde korrekt eingeben"
+    "code_valid": "Code wurde korrekt eingeben",
+    "share_via_whatsapp": "Senden mit WhatsApp",
+    "share_via_mail": "Senden mit E-Mail"
+
   }
 }

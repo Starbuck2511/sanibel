@@ -1,14 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController, Events, ToastController} from 'ionic-angular';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import * as firebase from 'firebase';
-
+import {NavController, ToastController} from 'ionic-angular';
 
 import {AlertService} from '../../components/alert/alert.service';
 import {AuthService} from '../../components/auth/auth.service';
-import {TabsPage} from '../tabs/tabs';
 import {SignupPage} from '../signup/signup';
-import {DisplayNamePage} from '../display-name/display-name';
 import {LoginPage} from "../login/login";
 
 @Component({
@@ -17,7 +12,6 @@ import {LoginPage} from "../login/login";
 })
 export class ForgotPasswordPage {
 
-    fbUser: FirebaseListObservable<any>;
 
     user = {
         email: '',
@@ -27,8 +21,6 @@ export class ForgotPasswordPage {
     constructor(public navCtrl: NavController,
                 private alert: AlertService,
                 private auth: AuthService,
-                private events: Events,
-                private af: AngularFire,
                 private toastCtrl: ToastController
     ) {
 
