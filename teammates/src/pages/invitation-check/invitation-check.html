@@ -32,7 +32,7 @@
         </form>
 
         <form *ngIf="showPin" [formGroup]="inviteForm" (ngSubmit)="checkPin(inviteForm.value)" novalidate>
-            <p padding class="font-secondary">{{'app.enter_pin' | translate}}<br>
+            <p padding>{{'app.enter_pin' | translate}}<br>
              {{'app.added_to_group' | translate}} "{{group?.name}}" {{'app.after_entering_pin' | translate}}</p>
             <ion-item [class.error]="!pin.valid && pin.touched">
                 <ion-label floating>PIN</ion-label>
