@@ -83,35 +83,38 @@ export class GroupAddPage {
 
         newRef = this.groups.push(this.group);
 
-        // add current user to group/users node
-        newRef.child(`users/${this.userId}`).set(true);
 
-        // add chat to group/chats node
-        newRef.child(`chats/${chatId}`).set(true);
-
-        // add onesignal userId to group/pushNotificationsUsers node
-        this.push.oneSignal.getIds().then(
-            ids => {
-                newRef.child(`pushNotificationUsers/${ids.userId}`).set(true);
-            }
-        );
 
         newRef.then(() => {
             let groupId = newRef.key;
 
+            // add current user to group/users node
+            newRef.child(`users/${this.userId}`).set(true);
+
+            // add chat to group/chats node
+            newRef.child(`chats/${chatId}`).set(true);
+
             // store the new group also under user node
             this.userGroups.$ref.ref.child(groupId).set(true);
 
-            this.alert.hideLoading();
-            let toast = this.toastCtrl.create({
-                message: this.translation['action_success'],
-                duration: 2000
-            });
+            // add onesignal userId to group/pushNotificationsUsers node
+            this.push.oneSignal.getIds().then(
+                (ids) => {
+                    newRef.child(`pushNotificationUsers/${ids.userId}`).set(true);
+                    this.alert.hideLoading();
+                    let toast = this.toastCtrl.create({
+                        message: this.translation['action_success'],
+                        duration: 2000
+                    });
 
-            toast.present().then(() => {
-                    this.navCtrl.pop();
+                    toast.present().then(() => {
+                            this.navCtrl.pop();
+                        }
+                    );
                 }
             );
+
+
         }).catch(error => {
             console.log(error.message)
         });
