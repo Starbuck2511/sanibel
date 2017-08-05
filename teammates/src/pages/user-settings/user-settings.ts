@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
+import {TranslateService} from 'ng2-translate';
 
 import {DisplayNamePage} from '../display-name/display-name';
 import {PushService} from '../../components/push/push.service';
@@ -17,10 +18,13 @@ import {PushService} from '../../components/push/push.service';
 export class UserSettingsPage {
 
     pushNotificationsStatus: boolean = false;
+    lang: string = 'undefined';
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
-                public push: PushService) {
+                public push: PushService,
+                private translate: TranslateService
+    ) {
 
     }
 
@@ -38,10 +42,21 @@ export class UserSettingsPage {
         window.localStorage.setItem('pushNotificationsEnabled', this.pushNotificationsStatus.toString());
     }
 
+    setCurrentUserLang() {
+        this.translate.use(this.lang).subscribe(() => {
+            console.log('lang changed to ' + this.translate.currentLang);
+        });
+
+
+    }
+
     ionViewDidEnter() {
         // get the push notification settings
         this.pushNotificationsStatus = JSON.parse(window.localStorage.getItem('pushNotificationsEnabled'));
         console.log('view enter push status is ... ' + this.pushNotificationsStatus);
+
+        this.lang = this.translate.currentLang;
+        console.log('view enter currentLang is ... ' + this.lang);
 
     }
 

@@ -112,6 +112,7 @@ export class InvitationCheckPage {
                     // add onesignal userId to group/pushNotificationsUsers node
                     this.push.oneSignal.getIds().then(
                         ids => {
+                            console.log('one signal user id ' + ids.userId);
                             this.af.database.object(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.child(ids.userId).set(true);
                         }
                     );

@@ -35,19 +35,11 @@ export class InvitationPage {
                 private plt: Platform,
                 private translate: TranslateService
     ) {
+
         this.id = navParams.get('id');
         this.name = navParams.get('name');
         this.code = navParams.get('code');
         this.pin = navParams.get('pin');
-
-        this.body = `This is a Sunbelt invitation for joining the group "${this.name}". 
-Just get the free Sunbelt App from Google Play or the Apple Store and enter the following code and PIN. %0D%0A
-Invitation Code: ${this.code} %0D%0A
-PIN: ${this.pin} %0D%0A %0D%0A
-Best regards %0D%0A
-Your Sunbelt Team %0D%0A
-`;
-        this.subject = `Invitation from ${this.name}`;
 
         if (this.plt.is('core') || this.plt.is('mobileweb')) {
             this.platform = 'browser';
@@ -116,6 +108,22 @@ Your Sunbelt Team %0D%0A
 
         this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
                 this.translation = res.app;
+            }
+        );
+
+        let param = {
+            'name': this.name,
+            'code': this.code,
+            'pin': this.pin
+        };
+
+        this.translate.get('app.invitation_body', param).subscribe((res) => {
+                this.body = res;
+            }
+        );
+
+        this.translate.get('app.invitation_subject', param).subscribe((res) => {
+                this.subject = res;
             }
         );
     }

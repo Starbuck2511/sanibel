@@ -31,10 +31,26 @@
             <ion-toggle [(ngModel)]="pushNotificationsStatus" (ngModelChange)="setPushNotifications()"
                         color="signal" [checked]="pushNotificationsStatus"></ion-toggle>
         </ion-item>
-
     </ion-list>
     <div padding-left>
         <p>{{'app.settings_hint' | translate}}</p>
     </div>
+    <ion-list radio-group [(ngModel)]="lang" (ngModelChange)="setCurrentUserLang()">
+
+        <ion-list-header>
+            {{'app.manage_language' | translate}}
+        </ion-list-header>
+
+        <ion-item>
+            <ion-label>English</ion-label>
+            <ion-radio value="en"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Deutsch</ion-label>
+            <ion-radio value="de"></ion-radio>
+        </ion-item>
+
+    </ion-list>
 
 </ion-content>
