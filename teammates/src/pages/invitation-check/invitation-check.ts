@@ -102,7 +102,7 @@ export class InvitationCheckPage {
         this.alert.showLoading('');
 
         if (this.pin.value == this.groupPin) {
-            this.alert.hideLoading();
+
             // add group to user data
             this.af.database.object(`/users/${this.userId}/groups`).$ref.ref.child(this.groupId).set(true);
 
@@ -113,19 +113,23 @@ export class InvitationCheckPage {
                     this.push.oneSignal.getIds().then(
                         ids => {
                             console.log('one signal user id ' + ids.userId);
+
                             this.af.database.object(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.child(ids.userId).set(true);
+                            this.alert.hideLoading();
+                            let toast = this.toastCtrl.create({
+                                message: this.translation['action_success'],
+                                duration: 2000
+                            });
+
+                            toast.present().then(() => {
+                                    this.navCtrl.setRoot(TabsPage);
+                                }
+                            );
+
                         }
                     );
 
-                    let toast = this.toastCtrl.create({
-                        message: this.translation['action_success'],
-                        duration: 2000
-                    });
 
-                    toast.present().then(() => {
-                            this.navCtrl.setRoot(TabsPage);
-                        }
-                    );
                 }
             ).catch(error => {
                 console.log(error.message);

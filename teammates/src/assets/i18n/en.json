@@ -56,9 +56,10 @@
     "pin_invalid": "PIN invalid. Please enter PIN again.",
     "code_invalid": "Code invalid. Please enter Code again.",
     "code_valid": "Code was validated",
-    "share_via_whatsapp": "Send via WhatsApp",
+    "share": "Share",
+    "share_via_whatsapp": "Share via WhatsApp",
     "share_via_mail": "Send via email",
-    "invitation_body": "This is a Sunbelt invitation for joining the group {{name}}. Just get the free Sunbelt App from Google Play or the Apple Store and enter the following code and PIN. %0D%0A CODE {{code}} %0D%0A PIN {{pin}} %0D%0A %0D%0A Best regards %0D%0A Your Sunbelt Team %0D%0A",
+    "invitation_body": "This is a Sunbelt invitation for joining the group {{name}}. Just get the free Sunbelt App from Google Play or the Apple Store and enter the following code and PIN. %0D%0A %0D%0ACODE {{code}} %0D%0APIN {{pin}} %0D%0A %0D%0ABest regards %0D%0AYour Sunbelt Team %0D%0A",
     "invitation_subject": "Invitation from {{name}}",
     "manage_language": "Language"
   }

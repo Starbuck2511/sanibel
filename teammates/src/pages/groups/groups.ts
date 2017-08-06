@@ -39,8 +39,7 @@ export class GroupsPage {
                 private auth: AuthService,
                 private push: PushService,
                 private actionSheetCtrl: ActionSheetController,
-                private alert: AlertService
-    ) {
+                private alert: AlertService) {
         this.userId = this.auth.getUid();
     }
 
@@ -79,7 +78,7 @@ export class GroupsPage {
                 }
             ]
         });
-       actionSheet.present();
+        actionSheet.present();
     }
 
     private deleteGroup(group: any) {
@@ -88,40 +87,48 @@ export class GroupsPage {
         this.af.database.list(`/groups/${group.id}/users`).forEach(users => {
             users.forEach(user => {
                 // delete this group id from the user's groups node
+                console.log('GroupsPage::deleteGroup delete groups from users group node ... ' + group.id);
                 this.af.database.object(`/users/${user.$key}/groups/${group.id}`).remove();
             });
-        });
-
-        // delete schedule nodes
-        this.af.database.list(`/groups/${group.id}/schedules`).forEach(schedules => {
-            schedules.forEach(schedule => {
-                this.af.database.object(`/schedules/${schedule.$key}`).remove();
-            });
-        });
-
-        // delete chat nodes and messages of chat
-        this.af.database.list(`/groups/${group.id}/chats`).forEach(chats => {
-            chats.forEach(chat => {
-                this.af.database.object(`/messages/${chat.$key}`).remove();
-                this.af.database.object(`/chats/${chat.$key}`).remove();
-            });
-        });
-
-        // finally delete the group node itself
-        this.af.database.object(`/groups/${group.id}`).remove();
+        }).then(() => {
+                // delete schedule nodes
+                this.af.database.list(`/groups/${group.id}/schedules`).forEach(schedules => {
+                    schedules.forEach(schedule => {
+                        console.log('GroupsPage::deleteGroup delete schedules ' + schedule.$key);
+                        this.af.database.object(`/schedules/${schedule.$key}`).remove();
+                    });
+                }).then(() => {
+                        // delete chat nodes and messages of chat
+                        this.af.database.list(`/groups/${group.id}/chats`).forEach(chats => {
+                            chats.forEach(chat => {
+                                console.log('GroupsPage::deleteGroup delete messages ' + chat.$key);
+                                console.log('GroupsPage::deleteGroup delete chats ' + chat.$key);
+                                this.af.database.object(`/messages/${chat.$key}`).remove();
+                                this.af.database.object(`/chats/${chat.$key}`).remove();
+                            });
+                        }).then(() => {
+                                // finally delete the group node itself
+                                console.log('GroupsPage::deleteGroup delete groups ' + group.id);
+                                this.af.database.object(`/groups/${group.id}`).remove();
+                            }
+                        );
+                    }
+                );
+            }
+        );
     }
 
-    promptForPermission(){
+    promptForPermission() {
         this.push.oneSignal.registerForPushNotifications();
     }
 
-    ionViewDidLoad(){
+    ionViewDidLoad() {
         // ask the user one time for permission on push notifications
         // its a good practice to do this on your own, because if the user
         // rejects the system message, he has to go through multi steps in the
         // device settings to enable push notifications for this app
         let pushNotificationsRequested = window.localStorage.getItem('pushNotificationsRequest');
-        if(!pushNotificationsRequested){
+        if (!pushNotificationsRequested) {
             let actionSheet = this.actionSheetCtrl.create({
                 title: 'Allow push notifications? It is recommended to choose OK. You can easily turn them off in your user settings',
                 buttons: [

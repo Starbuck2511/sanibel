@@ -18,7 +18,7 @@ export class PushService {
         // to debug issues
         //window["plugins"].OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
         this.oneSignal = oneSignal;
-        this.oneSignal.setLogLevel({logLevel: 5, visualLevel: 5});
+        //this.oneSignal.setLogLevel({logLevel: 5, visualLevel: 5});
 
         let iosSettings = {};
         iosSettings["kOSSettingsKeyAutoPrompt"] = false;
@@ -38,7 +38,7 @@ export class PushService {
     }
 
     sendToGroup($message, $users){
-        let notificationObj = { contents: {en: $message}, include_player_ids: [$users]};
+        let notificationObj = { contents: {en: $message}, include_player_ids: $users};
         console.dir(notificationObj);
         this.oneSignal.postNotification(notificationObj).then(
             response => {

@@ -26,9 +26,9 @@
                 <ion-icon name="chatbubbles"></ion-icon>
                 {{'app.share_via_whatsapp' | translate}}
             </button>
-            <button *ngIf="true == canShareViaEmail" class="call-to-action"  ion-button icon-left full color="secondary" (click)="shareViaEmail()">
-                <ion-icon name="mail"></ion-icon>
-                {{'app.share_via_mail' | translate}}
+            <button class="call-to-action"  ion-button icon-left full color="secondary" (click)="shareSheet()">
+                <ion-icon name="share"></ion-icon>
+                {{'app.share' | translate}}
             </button>
         </ion-buttons>
     </div>

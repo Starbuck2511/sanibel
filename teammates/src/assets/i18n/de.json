@@ -56,9 +56,10 @@
     "pin_invalid": "PIN ist ungültig. Bitte PIN erneut eingeben.",
     "code_invalid": "Code ist ungültig. Bitte Code erneut eingeben.",
     "code_valid": "Code wurde korrekt eingeben",
-    "share_via_whatsapp": "Senden mit WhatsApp",
+    "share": "Teilen",
+    "share_via_whatsapp": "Teilen via WhatsApp",
     "share_via_mail": "Senden mit E-Mail",
-    "invitation_body": "Das ist eine Einladung via Sunbelt für die Gruppe {{name}}. Hol dir dazu einfach die Sunbelt App aus dem App Store oder Google Play. %0D%0A CODE {{code}} %0D%0A PIN {{pin}} %0D%0A %0D%0A Herzliche Grüße %0D%0A Dein Sunbelt Team %0D%0A",
+    "invitation_body": "Das ist eine Einladung via Sunbelt für die Gruppe {{name}}. Hol dir dazu einfach die Sunbelt App aus dem App Store oder Google Play. %0D%0A %0D%0ACODE {{code}} %0D%0APIN {{pin}} %0D%0A %0D%0AHerzliche Grüße %0D%0ADein Sunbelt Team %0D%0A",
     "invitation_subject": "Einladung von {{name}}",
     "manage_language": "Sprache"
 

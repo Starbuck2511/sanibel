@@ -54,19 +54,23 @@ export class InvitationPage {
             console.log(error.message);
 
         });
-
-        SocialSharing.canShareViaEmail().then(() => {
-            this.canShareViaEmail = true;
-        }).catch(error => {
-            // Sharing via whatsapp is not possible
-            console.log(error.message);
-
-        });
     }
 
 
     public openMailHref(){
         window.location.href=`mailto:%20?subject=${this.subject}&body=${this.body}`;
+    }
+
+    public shareSheet() {
+        // share(message, subject, file, url)
+        SocialSharing.share(`${this.body}`, `${this.subject}`, '', null).then(
+            () => {
+                // Success!
+            }
+        ).catch(error => {
+                console.log(error.message);
+            }
+        );
     }
 
     public shareViaWhatsApp(){
@@ -127,6 +131,4 @@ export class InvitationPage {
             }
         );
     }
-
-
 }
