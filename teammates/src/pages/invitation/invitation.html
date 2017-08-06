@@ -22,11 +22,11 @@
     <div *ngIf="'device' == platform" class="center">
 
         <ion-buttons>
-            <button *ngIf="true == canShareViaWhatsApp" class="call-to-action" ion-button icon-left round color="secondary" (click)="shareViaWhatsApp()">
+            <button *ngIf="true == canShareViaWhatsApp" class="call-to-action" ion-button icon-left full color="secondary" (click)="shareViaWhatsApp()">
                 <ion-icon name="chatbubbles"></ion-icon>
                 {{'app.share_via_whatsapp' | translate}}
             </button>
-            <button *ngIf="true == canShareViaEmail" class="call-to-action"  ion-button icon-left round color="secondary" (click)="shareViaEmail()">
+            <button *ngIf="true == canShareViaEmail" class="call-to-action"  ion-button icon-left full color="secondary" (click)="shareViaEmail()">
                 <ion-icon name="mail"></ion-icon>
                 {{'app.share_via_mail' | translate}}
             </button>

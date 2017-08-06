@@ -7,7 +7,7 @@
     "about": "About",
     "login": "Login",
     "logout": "Logout",
-    "sign_up": "Logout"
+    "sign_up": "Logout",
     "create_group": "Create a group",
     "group_name_required": "A group name is required.",
     "group_name_min_length": "A group name should have a least 3 characters.",
@@ -54,9 +54,12 @@
     "action_failure": "An error ocurred",
     "cancel": "Cancel",
     "pin_invalid": "PIN invalid. Please enter PIN again.",
-    "code_invalid": "Code invalid. Please enter Code again."‚
+    "code_invalid": "Code invalid. Please enter Code again.",
     "code_valid": "Code was validated",
     "share_via_whatsapp": "Send via WhatsApp",
-    "share_via_mail": "Send via email"
+    "share_via_mail": "Send via email",
+    "invitation_body": "This is a Sunbelt invitation for joining the group {{name}}. Just get the free Sunbelt App from Google Play or the Apple Store and enter the following code and PIN. %0D%0A CODE {{code}} %0D%0A PIN {{pin}} %0D%0A %0D%0A Best regards %0D%0A Your Sunbelt Team %0D%0A",
+    "invitation_subject": "Invitation from {{name}}",
+    "manage_language": "Language"
   }
 }
