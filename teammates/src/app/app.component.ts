@@ -1,10 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
-import {Platform, MenuController, Nav, Events} from 'ionic-angular';
-import {StatusBar, Splashscreen, OneSignal} from 'ionic-native';
+import {Platform, MenuController, Nav, Events, ToastController} from 'ionic-angular';
+import {StatusBar, Splashscreen, OneSignal, Network} from 'ionic-native';
 import {TranslateService} from 'ng2-translate';
 
 import {AuthService} from '../components/auth/auth.service';
 import {PushService} from '../components/push/push.service';
+
 
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
@@ -40,7 +41,8 @@ export class MyApp {
                 private auth: AuthService,
                 private push: PushService,
                 private events: Events,
-                private translate: TranslateService
+                private translate: TranslateService,
+                private toastCtrl: ToastController
     ) {
         this.initializeApp();
 
@@ -71,7 +73,6 @@ export class MyApp {
             }
         });
 
-
     }
 
     initializeApp() {
@@ -89,6 +90,16 @@ export class MyApp {
             if(!this.platform.is('core') && !this.platform.is('mobileweb')){
                 this.push.init(OneSignal);
             }
+
+            Network.onDisconnect().subscribe(() => {
+                let toast = this.toastCtrl.create({
+                    message: 'Offline',
+                    duration: 5000
+                });
+                toast.present().then(
+                    () => {}
+                );
+            });
 
         });
     }
