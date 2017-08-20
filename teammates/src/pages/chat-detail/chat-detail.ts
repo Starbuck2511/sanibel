@@ -95,9 +95,14 @@ export class ChatDetailPage {
         this.af.database.list(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.once('value').then(
             snapshot => {
                 let users = snapshot.val();
+                console.log('getPushNotificationUsers ...');
+                console.dir(users);
                 if('undefined' !== users && null !== users) {
-                    this.recipients = Object.keys(users);
+                    this.recipients  = Object.keys(users).map(function (key) {
+                        return users[key];
+                    });
                 }
+                console.dir(this.recipients);
             }
         );
 
@@ -110,7 +115,7 @@ export class ChatDetailPage {
         this.messages = this.af.database.list(`/messages/${this.id}`, {
             query: {
                 orderByKey: true,
-                limitToLast: 10,
+                limitToLast: 25,
             }
         }).map(
             messages => {

@@ -114,7 +114,7 @@ export class InvitationCheckPage {
                         ids => {
                             console.log('one signal user id ' + ids.userId);
 
-                            this.af.database.object(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.child(ids.userId).set(true);
+                            this.af.database.object(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.child(this.userId).set(ids.userId);
                             this.alert.hideLoading();
                             let toast = this.toastCtrl.create({
                                 message: this.translation['action_success'],

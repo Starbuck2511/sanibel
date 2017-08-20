@@ -100,7 +100,7 @@ export class GroupAddPage {
             // add onesignal userId to group/pushNotificationsUsers node
             this.push.oneSignal.getIds().then(
                 (ids) => {
-                    newRef.child(`pushNotificationUsers/${ids.userId}`).set(true);
+                    newRef.child(`pushNotificationUsers/${this.userId}`).set(ids.userId);
                     this.alert.hideLoading();
                     let toast = this.toastCtrl.create({
                         message: this.translation['action_success'],

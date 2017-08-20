@@ -128,6 +128,7 @@ export class GroupsPage {
         // rejects the system message, he has to go through multi steps in the
         // device settings to enable push notifications for this app
         let pushNotificationsRequested = window.localStorage.getItem('pushNotificationsRequest');
+        let pushNotificationsUpdated = window.localStorage.getItem('pushNotificationsUpdate');
         if (!pushNotificationsRequested) {
             let actionSheet = this.actionSheetCtrl.create({
                 title: 'Allow push notifications? It is recommended to choose OK. You can easily turn them off in your user settings',
@@ -154,6 +155,30 @@ export class GroupsPage {
             actionSheet.present();
         }
 
+        if (pushNotificationsRequested && !pushNotificationsUpdated) {
+            // update once all oneSignalIds of the user (oneSignalId changes if user has reinstalled the app)
+            this.push.oneSignal.getIds().then(
+                ids => {
+                    console.log('update one signal user id ' + ids.userId);
+                    this.af.database.list(`/users/${this.auth.getUid()}/groups`).$ref.ref.once('value').then(
+                        snapshot => {
+                            let groups = snapshot.val();
+                            console.log('list of users groups ...');
+                            console.dir(groups);
+                            if('undefined' !== groups && null !== groups) {
+                                Object.keys(groups).forEach(groupId => {
+                                    this.af.database.object(`/groups/${groupId}/pushNotificationUsers/${this.auth.getUid()}`).set(ids.userId);
+                                    console.log('updated group with id ' + groupId + ' for push notification user id ');
+                                })
+                            }
+
+                        }
+                    );
+
+                }
+            );
+            window.localStorage.setItem('pushNotificationsUpdate', 'true');
+        }
     }
 
 

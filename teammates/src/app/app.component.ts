@@ -94,7 +94,9 @@ export class MyApp {
             Network.onDisconnect().subscribe(() => {
                 let toast = this.toastCtrl.create({
                     message: 'Offline',
-                    duration: 5000
+                    showCloseButton: true,
+                    closeButtonText: 'OK',
+                    cssClass: 'danger'
                 });
                 toast.present().then(
                     () => {}

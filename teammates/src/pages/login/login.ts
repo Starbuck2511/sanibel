@@ -28,7 +28,7 @@ export class LoginPage {
                 private alert: AlertService,
                 private auth: AuthService,
                 private events: Events,
-                private af: AngularFire,) {
+                private af: AngularFire) {
 
     }
 
