@@ -30,6 +30,7 @@ export class PushService {
         this.oneSignal.startInit(AppConfig.ONE_SIGNAL_CONFIG.appId, AppConfig.FIREBASE_CONFIG.messagingSenderId)
             .handleNotificationOpened(notificationOpenedCallback)
             .iOSSettings(iosSettings)
+            .inFocusDisplaying(oneSignal.OSInFocusDisplayOption.Notification)
             .endInit();
     }
 

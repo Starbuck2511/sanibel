@@ -91,9 +91,10 @@ export class MyApp {
                 this.push.init(OneSignal);
             }
 
+
             Network.onDisconnect().subscribe(() => {
                 let toast = this.toastCtrl.create({
-                    message: 'Offline',
+                    message: 'No internet connection',
                     showCloseButton: true,
                     closeButtonText: 'OK',
                     cssClass: 'danger'

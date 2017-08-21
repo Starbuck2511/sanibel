@@ -95,5 +95,16 @@ form {
 }
 
 ion-toast.danger {
-    color: $danger;
+    .toast-message{
+      color: $danger;
+    }
+    .toast-button {
+      color: $signal-decent;
+    }
+}
+
+ion-item-options {
+  button {
+    min-width: 50px;
+  }
 }
