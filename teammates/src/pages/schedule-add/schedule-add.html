@@ -1,0 +1,70 @@
+<!--
+  Generated template for the ScheduleAdd page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'app.add_schedule' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="scheduleForm" (ngSubmit)="addSchedule(scheduleForm.value)" novalidate>
+        <ion-item [class.error]="!name.valid && name.touched">
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <p *ngIf="name.hasError('required') && name.touched"
+           class="form-error">* {{'app.schedule_name_required' | translate}}
+        </p>
+        <p *ngIf="name.hasError('minlength') && name.touched"
+           class="form-error">* {{'app.schedule_name_min_length' | translate}}
+        </p>
+
+        <ion-item>
+            <ion-label floating>{{'app.date' | translate}}</ion-label>
+            <ion-datetime
+                    min="{{minDate}}"
+                    dayNames="{{dayNames}}"
+                    dayShortNames="{{dayShortNames}}"
+                    monthNames="{{monthNames}}"
+                    monthShortNames="{{monthShortNames}}"
+                    displayFormat="DDDD, DD.MM.YYYY - HH:mm"
+                    pickerFormat="DDD, DD.MMM.YYYY - HH:mm"
+                    formControlName="date"></ion-datetime>
+        </ion-item>
+        <p *ngIf="date.hasError('required') && date.touched"
+           class="form-error">* {{'app.schedule_date_required' | translate}}
+        </p>
+        <p></p>
+
+        <ion-list radio-group formControlName="type">
+            <ion-list-header color="dark-decent">
+                <ion-icon name="calendar" icon-left></ion-icon>
+                {{'app.type' | translate}}
+            </ion-list-header>
+
+            <ion-item>
+                <ion-label>{{'app.single' | translate}}</ion-label>
+                <ion-radio checked="true" value="single"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>{{'app.weekly' | translate}}</ion-label>
+                <ion-radio value="weekly"></ion-radio>
+            </ion-item>
+
+        </ion-list>
+
+        <p *ngIf="type.hasError('required') && type.touched"
+           class="form-error">* {{'app.schedule_type_required' | translate}}
+        </p>
+
+        <div padding>
+            <button block color="secondary" ion-button type="submit" [disabled]="!scheduleForm.valid">{{'app.save' | translate}}</button>
+        </div>
+    </form>
+</ion-content>

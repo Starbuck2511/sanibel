@@ -5,17 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="trans" text-center>
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Sign up</ion-title>
+        <ion-title></ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <h3>Register a new account</h3>
-    <form>
+<ion-content padding class="turtle">
+
+    <div class="logo-section">
+        <img src="assets/logo.png" width="256" height="42" alt="Sunbelt Logo">
+    </div>
+
+    <h3 class="font-secondary">SIGN UP</h3>
+    <form novalidate>
         <ion-item>
             <ion-label floating>E-Mail</ion-label>
             <ion-input type="email" name="email" [(ngModel)]="user.email"></ion-input>
@@ -27,7 +32,7 @@
         </ion-item>
 
         <div padding>
-            <button ion-button (click)="signUp()">Sign up</button>
+            <button ion-button round color="signal-alternative" (click)="signUp()">Sign up</button>
         </div>
     </form>
 </ion-content>

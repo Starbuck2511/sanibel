@@ -4,16 +4,12 @@ $font-path: "../assets/fonts";
 
 @import "ionic.globals";
 
-
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
-
-
-
 
 // Named Color Variables
 // --------------------------------------------------
@@ -24,34 +20,164 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+//  primary:    #387ef5,
+primary: #4357a7,
+primary-decent: #455063,
+secondary: #4c3548,
+danger: #de4e4e,
+danger-bright: #e46666,
+light: #f9f9f9,
+dark: #313131,
+trans: (
+        base: transparent,
+        contrast: #bdbdbd
+),
+signal: #37ca69,
+signal-alternative: #3CDC72,
+signal-decent: #344f63,
+decent: #A0A0A0,
+decent-light: #dedada,
+dark-decent:(
+        base: #e5e5e5,
+        contrast: #a9adb3),
+dark-signal: (
+        base: #282828,
+        contrast: #37ca69
+
+),
+        dark-action: #373b42,
+        sunlight: #cdd87f
 );
+$dark: #313131;
+$light: #f9f9f9;
+$dark-light: #242626;
+$dark-bright: #686b6f;
+$dark-invert: #A0A0A0;
+$signal: #37ca69;
+$signal-alternative: #3CDC72;
+$signal-decent: #555b8c;
+$decent-light: #dedada;
+$danger: #de4e4e;
+$danger-bright: #e46666;
+$primary-decent: #455063;
+$dark-action: #373b42;
+$light-medium: #bdb5b5;
+
+
+$chat-bubble: (
+        background-left: #f4f5f7,
+        //background-left: #009fff,
+        background-right: $signal-alternative,
+);
+
+$background-color: $decent-light;
+$background-ios-color: $background-color;
+$background-md-color: $background-color;
+$background-wp-color: $background-color;
+$toolbar-background: $background-color;
+
+$backdrop-color: #4d6d71;
+
+$text-color: $dark-bright;
+
+$tabs-background: $decent-light;
+$tabs-tab-color-inactive: $dark-invert;
+$tabs-tab-color-active: $signal;
+
+$tabs-md-tab-color-inactive: $dark-invert;
+$tabs-md-tab-opacity: 1;
+
+$tabs-ios-tab-color-inactive: $dark-invert;
+$tabs-ios-tab-opacity: 1;
+
+$tabs-wp-tab-color-inactive: $dark-invert;
+$tabs-wp-tab-opacity: 1;
+
+$toolbar-text-color: $dark-bright;
+$toolbar-active-color: $dark-bright;
+$toolbar-inactive-color: $dark-bright;
+
+$toolbar-md-title-text-color: $dark-bright;
+$toolbar-ios-title-text-color: $dark-bright;
+$toolbar-wp-title-text-color: $dark-bright;
+
+$toolbar-md-text-color: $dark-bright;
+$toolbar-ios-text-color: $dark-bright;
+$toolbar-wp-text-color: $dark-bright;
+
+$toolbar-md-button-color: $signal;
+$toolbar-ios-button-color: $signal;
+$toolbar-wp-button-color: $signal;
+
+$toolbar-md-button-font-size: 1.6rem;
+$toolbar-ios-button-font-size: 1.6rem;
+$toolbar-wp-button-font-size: 1.6rem;
+
+$toolbar-md-title-font-weight: 300;
+$toolbar-ios-title-font-weight: 300;
+$toolbar-wp-title-font-weight: 300;
+
+$toolbar-md-title-text-align: left;
+$toolbar-ios-title-text-align: left;
+$toolbar-wp-title-text-align: left;
+
+$list-border-color: $dark-invert;
+$list-md-border-color: $dark-invert;
+$list-ios-border-color: $dark-invert;
+$list-wp-border-color: $dark-invert;
+
+$list-md-header-border-top: none;
+$list-ios-header-border-top: none;
+$list-wp-header-border-top: none;
+
+$item-md-detail-push-show: true;
+$item-ios-detail-push-show: true;
+$item-wp-detail-push-show: true;
+
+$text-input-highlight-color-valid: $dark-invert;
+$text-input-highlight-color-invalid: $danger-bright;
+$text-input-md-highlight-color: $decent-light;
+
+$button-md-height: 2.1em;
+$button-ios-height: 2.1em;
+$button-wp-height: 2.1em;
+
+$segment-button-md-background-color-activated: #455063;
+$segment-button-ios-background-color-activated:#455063;
+$segment-button-wp-background-color-activated: #455063;
+
+
+$toggle-md-handle-background-color-off: $light;
+$toggle-ios-handle-background-color-off: $light;
+$toggle-wp-handle-background-color-off: $light;
+
+$toast-md-background: rgba(249, 249, 249, .7);
+$toast-ios-background: rgba(249, 249, 249, .7);
+$toast-wp-background: rgba(249, 249, 249, .7);
+
+$toast-md-title-color: $dark-invert;
+$toast-ios-title-color: $dark-invert;
+$toast-wp-title-color: $dark-invert;
+
+
+
+$loading-ios-background: transparent;
+
+
+
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -62,7 +188,6 @@ $colors: (
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
@@ -70,9 +195,19 @@ $colors: (
 
 @import "ionicons";
 
-
 // Fonts
 // --------------------------------------------------
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face{
+  font-family: 'Poiret One';
+  src: url('../assets/fonts/poiretone.woff') format('woff');
+}
+
+
+
+$font-secondary: 'Poiret One', cursive;
+$font-main: 'Roboto', sans-serif;
+

@@ -1,0 +1,86 @@
+page-chat-detail {
+
+
+  .item-input {
+    line-height: 20px;
+
+    ion-textarea {
+      background-color: $light;
+      margin-right: 7px;
+      max-height: 40px;
+      margin-top: 7px;
+      color: $dark-light;
+    }
+  }
+
+  textarea {
+    resize: both;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .chatBubble {
+
+    .message {
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      font-size: 15px;
+    }
+
+    .message-detail {
+      font-size: 11px;
+
+    }
+
+    .chat-bubble {
+      border-radius: 5px;
+      display: inline-block;
+      padding: 10px 18px;
+      position: relative;
+      margin: 10px;
+      max-width: 80%;
+    }
+
+    .chat-bubble:before {
+      content: "\00a0";
+      display: block;
+      height: 16px;
+      width: 9px;
+      position: absolute;
+      bottom: -7.5px;
+    }
+
+    .chat-bubble.left {
+      background-color: map-get($chat-bubble, background-left);
+      color: #6b6c6f;
+      //color: #3b3c3f;
+      //color: #ffffff;
+      float: left;
+      margin-left: 45px;
+    }
+
+    .chat-bubble.left:before {
+      background-color: map-get($chat-bubble, background-left);
+      left: 10px;
+      -webkit-transform: rotate(70deg) skew(5deg);
+    }
+
+    .chat-bubble.right {
+      background-color: map-get($chat-bubble, background-right);
+      color: #ffffff;
+      float: right;
+      margin-right: 45px;
+    }
+
+    .chat-bubble.right:before {
+      background-color: map-get($chat-bubble, background-right);
+      right: 10px;
+      -webkit-transform: rotate(118deg) skew(-5deg);
+    }
+
+    .chat-bubble.right a.autolinker {
+      color: #ffffff;
+      font-weight: bold;
+    }
+  }
+}

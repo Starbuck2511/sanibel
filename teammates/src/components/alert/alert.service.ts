@@ -20,11 +20,14 @@ export class AlertService {
         this.loader.present();
     }
 
-    showError(text: string) {
+    hideLoading() {
         setTimeout(() => {
             this.loader.dismiss();
         });
+    }
 
+    showError(text: string) {
+        this.hideLoading();
         let prompt = this.alertCtrl.create({
             title: 'Error',
             subTitle: text,
@@ -34,10 +37,7 @@ export class AlertService {
     }
 
     showSuccess(text: string){
-        setTimeout(() => {
-            this.loader.dismiss();
-        });
-
+        this.hideLoading();
         let prompt = this.alertCtrl.create({
             title: 'Success',
             subTitle: text,

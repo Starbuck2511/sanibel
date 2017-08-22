@@ -5,17 +5,20 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="trans" text-center>
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Login</ion-title>
+        <ion-title></ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <h3>Login</h3>
-    <form>
+<ion-content class="turtle" padding>
+    <div class="logo-section">
+        <img src="assets/logo.png" width="256" height="42" alt="Sunbelt Logo">
+    </div>
+    <h3 class="font-secondary">LOGIN</h3>
+    <form novalidate>
         <ion-item>
             <ion-label floating>E-Mail</ion-label>
             <ion-input type="email" name="email" [(ngModel)]="user.email"></ion-input>
@@ -23,17 +26,16 @@
 
         <ion-item>
             <ion-label floating>Password</ion-label>
-            <ion-input type="password" name="password" [(ngModel)]="user.password"></ion-input>
+            <ion-input type="password" name="password" [(ngModel)]="user.password" clearOnEdit></ion-input>
         </ion-item>
 
         <div padding>
-            <button ion-button (click)="login()">Login</button>
-
+            <button ion-button round color="signal-alternative" (click)="login()">Login</button>
         </div>
-        <div padding>
+        <p padding class="font-secondary">
+                Or <a ion-text (click)="goToRegisterUser()" color="signal-decent">sign up</a> for a new account.
+            <a ion-text (click)="goToForgotPassword()" color="signal-decent">Forgot password?</a>
 
-                Or <a (click)="registerUser()">register </a>for a new account.
-
-        </div>
+        </p>
     </form>
 </ion-content>

@@ -3,6 +3,8 @@ import {NavController} from 'ionic-angular';
 import {AlertService} from '../../components/alert/alert.service';
 import {AngularFire} from "angularfire2";
 
+import {LoginPage} from '../login/login';
+
 /*
  Generated class for the Signup page.
 
@@ -31,15 +33,10 @@ export class SignupPage {
         this.alert.showLoading('');
 
         this.af.auth.createUser(this.user).then((authData) => {
-            this.alert.showSuccess('Thank you for registering.');
-
+            this.alert.showSuccess('Thank you for registering. You can now login to this app with your email and password.');
+            this.navCtrl.setRoot(LoginPage);
          }).catch((error) => {
-         this.alert.showError(error.message);
+            this.alert.showError(error.message);
          });
     }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad SignupPage');
-    }
-
 }

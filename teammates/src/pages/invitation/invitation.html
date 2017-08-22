@@ -1,0 +1,46 @@
+<!--
+  Generated template for the Invitation page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{'app.invite_friends' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <p>{{'app.you_can_invite' | translate}}</p>
+    <p>Code: <span class="code">{{code}}</span></p>
+    <p>PIN: <span class="code">{{pin}}</span></p>
+    <hr class="gradient-line">
+    <div *ngIf="'device' == platform" class="center">
+
+        <ion-buttons>
+            <button *ngIf="true == canShareViaWhatsApp" class="call-to-action" ion-button icon-left full color="secondary" (click)="shareViaWhatsApp()">
+                <ion-icon name="chatbubbles"></ion-icon>
+                {{'app.share_via_whatsapp' | translate}}
+            </button>
+            <button class="call-to-action"  ion-button icon-left full color="secondary" (click)="shareSheet()">
+                <ion-icon name="share"></ion-icon>
+                {{'app.share' | translate}}
+            </button>
+        </ion-buttons>
+    </div>
+
+    <div *ngIf="'browser' == platform" class="center">
+        <ion-buttons>
+            <button class="call-to-action" ion-button icon-left full color="secondary" (click)="openMailHref()">
+                <ion-icon name="mail"></ion-icon>
+                {{'app.share_via_mail' | translate}}
+            </button>
+        </ion-buttons>
+    </div>
+
+
+</ion-content>

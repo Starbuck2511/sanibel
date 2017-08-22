@@ -6,11 +6,60 @@
 -->
 <ion-header>
     <ion-navbar>
-        <ion-title>{{name}} group-detail</ion-title>
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{name}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="goToAdd()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-    <h3>Group details view page</h3>
+<ion-content>
+    <ion-list>
+        <ion-list-header color="dark-decent">
+            <ion-icon name="calendar" icon-left></ion-icon>
+            {{'app.next_dates' | translate}}
+        </ion-list-header>
+        <ion-item-sliding *ngFor="let schedule of schedules | async" #slidingItem>
+            <button ion-item (click)="goToScheduleDetail(schedule.id)">
+                <h3>{{schedule.name}}</h3>
+                <p>{{schedule.current}}</p>
+            </button>
+            <ion-item-options>
+                <button ion-button icon-right color="danger" (click)="delete(slidingItem, schedule)">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+
+        <ion-list-header color="dark-decent">
+            <ion-icon name="chatbubbles" icon-left></ion-icon>
+            {{'app.messages' | translate}}
+        </ion-list-header>
+
+
+        <ion-item-sliding *ngFor="let chat of chats | async">
+            <button ion-item (click)="goToChatDetail(chat.id, chat.name, id)">
+                <h3>Chat - {{chat.name}}</h3>
+            </button>
+            <ion-item-options></ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+
+    <ion-fab right bottom>
+        <button ion-fab color="dark-decent">
+            <ion-icon name="md-share"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+            <button ion-fab color="dark-decent" (click)="goToInvitation(id, name)">
+                <ion-icon name="person-add"></ion-icon>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>
