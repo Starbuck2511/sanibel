@@ -200,8 +200,12 @@ $loading-ios-background: transparent;
 
 @import "roboto";
 @import "noto-sans";
-@import url('https://fonts.googleapis.com/css?family=Poiret+One');
-//@import url('../assets/fonts/lobster.otf');
+
+@font-face{
+  font-family: 'Poiret One';
+  src: url('../assets/fonts/poiretone.woff') format('woff');
+}
+
 
 
 $font-secondary: 'Poiret One', cursive;

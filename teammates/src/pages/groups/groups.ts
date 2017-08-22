@@ -82,34 +82,40 @@ export class GroupsPage {
     }
 
     private deleteGroup(group: any) {
+        this.af.database.list(`/groups/${group.id}/users`).$ref.ref.once('value').then(
+            snapshotUsers => {
+                let users = snapshotUsers.val();
+                Object.keys(users).forEach(userId => {
+                    // delete this group id from the user's groups node
+                    this.af.database.object(`/users/${userId}/groups/${group.id}`).remove();
+                    console.log('GroupsPage::deleteGroup delete groups from users group node ... ' + group.id);
+                });
 
-        // get all the users of this group node
-        this.af.database.list(`/groups/${group.id}/users`).forEach(users => {
-            users.forEach(user => {
-                // delete this group id from the user's groups node
-                console.log('GroupsPage::deleteGroup delete groups from users group node ... ' + group.id);
-                this.af.database.object(`/users/${user.$key}/groups/${group.id}`).remove();
-            });
-        }).then(() => {
                 // delete schedule nodes
-                this.af.database.list(`/groups/${group.id}/schedules`).forEach(schedules => {
-                    schedules.forEach(schedule => {
-                        console.log('GroupsPage::deleteGroup delete schedules ' + schedule.$key);
-                        this.af.database.object(`/schedules/${schedule.$key}`).remove();
-                    });
-                }).then(() => {
-                        // delete chat nodes and messages of chat
-                        this.af.database.list(`/groups/${group.id}/chats`).forEach(chats => {
-                            chats.forEach(chat => {
-                                console.log('GroupsPage::deleteGroup delete messages ' + chat.$key);
-                                console.log('GroupsPage::deleteGroup delete chats ' + chat.$key);
-                                this.af.database.object(`/messages/${chat.$key}`).remove();
-                                this.af.database.object(`/chats/${chat.$key}`).remove();
+                this.af.database.list(`/groups/${group.id}/schedules`).$ref.ref.once('value').then(
+                    snapshotSchedules => {
+                        let schedules = snapshotSchedules.val();
+                        if ('undefined' !== schedules && null !== schedules) {
+                            Object.keys(schedules).forEach(scheduleId => {
+                                this.af.database.object(`/schedules/${scheduleId}`).remove();
+                                console.log('GroupsPage::deleteGroup delete schedules ' + scheduleId);
                             });
-                        }).then(() => {
+                        }
+
+                        // delete chat nodes and messages of chat
+                        this.af.database.list(`/groups/${group.id}/chats`).$ref.ref.once('value').then(
+                            snapshotChats => {
+                                let chats = snapshotChats.val();
+                                Object.keys(chats).forEach(chatId => {
+                                    this.af.database.object(`/messages/${chatId}`).remove();
+                                    this.af.database.object(`/chats/${chatId}`).remove();
+                                    console.log('GroupsPage::deleteGroup delete messages ' + chatId);
+                                    console.log('GroupsPage::deleteGroup delete chats ' + chatId);
+                                });
+
                                 // finally delete the group node itself
-                                console.log('GroupsPage::deleteGroup delete groups ' + group.id);
                                 this.af.database.object(`/groups/${group.id}`).remove();
+                                console.log('GroupsPage::deleteGroup delete groups ' + group.id);
                             }
                         );
                     }
@@ -165,7 +171,7 @@ export class GroupsPage {
                             let groups = snapshot.val();
                             console.log('list of users groups ...');
                             console.dir(groups);
-                            if('undefined' !== groups && null !== groups) {
+                            if ('undefined' !== groups && null !== groups) {
                                 Object.keys(groups).forEach(groupId => {
                                     this.af.database.object(`/groups/${groupId}/pushNotificationUsers/${this.auth.getUid()}`).set(ids.userId);
                                     console.log('updated group with id ' + groupId + ' for push notification user id ');

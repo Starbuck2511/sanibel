@@ -115,11 +115,11 @@ export class ChatDetailPage {
         this.messages = this.af.database.list(`/messages/${this.id}`, {
             query: {
                 orderByKey: true,
-                limitToLast: 25,
+                limitToLast: 50,
             }
         }).map(
             messages => {
-                this.scrollToBottom();
+
                 messages.map(message => {
                     if (this.auth.getUid() == message.uid) {
                         message.position = 'right';
@@ -130,6 +130,7 @@ export class ChatDetailPage {
                     message.timestamp = moment(message.timestamp).format('llll');
 
                 });
+                this.scrollToBottom();
                 this.alert.loader.dismiss();
                 return messages;
             }
