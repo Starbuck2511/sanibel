@@ -17,4 +17,8 @@ export class AppConfig {
     public static ONE_SIGNAL_CONFIG: any = {
         appId: ""
     };
+
+    public static SENTRY_CONFIG: any = {
+        dns: ""
+    };
 }
