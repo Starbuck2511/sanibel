@@ -1,5 +1,5 @@
-import {NgModule, ErrorHandler} from '@angular/core';
-import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
+import {NgModule, ErrorHandler, enableProdMode} from '@angular/core';
+import {IonicApp, IonicModule} from 'ionic-angular';
 import {AngularFireModule} from 'angularfire2';
 import {TranslateModule, TranslateStaticLoader, TranslateLoader} from 'ng2-translate';
 import {HttpModule, Http} from '@angular/http';
@@ -10,6 +10,8 @@ import {AlertService} from '../components/alert/alert.service';
 import {AuthService} from '../components/auth/auth.service';
 import {PushService} from '../components/push/push.service';
 import {ChatBubble} from '../components/chat/chat-bubble';
+
+import {SentryErrorHandler} from '../services/sentry-error-handler';
 
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
@@ -27,6 +29,9 @@ import {InvitationPage} from '../pages/invitation/invitation';
 import {InvitationCheckPage} from '../pages/invitation-check/invitation-check';
 import {UserSettingsPage} from '../pages/user-settings/user-settings';
 import {ForgotPasswordPage} from '../pages/forgot-password/forgot-password';
+
+
+enableProdMode();
 
 export function createTranslateLoader(http: Http) {
     return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -87,7 +92,7 @@ export function createTranslateLoader(http: Http) {
     providers: [
         {
             provide: ErrorHandler,
-            useClass: IonicErrorHandler
+            useClass: SentryErrorHandler
         },
         AlertService,
         AuthService,

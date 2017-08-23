@@ -2,10 +2,10 @@ import {Component, ViewChild} from '@angular/core';
 import {Platform, MenuController, Nav, Events, ToastController} from 'ionic-angular';
 import {StatusBar, Splashscreen, OneSignal, Network} from 'ionic-native';
 import {TranslateService} from 'ng2-translate';
+import Raven from 'raven-js';
 
 import {AuthService} from '../components/auth/auth.service';
 import {PushService} from '../components/push/push.service';
-
 
 import {LoginPage} from '../pages/login/login';
 import {SignupPage} from '../pages/signup/signup';
@@ -44,6 +44,16 @@ export class MyApp {
                 private translate: TranslateService,
                 private toastCtrl: ToastController
     ) {
+        // send uncaught errors also to sentry via raven.js
+        // check if env var exists to do this only for prod mode
+       let original = window.console.error;
+        window.console.error = function(msg) {
+            original.apply(this, arguments);
+            Raven.captureMessage(msg);
+        };
+
+
+
         this.initializeApp();
 
         this.pagesPublic = [
@@ -129,12 +139,12 @@ export class MyApp {
         // we wouldn't want the back button to show in this scenario
         if (page.index) {
             this.nav.setRoot(page.component, {tabIndex: page.index}).catch(() => {
-                console.debug("Didn't set nav root");
+                console.debug('MyApp::openPage -> did not set nav root');
             });
 
         } else {
             this.nav.setRoot(page.component).catch(() => {
-                console.debug("Didn't set nav root");
+                console.debug('MyApp::openPage -> did not set nav root');
             });
         }
         // close the menu when clicking a link from the menu
