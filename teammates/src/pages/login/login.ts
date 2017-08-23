@@ -58,7 +58,7 @@ export class LoginPage {
             // after login check if user has a displayName
             if (null === this.auth.getDisplayName()) {
                 this.navCtrl.setRoot(DisplayNamePage).catch(() => {
-                    console.log("Didn't set nav root");
+                    console.debug('LoginPage::login -> did not set nav root');
                 });
             } else {
                 // everything is ok

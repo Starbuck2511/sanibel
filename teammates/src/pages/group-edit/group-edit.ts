@@ -64,7 +64,7 @@ export class GroupEditPage {
             this.groupForm.setValue({name: group.name, description: group.description});
             this.updateGroupChat();
         }).catch((error) => {
-            console.log(error.message)
+            console.debug('GroupEditPage::constructor -> ' + error.message);
         });
 
     }
@@ -90,12 +90,12 @@ export class GroupEditPage {
                 );
             }).catch(
                 error => {
-                    console.log(error.message)
+                    console.debug('GroupEditPage::editGroup -> ' + error.message);
                 }
             );
         }).catch(
             error => {
-                console.log(error.message)
+                console.debug('GroupEditPage::editGroup -> ' + error.message);
             }
         );
     }
