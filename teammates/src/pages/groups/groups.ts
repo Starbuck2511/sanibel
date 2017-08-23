@@ -162,6 +162,7 @@ export class GroupsPage {
         }
 
         if (pushNotificationsRequested && !pushNotificationsUpdated) {
+
             // update once all oneSignalIds of the user (oneSignalId changes if user has reinstalled the app)
             this.push.oneSignal.getIds().then(
                 ids => {
