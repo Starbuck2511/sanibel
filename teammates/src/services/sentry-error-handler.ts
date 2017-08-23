@@ -1,9 +1,10 @@
 import { IonicErrorHandler } from 'ionic-angular';
 import {ErrorHandler} from '@angular/core';
+import {AppConfig} from './app.config';
 import Raven from 'raven-js';
 
 Raven
-    .config('https://7f772648724248479f2ed99389ec532a@sentry.io/207329')
+    .config(AppConfig.SENTRY_CONFIG.dns)
     .install();
 
 export class SentryErrorHandler extends IonicErrorHandler implements ErrorHandler {
