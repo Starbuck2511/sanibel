@@ -59,8 +59,6 @@ export class ChatDetailPage {
         });
 
         this.content = this.messageForm.controls['content'];
-
-
     }
 
     send() {
@@ -77,7 +75,7 @@ export class ChatDetailPage {
 
             }
         ).catch(error => {
-            console.log(error.message)
+            console.debug('ChatDetailPage::send -> ' + error.message);
         });
 
     }
@@ -95,13 +93,14 @@ export class ChatDetailPage {
         this.af.database.list(`/groups/${this.groupId}/pushNotificationUsers`).$ref.ref.once('value').then(
             snapshot => {
                 let users = snapshot.val();
-                console.log('getPushNotificationUsers ...');
+                console.debug('ChatDetailPage::getPushNotificationUsers -> users');
                 console.dir(users);
                 if('undefined' !== users && null !== users) {
                     this.recipients  = Object.keys(users).map(function (key) {
                         return users[key];
                     });
                 }
+                console.debug('ChatDetailPage::getPushNotificationUsers -> recipients');
                 console.dir(this.recipients);
             }
         );

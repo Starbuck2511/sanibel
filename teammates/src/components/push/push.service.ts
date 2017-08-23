@@ -24,7 +24,7 @@ export class PushService {
         iosSettings["kOSSettingsKeyAutoPrompt"] = false;
 
         let notificationOpenedCallback = function (jsonData) {
-            console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            console.debug('PushService::init -> notificationOpenedCallback: ' + JSON.stringify(jsonData));
         };
 
         this.oneSignal.startInit(AppConfig.ONE_SIGNAL_CONFIG.appId, AppConfig.FIREBASE_CONFIG.messagingSenderId)
@@ -43,12 +43,12 @@ export class PushService {
         console.dir(notificationObj);
         this.oneSignal.postNotification(notificationObj).then(
             response => {
-                console.log('Notification Post Success');
+                console.debug('PushService::sendToGroup -> Notification Post Success');
                 console.dir(response);
             }
         ).catch(
             response => {
-                console.log('Notification Post Failed');
+                console.debug('PushService::sendToGroup -> Notification Post Failed');
                 console.dir(response);
             }
         );

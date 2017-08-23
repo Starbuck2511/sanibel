@@ -116,7 +116,7 @@ export class GroupAddPage {
 
 
         }).catch(error => {
-            console.log(error.message)
+            console.debug('GroupAddPage::addGroup -> ' + error.message);
         });
     }
 
