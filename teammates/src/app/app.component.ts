@@ -129,12 +129,12 @@ export class MyApp {
         // we wouldn't want the back button to show in this scenario
         if (page.index) {
             this.nav.setRoot(page.component, {tabIndex: page.index}).catch(() => {
-                console.log("Didn't set nav root");
+                console.debug("Didn't set nav root");
             });
 
         } else {
             this.nav.setRoot(page.component).catch(() => {
-                console.log("Didn't set nav root");
+                console.debug("Didn't set nav root");
             });
         }
         // close the menu when clicking a link from the menu

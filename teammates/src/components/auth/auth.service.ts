@@ -69,7 +69,7 @@ export class AuthService {
                 this.displayName = name
             }
         ).catch(error => {
-            console.log(error.message)
+            console.debug('AuthService::updateAuthDisplayName -> ' + error.message);
         });
     }
 

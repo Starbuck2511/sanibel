@@ -88,7 +88,7 @@ export class GroupsPage {
                 Object.keys(users).forEach(userId => {
                     // delete this group id from the user's groups node
                     this.af.database.object(`/users/${userId}/groups/${group.id}`).remove();
-                    console.log('GroupsPage::deleteGroup delete groups from users group node ... ' + group.id);
+                    console.debug('GroupsPage::deleteGroup -> delete groups from users group node ... ' + group.id);
                 });
 
                 // delete schedule nodes
@@ -98,7 +98,7 @@ export class GroupsPage {
                         if ('undefined' !== schedules && null !== schedules) {
                             Object.keys(schedules).forEach(scheduleId => {
                                 this.af.database.object(`/schedules/${scheduleId}`).remove();
-                                console.log('GroupsPage::deleteGroup delete schedules ' + scheduleId);
+                                console.debug('GroupsPage::deleteGroup -> delete schedules ' + scheduleId);
                             });
                         }
 
@@ -109,13 +109,13 @@ export class GroupsPage {
                                 Object.keys(chats).forEach(chatId => {
                                     this.af.database.object(`/messages/${chatId}`).remove();
                                     this.af.database.object(`/chats/${chatId}`).remove();
-                                    console.log('GroupsPage::deleteGroup delete messages ' + chatId);
-                                    console.log('GroupsPage::deleteGroup delete chats ' + chatId);
+                                    console.debug('GroupsPage::deleteGroup -> delete messages ' + chatId);
+                                    console.debug('GroupsPage::deleteGroup -> delete chats ' + chatId);
                                 });
 
                                 // finally delete the group node itself
                                 this.af.database.object(`/groups/${group.id}`).remove();
-                                console.log('GroupsPage::deleteGroup delete groups ' + group.id);
+                                console.debug('GroupsPage::deleteGroup -> delete groups ' + group.id);
                             }
                         );
                     }
@@ -165,16 +165,16 @@ export class GroupsPage {
             // update once all oneSignalIds of the user (oneSignalId changes if user has reinstalled the app)
             this.push.oneSignal.getIds().then(
                 ids => {
-                    console.log('update one signal user id ' + ids.userId);
+                    console.debug('GroupsPage::ionViewDidLoad -> update one signal user id ' + ids.userId);
                     this.af.database.list(`/users/${this.auth.getUid()}/groups`).$ref.ref.once('value').then(
                         snapshot => {
                             let groups = snapshot.val();
-                            console.log('list of users groups ...');
+                            console.debug('GroupsPage::ionViewDidLoad -> list of users groups ...');
                             console.dir(groups);
                             if ('undefined' !== groups && null !== groups) {
                                 Object.keys(groups).forEach(groupId => {
                                     this.af.database.object(`/groups/${groupId}/pushNotificationUsers/${this.auth.getUid()}`).set(ids.userId);
-                                    console.log('updated group with id ' + groupId + ' for push notification user id ');
+                                    console.debug('GroupsPage::ionViewDidLoad -> updated group with id ' + groupId + ' for push notification user id ');
                                 })
                             }
 
@@ -200,7 +200,7 @@ export class GroupsPage {
                         group.name = groupDetail.name;
                         group.uid = groupDetail.uid;
                     }).catch((error) => {
-                        console.log(error.message)
+                        console.debug('GroupsPage::ionViewWillEnter -> ' + error.message);
                     });
                 });
                 this.alert.loader.dismiss();

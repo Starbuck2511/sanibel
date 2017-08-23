@@ -51,7 +51,7 @@ export class InvitationPage {
             this.canShareViaWhatsApp = true;
         }).catch(error => {
             // Sharing via whatsapp is not possible
-            console.log(error.message);
+            console.debug('InvitationPage::constructor -> ' + error.message);
 
         });
     }
@@ -68,7 +68,7 @@ export class InvitationPage {
                 // Success!
             }
         ).catch(error => {
-                console.log(error.message);
+                console.debug('InvitationPage::shareSheet -> ' + error.message);
             }
         );
     }
@@ -79,11 +79,11 @@ export class InvitationPage {
             SocialSharing.shareViaWhatsApp(`${this.body}`).then(() => {
                 // Success!
             }).catch(error => {
-                console.log(error.message);
+                console.debug('InvitationPage::shareViaWhatsApp -> ' + error.message);
             });
         }).catch(error => {
             // Sharing via whatsapp is not possible
-            console.log(error.message);
+            console.debug('InvitationPage::shareViaWhatsApp -> ' + error.message);
 
         });
     }
@@ -103,7 +103,7 @@ export class InvitationPage {
             }
         ).catch(
             error => {
-                console.log(error.message);
+                console.debug('InvitationPage::copyToClipboard -> ' + error.message);
             }
         );
     }

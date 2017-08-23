@@ -38,13 +38,13 @@ export class UserSettingsPage {
 
     setPushNotifications() {
         this.push.changeSubscriptionStatus(this.pushNotificationsStatus);
-        console.log('change push status to ... ' + this.pushNotificationsStatus);
+        console.debug('UserSettingsPage::setPushNotifications -> change push status to ... ' + this.pushNotificationsStatus);
         window.localStorage.setItem('pushNotificationsEnabled', this.pushNotificationsStatus.toString());
     }
 
     setCurrentUserLang() {
         this.translate.use(this.lang).subscribe(() => {
-            console.log('lang changed to ' + this.translate.currentLang);
+            console.debug('UserSettingsPage::setCurrentUserLang -> lang changed to ' + this.translate.currentLang);
         });
 
 
@@ -53,10 +53,10 @@ export class UserSettingsPage {
     ionViewDidEnter() {
         // get the push notification settings
         this.pushNotificationsStatus = JSON.parse(window.localStorage.getItem('pushNotificationsEnabled'));
-        console.log('view enter push status is ... ' + this.pushNotificationsStatus);
+        console.debug('UserSettingsPage::ionViewDidEnter -> push status is ' + this.pushNotificationsStatus);
 
         this.lang = this.translate.currentLang;
-        console.log('view enter currentLang is ... ' + this.lang);
+        console.debug('UserSettingsPage::ionViewDidEnter -> currentLang is ' + this.lang);
 
     }
 

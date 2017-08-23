@@ -134,7 +134,7 @@ export class GroupDetailPage {
                     schedule.current = current.format('LLLL');
 
                 }).catch((error) => {
-                    console.log(error.message)
+                    console.debug('GroupDetailPage::getSchedules -> ' + error.message);
                 });
             });
             return schedules;
@@ -151,7 +151,7 @@ export class GroupDetailPage {
                         chat.id = chatDetail.$key;
                         chat.name = chatDetail.name;
                     }).catch((error) => {
-                        console.log(error.message)
+                        console.debug('GroupDetailPage::getChats -> ' + error.message);
                     });
                 });
                 return chats;

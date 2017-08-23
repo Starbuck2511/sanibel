@@ -107,7 +107,7 @@ export class ScheduleAddPage {
                 }
             );
         }).catch(error => {
-            console.log(error.message)
+            console.debug('ScheduleAddPage::addSchedule -> ' + error.message);
         });
     }
 

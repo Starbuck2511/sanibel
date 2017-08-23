@@ -61,7 +61,7 @@ export class DisplayNamePage {
                 }
             );
         }).catch(error => {
-            console.log(error.message)
+            console.debug('DisplayNamePage::updateData -> ' + error.message);
         });
     }
 
