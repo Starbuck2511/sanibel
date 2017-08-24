@@ -2,6 +2,7 @@
   "app": {
     "hello": "Hallo",
     "groups": "Gruppen",
+    "group": "Gruppe",
     "invites": "Einladungen",
     "settings": "Einstellungen",
     "about": "Über",
@@ -61,7 +62,11 @@
     "share_via_mail": "Senden mit E-Mail",
     "invitation_body": "Das ist eine Einladung via Sunbelt für die Gruppe {{name}}. Hol dir dazu einfach die Sunbelt App aus dem App Store oder Google Play. \n\nCODE {{code}} \nPIN {{pin}} \n\nHerzliche Grüße \nDein Sunbelt Team\n\n",
     "invitation_subject": "Einladung von {{name}}",
-    "manage_language": "Sprache"
+    "manage_language": "Sprache",
+    "allow_push": "Mitteilungen erlauben (empfohlen)? Diese können später wieder unter Einstellungen deaktiviert werden.",
+    "leave_group": "Gruppe verlassen",
+    "delete_group": "Gruppe endgültig löschen",
+    "no_tnx": "Nein, danke."
 
   }
 }

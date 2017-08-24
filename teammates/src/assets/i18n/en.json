@@ -2,6 +2,7 @@
   "app": {
     "hello": "hello",
     "groups": "Groups",
+    "group": "Group",
     "invites": "Invites",
     "settings": "Settings",
     "about": "About",
@@ -61,6 +62,10 @@
     "share_via_mail": "Send via email",
     "invitation_body": "This is a Sunbelt invitation for joining the group {{name}}. Just get the free Sunbelt App from Google Play or the Apple Store and enter the following code and PIN. \n\nCODE {{code}} \nPIN {{pin}} \n\nBest regards \nYour Sunbelt Team<br>\n",
     "invitation_subject": "Invitation from {{name}}",
-    "manage_language": "Language"
+    "manage_language": "Language",
+    "allow_push": "Allow push notifications? It is recommended to choose OK. You can easily turn them off in your user settings",
+    "leave_group": "Leave group",
+    "delete_group": "Delete group",
+    "no_tnx": "No, thank you."
   }
 }
