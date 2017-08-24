@@ -1,3 +1,5 @@
+### v1.1.3 (2017/08/24)
+* Improved translations
 ### v1.1.2 (2017/08/24)
 * Fixed config path
 * Fixed some translations
