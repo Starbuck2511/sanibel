@@ -7,7 +7,7 @@
     "about": "About",
     "login": "Login",
     "logout": "Logout",
-    "sign_up": "Logout",
+    "sign_up": "Sign up",
     "create_group": "Create a group",
     "group_name_required": "A group name is required.",
     "group_name_min_length": "A group name should have a least 3 characters.",
