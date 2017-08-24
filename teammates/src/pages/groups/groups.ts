@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {NavController, NavParams, ItemSliding, ActionSheetController} from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
+import {TranslateService} from 'ng2-translate';
 
 import {AuthService} from '../../components/auth/auth.service';
 import {PushService} from '../../components/push/push.service';
@@ -32,6 +33,8 @@ export class GroupsPage {
 
     userId: string;
 
+    translation: Observable<Object>;
+
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -39,7 +42,9 @@ export class GroupsPage {
                 private auth: AuthService,
                 private push: PushService,
                 private actionSheetCtrl: ActionSheetController,
-                private alert: AlertService) {
+                private alert: AlertService,
+                private translate: TranslateService
+    ) {
         this.userId = this.auth.getUid();
     }
 
@@ -57,20 +62,53 @@ export class GroupsPage {
 
     }
 
+    public leave(slidingItem: ItemSliding, group: any){
+        slidingItem.close();
+        let actionSheet = this.actionSheetCtrl.create({
+            title: this.translation['group'],
+            buttons: [
+                {
+                    text: this.translation['leave_group'],
+                    role: 'destructive',
+                    handler: () => {
+                        this.leaveGroup(group);
+                    }
+                },
+                {
+                    text: this.translation['cancel'],
+                    role: 'cancel',
+                    handler: () => {
+
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    }
+
+    private leaveGroup(group: any){
+        console.debug('GroupsPage::leaveGroup -> delete group from user ' + this.userId);
+        this.af.database.object(`/users/${this.userId}/groups/${group.id}`).remove();
+        console.debug('GroupsPage::leaveGroup -> delete user from group ' + group.id);
+        this.af.database.object(`/groups/${group.id}/users/${this.userId}`).remove();
+        console.debug('GroupsPage::leaveGroup -> delete push notification user from group ' + group.id);
+        this.af.database.object(`/groups/${group.id}/pushNotificationUsers/${this.userId}`).remove();
+    }
+
     public delete(slidingItem: ItemSliding, group: any) {
         slidingItem.close();
         let actionSheet = this.actionSheetCtrl.create({
-            title: 'Group',
+            title: this.translation['group'],
             buttons: [
                 {
-                    text: 'Delete',
+                    text: this.translation['delete_group'],
                     role: 'destructive',
                     handler: () => {
                         this.deleteGroup(group);
                     }
                 },
                 {
-                    text: 'Cancel',
+                    text: this.translation['cancel'],
                     role: 'cancel',
                     handler: () => {
 
@@ -128,7 +166,7 @@ export class GroupsPage {
         this.push.oneSignal.registerForPushNotifications();
     }
 
-    ionViewDidLoad() {
+    private handlePushNotifcations() {
         // ask the user one time for permission on push notifications
         // its a good practice to do this on your own, because if the user
         // rejects the system message, he has to go through multi steps in the
@@ -137,7 +175,7 @@ export class GroupsPage {
         let pushNotificationsUpdated = window.localStorage.getItem('pushNotificationsUpdate');
         if (!pushNotificationsRequested) {
             let actionSheet = this.actionSheetCtrl.create({
-                title: 'Allow push notifications? It is recommended to choose OK. You can easily turn them off in your user settings',
+                title: this.translation['allow_push'],
                 buttons: [
                     {
                         text: 'OK',
@@ -149,7 +187,7 @@ export class GroupsPage {
                         }
                     },
                     {
-                        text: 'No, thank you.',
+                        text: this.translation['no_tnx'],
                         icon: 'close',
                         handler: () => {
                             window.localStorage.setItem('pushNotificationsRequest', 'true');
@@ -188,8 +226,19 @@ export class GroupsPage {
         }
     }
 
+    ionViewDidLoad() {
+
+
+    }
+
 
     ionViewWillEnter() {
+        this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
+                this.translation = res.app;
+                this.handlePushNotifcations();
+            }
+        );
+
         this.alert.showLoading('');
         // get the groups from user node
         this.groups = this.af.database.list(`/users/${this.auth.getUid()}/groups`)

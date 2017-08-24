@@ -26,7 +26,11 @@
                 <h3>{{group.name}}</h3>
             </button>
 
-            <ion-item-options *ngIf="group.uid != userId"></ion-item-options>
+            <ion-item-options *ngIf="group.uid != userId">
+                <button ion-button icon-right color="danger" (click)="leave(slidingItem,group)">
+                    <ion-icon name="exit"></ion-icon>
+                </button>
+            </ion-item-options>
 
             <ion-item-options *ngIf="group.uid == userId">
                 <button ion-button icon-right color="secondary" (click)="goToEdit(slidingItem,group)">
