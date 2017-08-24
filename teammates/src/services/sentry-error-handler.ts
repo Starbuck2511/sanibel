@@ -1,6 +1,6 @@
 import { IonicErrorHandler } from 'ionic-angular';
 import {ErrorHandler} from '@angular/core';
-import {AppConfig} from './app.config';
+import {AppConfig} from '../app/app.config';
 import Raven from 'raven-js';
 
 Raven
