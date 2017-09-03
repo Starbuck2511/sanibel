@@ -3,6 +3,7 @@ export class AppConfig {
         apiKey: "",
         authDomain: "",
         databaseURL: "",
+        projectId: "",
         storageBucket: "",
         messagingSenderId: ""
     };
