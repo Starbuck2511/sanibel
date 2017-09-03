@@ -21,7 +21,7 @@ The most common method for organizing appointments is still by sending an e-mail
 * Often you get a lot of unwanted emails when members reply to all.
 * You can not see the a current feedback on an appointment.
 
-So this is, where the Sunbelt app is trying to make it easier and more comfortable for all group members.
+So this is where the Sunbelt app is trying to make it easier and more comfortable for all group members.
 
 ## Screens
 ![]({{ site.url }}/assets/images/login.png)    |![]({{ site.url }}/assets/images/groups.png)
