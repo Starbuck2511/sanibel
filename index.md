@@ -24,8 +24,8 @@ The most common method for organizing appointments is still by sending an e-mail
 So this is where the Sunbelt app is trying to make it easier and more comfortable for all group members.
 
 ## Screens
-![]({{ site.url }}/assets/images/login.png)    |![]({{ site.url }}/assets/images/groups.png)
-![]({{ site.url }}/assets/images/feedback.png) |![]({{ site.url }}/assets/images/chat.png)
+![](./assets/images/login.png)    |![](./assets/images/groups.png)
+![](./assets/images/feedback.png) |![](./assets/images/chat.png)
 
 ## Features
 
@@ -72,7 +72,7 @@ The app uses a remote error tracking to improve stability. In case of errors or 
 [MIT License](https://github.com/Starbuck2511/sanibel/blob/master/LICENSE.md)
 
 ## Privacy
-[Privacy data]({{ site.url }}/assets/docs/data-privacy.pdf)
+[Privacy data](./assets/docs/data-privacy.pdf)
 
 
 
