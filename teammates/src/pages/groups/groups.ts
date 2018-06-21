@@ -235,7 +235,7 @@ export class GroupsPage {
     ionViewWillEnter() {
         this.translate.getTranslation(this.translate.currentLang).subscribe((res) => {
                 this.translation = res.app;
-                this.handlePushNotifcations();
+                //this.handlePushNotifcations();
             }
         );
 
